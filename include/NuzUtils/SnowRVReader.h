@@ -8,28 +8,32 @@ namespace NuzUtils{
 	 */
 	class ISnowRVReader{
 	public:
-	
+
 		/* 取得字符串常量
 		 * @param 常量名
+         * @throw std::runtime_error
 		 * @result 常量字符串
 		 */
 		virtual std::string GetString(const std::string&) = 0;
-		
+
 		/* 取得数值常量
 		 * @param 常量名
+         * @throw std::runtime_error
 		 * @result 常量数值
 		 */
 		virtual int GetInt(const std::string&) = 0;
-		
+
 		/* 取得浮点数常量
 		 * @param 常量名
+         * @throw std::runtime_error
 		 * @result 常量浮点数
 		 */
 		virtual double GetFloat(const std::string&) = 0;
 	};
-	
+
 	/* 创建SnowRV阅读器
 	 * @param RV文件
+     * @throw std::runtime_error
 	 * @result RV阅读器
 	 */
 	std::shared_ptr<ISnowRVReader> CreateSnowRVReader(const std::string& path);
