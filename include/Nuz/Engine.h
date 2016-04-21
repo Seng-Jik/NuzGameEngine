@@ -39,9 +39,21 @@ namespace Nuz{
 	 * @param w 宽度（为-1则在全屏模式下按照屏幕分辨率设定）
      * @param h 高度（为-1则在全屏模式下按照屏幕分辨率设定）
      * @param title 标题
-	 * @result 指向引擎的指针
+     * @throw std::runtime_error
+	 * @result 引擎
 	 */
-	std::shared_ptr<IEngine> CreateGameDevice(const char* title,bool fullScreen,int w=-1,int h=-1);
+	IEngine& CreateGameDevice(const char* title,bool fullScreen,int w=-1,int h=-1);
+
+	/* 取得已被创建的引擎实例
+     * @throw std::runtime_error
+     * @result 引擎
+     */
+	IEngine& GetGameDevice();
+
+	/* 销毁引擎实例
+	 * @throw std::runtime_error
+	 */
+    void KillGameDevice();
 }
 
 /* 更新日志：

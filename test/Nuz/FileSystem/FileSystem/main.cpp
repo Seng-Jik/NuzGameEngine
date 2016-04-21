@@ -6,9 +6,9 @@
 using namespace std;
 using namespace Nuz;
 int main(){
-    auto engine = CreateGameDevice("FFF",false);
-    IFileSystem& fs = engine -> GetFileSystem();
-    ILocalFile& lf = engine -> GetLocalFile();
+    IEngine& engine = CreateGameDevice("FFF",false);
+    IFileSystem& fs = engine.GetFileSystem();
+    ILocalFile& lf = engine.GetLocalFile();
 
     fs.Mount(shared_ptr<IFileSource>(&lf));
 

@@ -9,6 +9,8 @@ namespace Nuz{
 	*/
 	class IGameObject{
 	public:
+	    virtual ~IGameObject(){};
+
 		/* 挂载组件
 		 * @param id 组件id
 		 * @param 组件实例

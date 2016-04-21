@@ -8,6 +8,8 @@ namespace Nuz{
 	 */
 	class IFileSource{
 	public:
+	    virtual ~IFileSource(){};
+
 		/* 读取文件
 		 * 提供一个开头为/的文件路径
 		 * 从这里读取文件并返回。
