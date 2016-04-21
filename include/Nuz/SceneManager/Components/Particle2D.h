@@ -3,7 +3,7 @@
 #include <string>
 #include <functional>
 
-namespace NuzUtil{
+namespace Nuz{
 
 	/* ЕЅИіСЃзг */
 	class IDot2D{

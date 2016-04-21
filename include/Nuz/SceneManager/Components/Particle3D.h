@@ -4,7 +4,7 @@
 #include <functional>
 #include <memory>
 
-namespace NuzUtil{
+namespace Nuz{
 
 	/* ЕЅИіСЃзг */
 	class IDot3D{
