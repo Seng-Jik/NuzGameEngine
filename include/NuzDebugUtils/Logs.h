@@ -12,6 +12,7 @@
 void LogStd(const std::string& log,const std::string& module = "");
 
 /* 普通日志的输出位置
+ * 默认是cout流
  * Release下无效
  * @param 输出流
  */
@@ -19,7 +20,7 @@ void SetStdLogOutputStream(std::ostream&);
 
 /* 在普通日志里添加过滤白名单
  * Release下无效
- * 默认情况下不允许任何模块输出日志
+ * 默认情况下不允许任何模块输出日志，没有模块名的除外
  * @param module 允许的模块
  */
 void AddStdLogWhiteFliter(const std::string& module);
@@ -46,6 +47,7 @@ void ClearStdLogWhiteFliter();
 void LogErr(const std::string& log,const std::string& module = "");
 
 /* 错误日志的输出位置
+ * 默认是cerr流
  * Release下仍然有效
  * @param 输出流
  */
@@ -68,4 +70,3 @@ void ClearErrLogBlackFliter();
  * 星翼 初稿
  *
  */
- 
