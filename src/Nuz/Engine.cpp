@@ -5,6 +5,14 @@ using namespace Nuz;
 
 _Nuz::Engine* engine = nullptr;
 
+Engine::Engine(const char* title,bool fullScreen,int w,int h){
+    //Todo:Init Libraries and Create Window Here
+}
+
+Engine::~Engine(){
+    //Todo::Kill Libraries and Kill All Objects Here.
+}
+
 Nuz::IFileSystem& Engine::GetFileSystem()
 {
     return m_fileSystem;
@@ -19,7 +27,7 @@ Nuz::IEngine& Nuz::CreateGameDevice(const char* title,bool fullScreen,int w,int 
     if(engine){
         throw std::runtime_error("Nuz::CreateGameDevice()::Engine already created.");
     }
-    engine = new _Nuz::Engine;
+    engine = new _Nuz::Engine(title,fullScreen,w,h);
     return *engine;
 }
 

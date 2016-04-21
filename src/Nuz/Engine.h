@@ -13,7 +13,8 @@ namespace _Nuz{
         _Nuz::FileSystem m_fileSystem;
         _Nuz::LocalFile m_localFile;
 	public:
-	    virtual ~Engine(){};
+	    Engine(const char* title,bool fullScreen,int w,int h);
+	    virtual ~Engine();
 		virtual Nuz::ISceneManager& GetSceneManager(){};
 		virtual Nuz::IFileSystem& GetFileSystem();
 		virtual Nuz::IInputDeviceManager& GetInputDeviceManager(){};
