@@ -2,54 +2,52 @@
 #include "FileSource.h"
 
 namespace Nuz{
-	/* ÎÄ¼şÊı¾İÔ´
-	 * Íê³É¸ÃÀàºó¿ÉÒÔ¹ÒÔØµ½ĞéÄâÎÄ¼şÏµÍ³ÉÏ¡£
-	 * ÄãĞèÒªÊÖ¶¯¹ÒÔØËü¡£
+	/* æ–‡ä»¶æ•°æ®æº
+	 * å®Œæˆè¯¥ç±»åå¯ä»¥æŒ‚è½½åˆ°è™šæ‹Ÿæ–‡ä»¶ç³»ç»Ÿä¸Šã€‚
+	 * ä½ éœ€è¦æ‰‹åŠ¨æŒ‚è½½å®ƒã€‚
 	 */
-	class ILocalFile:virtual public IFileSource{
+	class ILocalFile:public IFileSource{
 	public:
-		/* ¶ÁÈ¡ÎÄ¼ş
-		 * Ìá¹©Ò»¸ö¿ªÍ·Îª/µÄÎÄ¼şÂ·¾¶
-		 * ´ÓÕâÀï¶ÁÈ¡ÎÄ¼ş²¢·µ»Ø¡£
-		 * Èç¹ûÃ»ÓĞÕâ¸öÎÄ¼ş£¬Çë·µ»Ønullptr£¬¿ÉÒÔ²»ÓÃÉèÖÃsize
-		 * @param path ÎÄ¼şÂ·¾¶
-		 * @param size ·µ»Ø¸øÒıÇæµÄÎÄ¼ş´óĞ¡£¨×Ö½ÚÊı£©
-         * @throw std::invalid_argument
-		 * @throw std::runtime_error
-		 * @result ·µ»Ø¸øÒıÇæµÄÎÄ¼ş»º´æÇø£¬Èç¹û¼ÓÔØÊ§°ÜÇë·µ»Ønullptr.
+		/* è¯»å–æ–‡ä»¶
+		 * æä¾›ä¸€ä¸ªå¼€å¤´ä¸º/çš„æ–‡ä»¶è·¯å¾„
+		 * ä»è¿™é‡Œè¯»å–æ–‡ä»¶å¹¶è¿”å›ã€‚
+		 * @param path æ–‡ä»¶è·¯å¾„
+         * @throw InvalidFileName
+		 * @throw CannotOpenFile
+		 * @result è¿”å›ç»™å¼•æ“çš„æ–‡ä»¶ç¼“å­˜åŒºï¼Œå¦‚æœåŠ è½½å¤±è´¥è¯·è¿”å›nullptr.
 		 */
-		virtual std::shared_ptr<std::vector<unsigned char> > ReadFile(const std::string& path,unsigned long& size) const = 0;
+		virtual std::shared_ptr<std::vector<unsigned char> > ReadFile(const std::string& path) const = 0;
 
-		/* È¡ÎÄ¼ş´óĞ¡
-		 * @param path ÎÄ¼şÃû
-         * @throw std::invalid_argument
-		 * @throw std::runtime_error
-		 * @result ÎÄ¼ş´óĞ¡£¨×Ö½ÚÊı£©
+		/* å–æ–‡ä»¶å¤§å°
+		 * @param path æ–‡ä»¶å
+         * @throw InvalidFileName
+		 * @throw CannotOpenFile
+		 * @result æ–‡ä»¶å¤§å°ï¼ˆå­—èŠ‚æ•°ï¼‰
 		 */
 		virtual unsigned long GetFileSize(const std::string& path) const = 0;
 
-		/* ±£´æ»º´æÇøµ½ÎÄ¼ş
-		 * @param »º´æÇøÖ¸Õë
-		 * @param path ÎÄ¼şÃû
-         * @throw std::invalid_argument
-		 * @throw std::runtime_error
+		/* ä¿å­˜ç¼“å­˜åŒºåˆ°æ–‡ä»¶
+		 * @param ç¼“å­˜åŒºæŒ‡é’ˆ
+		 * @param path æ–‡ä»¶å
+         * @throw InvalidFileName
+		 * @throw CannotOpenFile
 		 */
 		virtual void SaveFile(const std::shared_ptr<std::vector<unsigned char> >,const std::string path) const = 0;
 
-		/* ¸´ÖÆÎÄ¼ş
-		 * @param src À´Ô´ÎÄ¼ş
-		 * @param dst Ä¿±êÎÄ¼ş
-		 * @throw std::invalid_argument
-		 * @throw std::runtime_error
+		/* å¤åˆ¶æ–‡ä»¶
+		 * @param src æ¥æºæ–‡ä»¶
+		 * @param dst ç›®æ ‡æ–‡ä»¶
+		 * @throw InvalidFileName
+		 * @throw CannotOpenFile
 		 */
 		virtual void CopyFile(const std::string& src,const std::string& dst) const = 0;
 
 	};
 }
 
-/* ¸üĞÂÈÕÖ¾£º
- * 2016Äê4ÔÂ18ÈÕ£º
- * ĞÇÒí ³õ¸å
- * 2016Äê4ÔÂ21ÈÕ£º
- * ĞÇÒí É¾³ıDeleteFile²¢¼ÓÈëÒì³£
+/* æ›´æ–°æ—¥å¿—ï¼š
+ * 2016å¹´4æœˆ18æ—¥ï¼š
+ * æ˜Ÿç¿¼ åˆç¨¿
+ * 2016å¹´4æœˆ21æ—¥ï¼š
+ * æ˜Ÿç¿¼ åˆ é™¤DeleteFileå¹¶åŠ å…¥å¼‚å¸¸
  */

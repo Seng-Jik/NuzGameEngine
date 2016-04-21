@@ -1,8 +1,8 @@
 #pragma once
-#include "Component.h"
+#include "../Component.h"
 
 namespace Nuz{
-	
+
 	/* 3D摄像机
 	* 实现3D图像拍摄的定位。
 	*/
@@ -19,33 +19,33 @@ namespace Nuz{
 		/* 使用此摄像机
 		 */
 		virtual void Use() = 0;
-		
+
 		/* 拍摄照片并返回照片
 		 * @result 照片
 		 */
-		virtual ISprite2D Photograph() = 0;
-		
+		virtual std::shared_ptr<ISprite2D> Photograph() = 0;
+
 		/* 设置中心坐标
 		 * @param x 中心x坐标
 		 * @param y 中心y坐标
 		 * @param z 中心z坐标
 		 */
 		virtual void SetCenter(float x,float y,float z) = 0;
-		
+
 		/* 设置从中心到一个边缘的单位大小
 		 * @param w 横向大小
 		 * @param h 纵向大小
 		 * @param d 无限远到无限近大小
 		 */
 		virtual void SetZoom(float w,float h,float d) = 0;
-		
+
 		/* 以当前摄像机为基准缩放
 		 * @param w 横向大小倍数
 		 * @param h 纵向大小倍数
 		 * @param d 无限远到无限近大小倍数
 		 */
 		virtual void Zoom(float w,float h,float d) = 0;
-		
+
 		/* 旋转当前摄像机
 		 * @param angle 角度
 		 * @param x 旋转轴向量x分量
@@ -53,20 +53,20 @@ namespace Nuz{
 		 * @param z 旋转轴向量z分量
 		 */
 		virtual void Rotate(float angle,float x,float y,float z);
-		
+
 		/* 以当前摄像机为基准进行平移
 		 * @param x 移动的x量
 		 * @param y 移动的y量
 		 * @param z 移动的z量
 		 */
 		virtual void Move(float x,float y,float z);
-		
+
 		/* 设置摄像机视野角度
 		 * @param 角度
 		 */
 		virtual void SetFov(float) = 0;
 	};
-	
+
 	/* 创建一个3D摄像机
 	 * @result 摄像机
 	 */

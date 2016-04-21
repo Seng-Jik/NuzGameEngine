@@ -2,7 +2,7 @@
 
 namespace Nuz{
 	/* 按键表 */
-	enmu class KeyCode{
+	enum class KeyCode{
 		ESC,F1,F2,F3,F4,F5,F6,F7,F8,F9,F10,F11,F12,
 		K1,K2,K3,K4,K5,K6,K7,K8,K9,K0,KSub,KAdd,KBackspace,
 		Tab,Q,W,E,R,T,Y,U,I,O,P,LCK,RCK,ENTER,
@@ -17,7 +17,7 @@ namespace Nuz{
 		N1,N2,N3,
 		N0,NDot
 	};
-	
+
 	/* 键盘输入管理器
 	 * 负责管理所有的输入设备
 	 */

@@ -1,20 +1,15 @@
 #pragma once
 #include "../../../include/Nuz/FileSystem/FileSystem.h"
-#include <vector>
+#include <set>
 #include <string>
+#include <vector>
 namespace _Nuz{
 
-	class FileSystem{
+	class FileSystem:public Nuz::IFileSystem{
     private:
-        std::map<std::string,std::shared_ptr<Nuz::IFileSource>> m_name_sources;
-        std::map<std::string,std::shared_ptr<Nuz::IFileSource> > m_dir_sources;
+        std::set<std::shared_ptr<Nuz::IFileSource> > m_sources;
 	public:
-		virtual void Mount(
-				const std::string& name,
-				const std::string& dir,
-				std::shared_ptr<Nuz::IFileSource> source
-		);
-		virtual void Unmount(const std::string& name);
-		virtual std::shared_ptr<std::vector<unsigned char>> LoadFile(const std::string& name) const;
+		virtual void Mount(std::shared_ptr<Nuz::IFileSource> source);
+		virtual std::shared_ptr<std::vector<unsigned char>> LoadFile(const std::string& path) const;
 	};
 }

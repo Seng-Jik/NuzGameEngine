@@ -1,9 +1,9 @@
 #pragma once
-#include "Component.h"
+#include "../Component.h"
 #include <memory>
 
 namespace Nuz{
-	
+
 	/* 雾气
 	*/
 	class IFog3D:public IComponent{
@@ -14,7 +14,7 @@ namespace Nuz{
 		* @param b 蓝
 		*/
 		virtual void SetColor(float r,float g,float b) = 0;
-		
+
 		/* 添加体积雾参数（设置此参数后则设置为体积雾，至少要有三个绑定才能变成体积雾）
 		 * @param x x坐标
 		 * @param y y坐标
@@ -27,12 +27,12 @@ namespace Nuz{
 			float z,
 			float f
 		) = 0;
-		
+
 		/* 设置为全局雾（默认，会丢失已绑定的体积雾参数）
 		*/
 		virtual void SetGlobal() = 0;
 	};
-	
+
 	/* 创建一个雾气组件
 	 * @result 雾气组件
 	 */

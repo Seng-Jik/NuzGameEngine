@@ -1,29 +1,35 @@
 #include "FileSystem.h"
-
+#include "../../../include/Nuz/FileSystem/FileSource.h"
+#include "../../../include/Nuz/FileSystem/FileSystemExceptions.h"
 using namespace _Nuz;
+using namespace std;
 using namespace Nuz;
 
-void FileSystem::Mount(const std::string& name,const std::string& dir,std::shared_ptr<Nuz::IFileSource> source){
-    if(m_name_sources.count(name)){
-        throw std::runtime_error("Nuz::IFileSystem::Mount()::File sources "+ name +" has been mounted.");
+void FileSystem::Mount(std::shared_ptr<Nuz::IFileSource> source){
+    if(m_sources.count(source)){
+        throw runtime_error("Nuz::IFileSystem::Mount()::A source is remounting!");
     }
-    m_name_sources[name] = source;
-    m_dir_sources[dir] = source;
+    m_sources.insert(source);
 }
 
-void FileSystem::Mount(const std::string& name,const std::string& dir,std::shared_ptr<Nuz::IFileSource> source){
-    if(m_name_sources.count(name)){
-        throw std::runtime_error("Nuz::IFileSystem::Mount()::File sources "+ name +" has been mounted.");
+std::shared_ptr<std::vector<unsigned char>> FileSystem::LoadFile(const std::string& path) const{
+    if(path.length() <= 1){
+         throw InvalidFileName("Nuz::IFileSystem::LoadFile()::Invalid File Name " + path);
     }
-    m_name_sources[name] = source;
-    m_dir_sources[dir] = source;
-}
+    if(path[0] != '/'){
+         throw InvalidFileName("Nuz::IFileSystem::LoadFile()::Invalid File Name " + path);
+    }
 
-void FileSystem::Unmount(const std::string& name){
-    if(m_name_sources.count(name)){
-        throw std::runtime_error("Nuz::IFileSystem::Mount()::File sources "+ name +" has been mounted.");
+    std::shared_ptr<std::vector<unsigned char>> ret;
+
+    for(std::shared_ptr<Nuz::IFileSource> p:m_sources){
+        try{
+            ret = p -> ReadFile(path);
+            break;
+        }catch(CannotOpenFile&){
+            continue;
+        }
     }
-    m_name_sources[name] = source;
-    m_dir_sources[dir] = source;
+    return ret;
 }
 
