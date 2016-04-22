@@ -22,14 +22,17 @@ std::shared_ptr<std::vector<unsigned char>> FileSystem::LoadFile(const std::stri
 
     std::shared_ptr<std::vector<unsigned char>> ret;
 
+    bool read = false;
     for(std::shared_ptr<Nuz::IFileSource> p:m_sources){
         try{
             ret = p -> ReadFile(path);
+            read = true;
             break;
         }catch(CannotOpenFile&){
             continue;
         }
     }
+    if(!read) throw CannotOpenFile("Nuz::IFileSystem::LoadFile()::Can not open file " + path + ".");
     return ret;
 }
 

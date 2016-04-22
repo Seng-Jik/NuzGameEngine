@@ -8,7 +8,6 @@ Nuz/Input/InputDeviceManager.h
 Nuz/Input/Keyboard.h
 NuzUtils/CSVReader.h
 NuzUtils/LuaVM.h
-NuzUtils/SnowRVReader.h
 NuzUtils/UDPNet.h
 NuzUtils/VirtualInputMapper.h£¨½ö¼üÅÌ°ó¶¨£©
 
