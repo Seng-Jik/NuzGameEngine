@@ -1,6 +1,7 @@
 #include "CSVReader.h"
 #include "../../include/Nuz/Engine.h"
 #include "../../include/Nuz/FileSystem/FileSystem.h"
+#include "../../include/Nuz/FileSystem/LocalFile.h"
 
 using namespace _NuzUtils;
 using namespace NuzUtils;
@@ -24,6 +25,41 @@ void CSVReader::Load(const std::string& csv){
     Nuz::IEngine& eng = Nuz::GetGameDevice();
     auto buf = eng.GetFileSystem().LoadFile(csv);
     m_csvCache.clear();
+
+    //Read binary CSV
+    if((*buf)[0] == 0xFF){
+        unsigned long int ptr = 4;
+        unsigned int lineCount;
+        for(unsigned int i = 0;i < sizeof(lineCount);++i)
+            ((unsigned char*)(&lineCount))[i] = (*buf)[ptr++];
+        for(unsigned int lineNum = 0;lineNum < lineCount;++lineNum){
+            //ReadLine
+            //Line Size
+            unsigned int lineSize;
+            for(unsigned int i = 0;i < sizeof(lineSize);++i)
+                ((unsigned char*)(&lineSize))[i] = (*buf)[ptr++];
+
+            m_csvCache.push_back(std::vector<std::string>());
+            auto p = m_csvCache.end();
+            p--;
+            //Read Units
+            for(unsigned int unitNum = 0;unitNum < lineSize;++unitNum){
+                //Read String Size
+                unsigned int length;
+                std::string unit;
+                for(unsigned int i = 0;i < sizeof(length);++i)
+                    ((unsigned char*)&length)[i] = (*buf)[ptr++];
+
+                //GetUnit
+                for(unsigned int i = 0;i < length;++i)
+                    unit += (char)(*buf)[ptr++];
+
+                p -> push_back(unit);
+            }
+
+        }
+        return;
+    }
 
     unsigned int num = 0;
     unsigned int lineNum = 1;
@@ -106,4 +142,30 @@ bool CSVReader::IsLastLine(){
 
 void CSVReader::Reset(){
     m_x = m_y = 0;
+}
+
+void CSVReader::SaveToFastReadFile(const std::string& file){
+    std::shared_ptr<std::vector<unsigned char> > buf(new std::vector<unsigned char>);
+    buf -> push_back(0xFF);
+    buf -> push_back('N');
+    buf -> push_back('u');
+    buf -> push_back('z');
+    unsigned int lineCount = m_csvCache.size();
+    for(unsigned int i = 0;i < sizeof(lineCount);++i)
+        buf -> push_back(((unsigned char*)&lineCount)[i]);
+
+    for(std::vector<std::string>& thisLine:m_csvCache){
+        unsigned int size = thisLine.size();
+        for(unsigned int i = 0;i < sizeof(size);++i)
+            buf -> push_back(((unsigned char*)&size)[i]);
+        for(std::string& s:thisLine){
+            unsigned int length = s.length();
+            for(unsigned int i = 0;i < sizeof(length);++i)
+                buf -> push_back(((unsigned char*)&length)[i]);
+            for(char c:s){
+                buf -> push_back((unsigned char)c);
+            }
+        }
+    }
+    Nuz::GetGameDevice().GetLocalFile().SaveFile(buf,file);
 }

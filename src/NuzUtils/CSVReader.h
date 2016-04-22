@@ -8,7 +8,7 @@ namespace _NuzUtils{
 	class CSVReader:public NuzUtils::ICSVReader{
     private:
         std::vector<std::vector<std::string> > m_csvCache;
-        int m_x,m_y;
+        unsigned int m_x,m_y;
 
 	public:
         void Load(const std::string& csv);
@@ -20,6 +20,7 @@ namespace _NuzUtils{
 		virtual bool NextLine();
 		virtual bool IsLastLine();
 		virtual void Reset();
+		virtual void SaveToFastReadFile(const std::string&);
 	};
 
 	std::shared_ptr<NuzUtils::ICSVReader> CreateCSVReader(const std::string& path);
