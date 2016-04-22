@@ -29,11 +29,10 @@ void CSVReader::Load(const std::string& csv){
     //Read binary CSV
     if((*buf)[0] == 0xFF){
         unsigned long int ptr = 4;
-        bool bRun = true;
         unsigned int lineCount;
         for(unsigned int i = 0;i < sizeof(lineCount);++i)
             ((unsigned char*)(&lineCount))[i] = (*buf)[ptr++];
-        for(int lineNum = 0;lineNum < lineCount;++lineNum){
+        for(unsigned int lineNum = 0;lineNum < lineCount;++lineNum){
             //ReadLine
             //Line Size
             unsigned int lineSize;

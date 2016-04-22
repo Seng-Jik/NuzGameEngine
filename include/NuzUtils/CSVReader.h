@@ -62,8 +62,10 @@ namespace NuzUtils{
 	};
 
 	/* 创建CSV阅读器
-	 * @param CSV文件
+	 * @param path CSV文件
 	 * @throw std::runtime_error
+     * @throw Nuz::CannotOpenFile
+     * @throw Nuz::InvaildFileName
 	 * @result CSV阅读器
 	 */
 	std::shared_ptr<ICSVReader> CreateCSVReader(const std::string& path);
@@ -72,4 +74,6 @@ namespace NuzUtils{
 /* 更新日志：
  * 2016年4月19日：
  * 星翼 初稿
+ * 2016年4月22日：
+ * 星翼 字节码加入
  */

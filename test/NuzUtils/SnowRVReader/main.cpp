@@ -9,6 +9,8 @@ int main(){
     shared_ptr<Nuz::IFileSource> lf = shared_ptr<Nuz::IFileSource>(&Nuz::GetGameDevice().GetLocalFile());
     Nuz::GetGameDevice().GetFileSystem().Mount(lf);
     auto p = NuzUtils::CreateSnowRVReader("/test.txt");
+    p -> SaveToFastReadFile("/test.rvo");
+    p = NuzUtils::CreateSnowRVReader("/test.rvo");
 
     cout<<p -> GetInt("RVI")<<endl;
     cout<<p -> GetString("RVS")<<endl;
