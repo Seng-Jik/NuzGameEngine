@@ -52,6 +52,13 @@ namespace NuzUtils{
 		/* 回到第一行的第一个元素处重新开始 */
 		virtual void Reset() = 0;
 
+		/* 存储到高速读取的二进制文件中
+		 * @param 文件名
+		 * @throw CannotOpenFile
+		 * @throw InvaildFileName
+		 */
+        virtual void SaveToFastReadFile(const std::string&) = 0;
+
 	};
 
 	/* 创建CSV阅读器

@@ -10,6 +10,8 @@ int main(){
     shared_ptr<Nuz::IFileSource> lf = shared_ptr<Nuz::IFileSource>(&Nuz::GetGameDevice().GetLocalFile());
     Nuz::GetGameDevice().GetFileSystem().Mount(lf);
     auto p = NuzUtils::CreateCSVReader("/TestCSVReader.csv");
+    p -> SaveToFastReadFile("/TestCSVReader.cso");
+    p = NuzUtils::CreateCSVReader("/TestCSVReader.cso");
 
     while(!p -> IsLastLine()){
         while(!p -> LineEnd()){
