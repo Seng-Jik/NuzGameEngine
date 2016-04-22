@@ -31,14 +31,14 @@ Nuz::IEngine& Nuz::CreateGameDevice(const char* title,bool fullScreen,int w,int 
     return *engine;
 }
 
-IEngine& GetGameDevice(){
+IEngine& Nuz::GetGameDevice(){
     if(!engine){
         throw std::runtime_error("Nuz::GetGameDevice()::Engine has not created.");
     }
     return *engine;
 }
 
-void KillGameDevice(){
+void Nuz::KillGameDevice(){
     if(!engine){
         throw std::runtime_error("Nuz::KillGameDevice()::Engine has not created.");
     }
