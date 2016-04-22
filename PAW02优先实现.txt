@@ -6,8 +6,6 @@ Nuz/SceneManager/GameObject.h
 Nuz/SceneManager/Components/Sprite2D.h
 Nuz/Input/InputDeviceManager.h
 Nuz/Input/Keyboard.h
-NuzUtils/CSVReader.h
-NuzUtils/LuaVM.h
 NuzUtils/UDPNet.h
 NuzUtils/VirtualInputMapper.h£¨½ö¼üÅÌ°ó¶¨£©
 
