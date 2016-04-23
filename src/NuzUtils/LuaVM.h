@@ -3,6 +3,7 @@
 #include <string>
 #include <lua.hpp>
 #include <vector>
+#include <map>
 #include "../../include/NuzUtils/LuaVM.h"
 namespace _NuzUtils{
 
@@ -10,15 +11,12 @@ namespace _NuzUtils{
     private:
         lua_State* m_vm;
 
-        template<class T> struct MountedData{
-            T* org;
-            std::string name;
-        };
-        std::vector<MountedData<int> > m_mint;
-        std::vector<MountedData<double> > m_mdbl;
-        std::vector<MountedData<float> > m_mflt;
-        std::vector<MountedData<std::string> > m_mstr;
-        std::vector<MountedData<bool> > m_mbool;
+        std::map<std::string,int*> m_mint;
+        std::map<std::string,double*> m_mdbl;
+        std::map<std::string,float*> m_mflt;
+        std::map<std::string,std::string*> m_mstr;
+        std::map<std::string,bool*> m_mbool;
+
         void syncSend();
         void syncGet();
 	public:

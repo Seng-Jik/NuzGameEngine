@@ -23,11 +23,11 @@ void LuaVM::OpenLibIO(){luaopen_io(m_vm);}
 void LuaVM::OpenLibString(){luaopen_string(m_vm);}
 void LuaVM::OpenLibTable(){luaopen_table(m_vm);}
 
-void LuaVM::MountNumber(int& i,const std::string& s){m_mint.push_back({&i,s});}
-void LuaVM::MountNumber(double& d,const std::string& s){m_mdbl.push_back({&d,s});}
-void LuaVM::MountNumber(float& f,const std::string& s){m_mflt.push_back({&f,s});}
-void LuaVM::MountString(std::string& str,const std::string& s){m_mstr.push_back({&str,s});}
-void LuaVM::MountBool(bool& b,const std::string& s){m_mbool.push_back({&b,s});}
+void LuaVM::MountNumber(int& i,const std::string& s){m_mint[s] = &i;}
+void LuaVM::MountNumber(double& d,const std::string& s){m_mdbl[s] = &d;}
+void LuaVM::MountNumber(float& f,const std::string& s){m_mflt[s] = &f;}
+void LuaVM::MountString(std::string& str,const std::string& s){m_mstr[s] = &str;}
+void LuaVM::MountBool(bool& b,const std::string& s){m_mbool[s] = &b;}
 void LuaVM::MountFunction(int (*func)(lua_State*),const std::string& s){
     lua_pushcfunction(m_vm,func);
     lua_setglobal(m_vm,s.c_str());
@@ -58,52 +58,52 @@ lua_State* LuaVM::GetLuaState(){
 }
 
 void LuaVM::syncSend(){
-    for(MountedData<int>& i:m_mint){
-        lua_pushinteger(m_vm,*i.org);
-        lua_setglobal(m_vm,i.name.c_str());
+    for(std::pair<const std::string,int*>& i:m_mint){
+        lua_pushinteger(m_vm,*i.second);
+        lua_setglobal(m_vm,i.first.c_str());
     }
-    for(MountedData<double>& i:m_mdbl){
-        lua_pushnumber(m_vm,*i.org);
-        lua_setglobal(m_vm,i.name.c_str());
+    for(std::pair<const std::string,double*>& i:m_mdbl){
+        lua_pushnumber(m_vm,*i.second);
+        lua_setglobal(m_vm,i.first.c_str());
     }
-    for(MountedData<float>& i:m_mflt){
-        lua_pushnumber(m_vm,*i.org);
-        lua_setglobal(m_vm,i.name.c_str());
+    for(std::pair<const std::string,float*>& i:m_mflt){
+        lua_pushnumber(m_vm,*i.second);
+        lua_setglobal(m_vm,i.first.c_str());
     }
-    for(MountedData<std::string>& i:m_mstr){
-        lua_pushstring(m_vm,i.org->c_str());
-        lua_setglobal(m_vm,i.name.c_str());
+    for(std::pair<const std::string,std::string*>& i:m_mstr){
+        lua_pushstring(m_vm,i.second->c_str());
+        lua_setglobal(m_vm,i.first.c_str());
     }
-    for(MountedData<bool>& i:m_mbool){
-        lua_pushboolean(m_vm,*i.org);
-        lua_setglobal(m_vm,i.name.c_str());
+    for(std::pair<const std::string,bool*>& i:m_mbool){
+        lua_pushboolean(m_vm,*i.second);
+        lua_setglobal(m_vm,i.first.c_str());
     }
 }
 
 void LuaVM::syncGet(){
-    for(MountedData<int>& i:m_mint){
-        lua_getglobal(m_vm,i.name.c_str());
-        *i.org = lua_tointeger(m_vm,-1);
+    for(std::pair<const std::string,int*>& i:m_mint){
+        lua_getglobal(m_vm,i.first.c_str());
+        *i.second = lua_tointeger(m_vm,-1);
         lua_pop(m_vm,1);
     }
-    for(MountedData<double>& i:m_mdbl){
-        lua_getglobal(m_vm,i.name.c_str());
-        *i.org = lua_tonumber(m_vm,-1);
+    for(std::pair<const std::string,double*>& i:m_mdbl){
+        lua_getglobal(m_vm,i.first.c_str());
+        *i.second = lua_tonumber(m_vm,-1);
         lua_pop(m_vm,1);
     }
-    for(MountedData<float>& i:m_mflt){
-        lua_getglobal(m_vm,i.name.c_str());
-        *i.org = lua_tonumber(m_vm,-1);
+    for(std::pair<const std::string,float*>& i:m_mflt){
+        lua_getglobal(m_vm,i.first.c_str());
+        *i.second = lua_tonumber(m_vm,-1);
         lua_pop(m_vm,1);
     }
-    for(MountedData<std::string>& i:m_mstr){
-        lua_getglobal(m_vm,i.name.c_str());
-        *i.org = lua_tostring(m_vm,-1);
+    for(std::pair<const std::string,std::string*>& i:m_mstr){
+        lua_getglobal(m_vm,i.first.c_str());
+        *i.second = lua_tostring(m_vm,-1);
         lua_pop(m_vm,1);
     }
-    for(MountedData<bool>& i:m_mbool){
-        lua_getglobal(m_vm,i.name.c_str());
-        *i.org = lua_toboolean(m_vm,-1);
+    for(std::pair<const std::string,bool*>& i:m_mbool){
+        lua_getglobal(m_vm,i.first.c_str());
+        *i.second = lua_toboolean(m_vm,-1);
         lua_pop(m_vm,1);
     }
 }
