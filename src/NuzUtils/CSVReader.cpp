@@ -109,7 +109,7 @@ void CSVReader::Load(const std::string& csv){
 }
 
 std::string CSVReader::PopString(){
-    if(LineEnd()) throw std::runtime_error("NuzUtil::CSVReader::Pop*()::This line is end.");
+    if(LineEnd()) throw ValueNotFound("NuzUtil::CSVReader::Pop*()::This line is end.");
     return m_csvCache[m_y][m_x++];
 }
 
@@ -130,7 +130,7 @@ bool CSVReader::LineEnd(){
 }
 
 bool CSVReader::NextLine(){
-    if(IsLastLine()) throw std::runtime_error("NuzUtil::CSVReader::NextLine()::CSV Table End.");
+    if(IsLastLine()) throw ValueNotFound("NuzUtil::CSVReader::NextLine()::CSV Table End.");
     m_y++;
     m_x = 0;
     return !IsLastLine();

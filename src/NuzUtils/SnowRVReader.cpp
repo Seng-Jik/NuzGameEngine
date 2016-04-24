@@ -109,34 +109,34 @@ SnowRVReader::SnowRVReader(const std::string& path)
 
         //Get Type
         auto p = line.find(' ');
-        if(p == string::npos) throw std::runtime_error("NuzUtils::ISnowRVReader::ISnowRVReader()::Can not get value type in line " + std::to_string(lineNum) + ".");
+        if(p == string::npos) throw SnowRVCompileFailed("NuzUtils::ISnowRVReader::ISnowRVReader()::Can not get value type in line " + std::to_string(lineNum) + ".");
         string type = line.substr(0,p);
 
         //Get Name
         auto p2 = line.find('=');
-        if(p == string::npos) throw std::runtime_error("NuzUtils::ISnowRVReader::ISnowRVReader()::Can not find \'+\' in line" + std::to_string(lineNum) + ".");
+        if(p == string::npos) throw SnowRVCompileFailed("NuzUtils::ISnowRVReader::ISnowRVReader()::Can not find \'+\' in line" + std::to_string(lineNum) + ".");
         string name = Trim(line.substr(p,p2-p));
-        if(name.empty()) throw std::runtime_error("NuzUtils::ISnowRVReader::ISnowRVReader()::Invaild name in line" + std::to_string(lineNum) + ".");
+        if(name.empty()) throw SnowRVCompileFailed("NuzUtils::ISnowRVReader::ISnowRVReader()::Invaild name in line" + std::to_string(lineNum) + ".");
 
         //Get Value
         string value = line.substr(p2+1,line.length()-p2-1);
 
         if(type == "INT"){
             auto s = Trim(value);
-            if(s.empty()) throw std::runtime_error("NuzUtils::ISnowRVReader::ISnowRVReader()::Invaild int value in line " + std::to_string(lineNum) + ".");
+            if(s.empty()) throw SnowRVCompileFailed("NuzUtils::ISnowRVReader::ISnowRVReader()::Invaild int value in line " + std::to_string(lineNum) + ".");
             m_ints[name] = atoi(s.c_str());
         }else if(type == "FLOAT"){
             auto s = Trim(value);
-            if(s.empty()) throw std::runtime_error("NuzUtils::ISnowRVReader::ISnowRVReader()::Invaild float value in line " + std::to_string(lineNum) + ".");
+            if(s.empty()) throw SnowRVCompileFailed("NuzUtils::ISnowRVReader::ISnowRVReader()::Invaild float value in line " + std::to_string(lineNum) + ".");
             m_flts[name] = atof(s.c_str());
         }else if(type == "STR"){
             auto ps1 = value.find('\"');
             value = value.substr(ps1+1,value.length()-ps1-1);
             auto ps2 = value.find('\"',ps1);
-            if(ps1 == string::npos || ps2 == string::npos) throw std::runtime_error("NuzUtils::ISnowRVReader::ISnowRVReader()::Invaild string value in line " + std::to_string(lineNum) + ".");
+            if(ps1 == string::npos || ps2 == string::npos) throw SnowRVCompileFailed("NuzUtils::ISnowRVReader::ISnowRVReader()::Invaild string value in line " + std::to_string(lineNum) + ".");
             m_strs[name] = value.substr(0,ps2);
         }else{
-            throw std::runtime_error("NuzUtils::ISnowRVReader::ISnowRVReader()::Unknow type \"" + type +"\" in line " + std::to_string(lineNum) + ".");
+            throw SnowRVCompileFailed("NuzUtils::ISnowRVReader::ISnowRVReader()::Unknow type \"" + type +"\" in line " + std::to_string(lineNum) + ".");
         }
         ++lineNum;
     }
@@ -145,19 +145,19 @@ SnowRVReader::SnowRVReader(const std::string& path)
 std::string SnowRVReader::GetString(const std::string& s)
 {
     if(m_strs.count(s)) return m_strs[s];
-    else throw std::runtime_error("NuzUtils::ISnowRVReader::GetString()::String value " + s +" not found.");
+    else throw ValueNotFound("NuzUtils::ISnowRVReader::GetString()::String value " + s +" not found.");
 }
 
 int SnowRVReader::GetInt(const std::string& s)
 {
     if(m_ints.count(s)) return m_ints[s];
-    else throw std::runtime_error("NuzUtils::ISnowRVReader::GetInt()::Int value " + s +" not found.");
+    else throw ValueNotFound("NuzUtils::ISnowRVReader::GetInt()::Int value " + s +" not found.");
 }
 
 double SnowRVReader::GetFloat(const std::string& s)
 {
     if(m_flts.count(s)) return m_flts[s];
-    else throw std::runtime_error("NuzUtils::ISnowRVReader::GetFloat()::Float value " + s +" not found.");
+    else throw ValueNotFound("NuzUtils::ISnowRVReader::GetFloat()::Float value " + s +" not found.");
 }
 
 void SnowRVReader::SaveToFastReadFile(const std::string& file){

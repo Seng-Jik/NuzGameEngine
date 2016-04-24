@@ -25,7 +25,7 @@ Nuz::ILocalFile& Engine::GetLocalFile()
 
 Nuz::IEngine& Nuz::CreateGameDevice(const char* title,bool fullScreen,int w,int h){
     if(engine){
-        throw std::runtime_error("Nuz::CreateGameDevice()::Engine already created.");
+        throw CannotCreateEngine("Nuz::CreateGameDevice()::Engine already created.");
     }
     engine = new _Nuz::Engine(title,fullScreen,w,h);
     return *engine;
@@ -33,14 +33,14 @@ Nuz::IEngine& Nuz::CreateGameDevice(const char* title,bool fullScreen,int w,int 
 
 IEngine& Nuz::GetGameDevice(){
     if(!engine){
-        throw std::runtime_error("Nuz::GetGameDevice()::Engine has not created.");
+        throw HaveNotEngine("Nuz::GetGameDevice()::Engine has not created.");
     }
     return *engine;
 }
 
 void Nuz::KillGameDevice(){
     if(!engine){
-        throw std::runtime_error("Nuz::KillGameDevice()::Engine has not created.");
+        throw HaveNotEngine("Nuz::KillGameDevice()::Engine has not created.");
     }
     delete engine;
     engine = nullptr;

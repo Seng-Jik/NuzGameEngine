@@ -1,13 +1,12 @@
 #include "FileSystem.h"
 #include "../../../include/Nuz/FileSystem/FileSource.h"
-#include "../../../include/Nuz/FileSystem/FileSystemExceptions.h"
 using namespace _Nuz;
 using namespace std;
 using namespace Nuz;
 
 void FileSystem::Mount(std::shared_ptr<Nuz::IFileSource> source){
     if(m_sources.count(source)){
-        throw runtime_error("Nuz::IFileSystem::Mount()::A source is remounting!");
+        throw CannotMountFileSource("Nuz::IFileSystem::Mount()::A source is remounting!");
     }
     m_sources.insert(source);
 }

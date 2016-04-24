@@ -44,8 +44,8 @@ namespace NuzUtils{
 
 		/* 加载代码（从文件）
 		 * @param 文件名
-		 * @throw Nuz::CannotOpenFile
-		 * @throw Nuz::InvaildFileName
+		 * @throw IFileSystem::CannotOpenFile
+		 * @throw IFileSystem::InvaildFileName
 		 */
         virtual void LoadProgramFromFile(const std::string&) = 0;
 
@@ -65,9 +65,16 @@ namespace NuzUtils{
 		 * @result lua_State* 指针
 		 */
         virtual lua_State* GetLuaState() = 0;
+
+        /* 异常类：无法创建Lua虚拟机。 */
+        class CannotCreateLuaVM:public std::runtime_error{
+        public:
+            inline CannotCreateLuaVM(const std::string& s):std::runtime_error(s){};
+        };
 	};
 
 	/* 创建Lua虚拟机
+	 * @throw ILuaVM::CannotCreateLuaVM
 	 * @result Lua虚拟机
 	 */
 	std::shared_ptr<ILuaVM> CreateLuaVM();

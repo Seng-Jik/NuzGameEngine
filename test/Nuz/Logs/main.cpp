@@ -1,6 +1,7 @@
-#include "../../../include/NuzDebugUtils/Logs.h"
+#include "../../../include/Nuz/Logs.h"
 #include <iostream>
 using namespace std;
+using namespace Nuz;
 
 int main(){
     SetStdLogOutputStream(cout);

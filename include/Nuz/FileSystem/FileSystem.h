@@ -13,7 +13,7 @@ namespace Nuz{
 	public:
 		/* 挂载数据源
 		 * @param source 数据源实例
-         * @throw runtime_error 如果挂载时出错则报出异常
+         * @throw CannotMountFileSource 如果挂载时出错则报出异常
 		 */
 		virtual void Mount(std::shared_ptr<IFileSource> source) = 0;
 
@@ -25,6 +25,24 @@ namespace Nuz{
 		 * @result 得到的文件的缓存区指针
 		 */
 		virtual std::shared_ptr<std::vector<unsigned char>> LoadFile(const std::string& path) const = 0;
+
+        /* 异常类：错误的文件名格式 */
+        class InvalidFileName:public std::invalid_argument{
+        public:
+            inline InvalidFileName(const std::string& s):std::invalid_argument(s){};
+        };
+
+        /* 异常类：无法打开文件 */
+        class CannotOpenFile:public std::runtime_error{
+        public:
+            inline CannotOpenFile(const std::string& s):std::runtime_error(s){};
+        };
+
+        /* 异常类：无法挂载数据源 */
+        class CannotMountFileSource:public std::runtime_error{
+        public:
+            inline CannotMountFileSource(const std::string& s):std::runtime_error(s){};
+        };
 	};
 }
 
@@ -33,4 +51,6 @@ namespace Nuz{
  * 星翼 初稿
  * 2016年4月21日：
  * 星翼 简化数据源模型
+ * 2016年4月24日：
+ * 星翼 移动异常类
  */

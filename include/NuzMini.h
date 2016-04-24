@@ -21,10 +21,14 @@
 #include "Nuz/Input/InputDeviceManager.h"	//输入设备管理器
 #include "Nuz/Input/Keyboard.h"	//键盘设备
 
+#include "Nuz/Logs.h"	//日志工具
+
 /* 更新日志：
  * 2016年4月17日：
  * 星翼 初稿
  * 2016年4月18日：
  * 星翼 删除二进制缓存
  * 星翼 增加2D摄像机
+ * 2016年4月24日：
+ * 星翼 移入日志工具
  */

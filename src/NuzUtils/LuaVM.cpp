@@ -7,7 +7,7 @@ using namespace NuzUtils;
 
 LuaVM::LuaVM(){
     m_vm = luaL_newstate();
-    if(!m_vm) throw std::runtime_error("NuzUtils::CreateLuaVM()::Lua State Create failed.");
+    if(!m_vm) throw CannotCreateLuaVM("NuzUtils::CreateLuaVM()::Lua State Create failed.");
     luaopen_base(m_vm);
     #ifdef _DEBUG
     luaopen_debug(m_vm);
