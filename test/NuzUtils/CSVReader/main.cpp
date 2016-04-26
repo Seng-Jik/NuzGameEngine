@@ -6,7 +6,6 @@
 using namespace std;
 
 int main(){
-    Nuz::CreateGameDevice("",false);
     shared_ptr<Nuz::IFileSource> lf = shared_ptr<Nuz::IFileSource>(&Nuz::GetGameDevice().GetLocalFile());
     Nuz::GetGameDevice().GetFileSystem().Mount(lf);
     auto p = NuzUtils::CreateCSVReader("/TestCSVReader.csv");

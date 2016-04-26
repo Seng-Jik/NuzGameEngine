@@ -28,30 +28,30 @@ void CSVReader::Load(const std::string& csv){
 
     //Read binary CSV
     if((*buf)[0] == 0xFF){
-        unsigned long int ptr = 4;
-        unsigned int lineCount;
-        for(unsigned int i = 0;i < sizeof(lineCount);++i)
-            ((unsigned char*)(&lineCount))[i] = (*buf)[ptr++];
-        for(unsigned int lineNum = 0;lineNum < lineCount;++lineNum){
+        uint32_t ptr = 4;
+        uint32_t lineCount;
+        for(uint32_t i = 0;i < sizeof(lineCount);++i)
+            ((uint8_t*)(&lineCount))[i] = (*buf)[ptr++];
+        for(uint32_t lineNum = 0;lineNum < lineCount;++lineNum){
             //ReadLine
             //Line Size
-            unsigned int lineSize;
-            for(unsigned int i = 0;i < sizeof(lineSize);++i)
-                ((unsigned char*)(&lineSize))[i] = (*buf)[ptr++];
+            uint32_t lineSize;
+            for(uint32_t i = 0;i < sizeof(lineSize);++i)
+                ((uint8_t*)(&lineSize))[i] = (*buf)[ptr++];
 
             m_csvCache.push_back(std::vector<std::string>());
             auto p = m_csvCache.end();
             p--;
             //Read Units
-            for(unsigned int unitNum = 0;unitNum < lineSize;++unitNum){
+            for(uint32_t unitNum = 0;unitNum < lineSize;++unitNum){
                 //Read String Size
-                unsigned int length;
+                uint32_t length;
                 std::string unit;
-                for(unsigned int i = 0;i < sizeof(length);++i)
-                    ((unsigned char*)&length)[i] = (*buf)[ptr++];
+                for(uint32_t i = 0;i < sizeof(length);++i)
+                    ((uint8_t*)&length)[i] = (*buf)[ptr++];
 
                 //GetUnit
-                for(unsigned int i = 0;i < length;++i)
+                for(uint32_t i = 0;i < length;++i)
                     unit += (char)(*buf)[ptr++];
 
                 p -> push_back(unit);
@@ -61,8 +61,8 @@ void CSVReader::Load(const std::string& csv){
         return;
     }
 
-    unsigned int num = 0;
-    unsigned int lineNum = 1;
+    uint32_t num = 0;
+    uint32_t lineNum = 1;
     bool bRun = true;
     while(bRun){
         //GetLine
@@ -145,25 +145,25 @@ void CSVReader::Reset(){
 }
 
 void CSVReader::SaveToFastReadFile(const std::string& file){
-    std::shared_ptr<std::vector<unsigned char> > buf(new std::vector<unsigned char>);
+    std::shared_ptr<std::vector<uint8_t> > buf(new std::vector<uint8_t>);
     buf -> push_back(0xFF);
     buf -> push_back('N');
     buf -> push_back('u');
     buf -> push_back('z');
-    unsigned int lineCount = m_csvCache.size();
-    for(unsigned int i = 0;i < sizeof(lineCount);++i)
-        buf -> push_back(((unsigned char*)&lineCount)[i]);
+    uint32_t lineCount = m_csvCache.size();
+    for(uint32_t i = 0;i < sizeof(lineCount);++i)
+        buf -> push_back(((uint8_t*)&lineCount)[i]);
 
     for(std::vector<std::string>& thisLine:m_csvCache){
-        unsigned int size = thisLine.size();
-        for(unsigned int i = 0;i < sizeof(size);++i)
-            buf -> push_back(((unsigned char*)&size)[i]);
+        uint32_t size = thisLine.size();
+        for(uint32_t i = 0;i < sizeof(size);++i)
+            buf -> push_back(((uint8_t*)&size)[i]);
         for(std::string& s:thisLine){
-            unsigned int length = s.length();
-            for(unsigned int i = 0;i < sizeof(length);++i)
-                buf -> push_back(((unsigned char*)&length)[i]);
+            uint32_t length = s.length();
+            for(uint32_t i = 0;i < sizeof(length);++i)
+                buf -> push_back(((uint8_t*)&length)[i]);
             for(char c:s){
-                buf -> push_back((unsigned char)c);
+                buf -> push_back((uint8_t)c);
             }
         }
     }

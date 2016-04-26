@@ -18,7 +18,7 @@ namespace Nuz{
 		 * @throw CannotOpenFile 如果无法加载文件，请弹出该异常
 		 * @result 返回给引擎的文件缓存区，如果加载失败请返回nullptr.
 		 */
-		virtual std::shared_ptr<std::vector<unsigned char> > ReadFile(const std::string& path) const = 0;
+		virtual std::shared_ptr<std::vector<uint8_t> > ReadFile(const std::string& path) const = 0;
 	};
 }
 

@@ -8,7 +8,7 @@ using namespace std;
 using namespace Nuz;
 using namespace Nuz_;
 
-std::shared_ptr<std::vector<unsigned char> > LocalFile::ReadFile(const std::string& path) const
+std::shared_ptr<std::vector<uint8_t> > LocalFile::ReadFile(const std::string& path) const
 {
     if(path.length() <=1){
         throw IFileSystem::InvalidFileName("Nuz::ILocalFile::ReadFile()::Invalid File Name " + path);
@@ -23,14 +23,14 @@ std::shared_ptr<std::vector<unsigned char> > LocalFile::ReadFile(const std::stri
     in.seekg(0,ios::end);
     auto size = in.tellg();
     in.seekg(0,ios::beg);
-    std::shared_ptr<std::vector<unsigned char> > buffer(new std::vector<unsigned char>);
+    std::shared_ptr<std::vector<uint8_t> > buffer(new std::vector<uint8_t>);
     buffer -> resize(size);
     in.read((char*)&(*buffer)[0],size);
     in.close();
     return buffer;
 }
 
-unsigned long LocalFile::GetFileSize(const std::string& path) const
+uint32_t LocalFile::GetFileSize(const std::string& path) const
 {
     if(path.length() <=1){
         throw IFileSystem::InvalidFileName("Nuz::ILocalFile::GetFileSize()::Invalid File Name " + path);
@@ -43,12 +43,12 @@ unsigned long LocalFile::GetFileSize(const std::string& path) const
         throw IFileSystem::CannotOpenFile("Nuz::ILocalFile::GetFileSize()::File "+ path + " Not Found!");
     }
     in.seekg(0,ios::end);
-    long size = in.tellg();
+    auto size = in.tellg();
     in.close();
     return size;
 }
 
-void LocalFile::SaveFile(const std::shared_ptr<std::vector<unsigned char> > buffer, const std::string path) const
+void LocalFile::SaveFile(const std::shared_ptr<std::vector<uint8_t> > buffer, const std::string path) const
 {
     if(path.length() <=1){
         throw IFileSystem::InvalidFileName("Nuz::ILocalFile::SaveFile()::Invalid File Name " + path);
@@ -67,7 +67,7 @@ void LocalFile::SaveFile(const std::shared_ptr<std::vector<unsigned char> > buff
 void LocalFile::CopyFile(const std::string& src, const std::string& dst) const
 {
     try{
-        std::shared_ptr<std::vector<unsigned char> > buf = LocalFile::ReadFile(src);
+        std::shared_ptr<std::vector<uint8_t> > buf = LocalFile::ReadFile(src);
         LocalFile::SaveFile(buf,dst);
     }catch(IFileSystem::CannotOpenFile){
         throw IFileSystem::CannotOpenFile("Nuz::ILocalFile::CopyFile()::Can not copy " + src + " to " + dst);

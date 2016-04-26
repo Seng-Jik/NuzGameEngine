@@ -2,6 +2,7 @@
 #include <string>
 #include <memory>
 #include <vector>
+#include <cstdint>
 namespace Nuz{
 	class IFileSource;
 
@@ -24,7 +25,7 @@ namespace Nuz{
 		 * @throw CannotOpenFile 无法打开文件
 		 * @result 得到的文件的缓存区指针
 		 */
-		virtual std::shared_ptr<std::vector<unsigned char>> LoadFile(const std::string& path) const = 0;
+		virtual std::shared_ptr<std::vector<uint8_t>> LoadFile(const std::string& path) const = 0;
 
         /* 异常类：错误的文件名格式 */
         class InvalidFileName:public std::invalid_argument{

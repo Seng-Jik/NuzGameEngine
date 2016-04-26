@@ -8,7 +8,7 @@ namespace Nuz_Utils{
 	class CSVReader:public NuzUtils::ICSVReader{
     private:
         std::vector<std::vector<std::string> > m_csvCache;
-        unsigned int m_x,m_y;
+        uint32_t m_x,m_y;
 
 	public:
         void Load(const std::string& csv);

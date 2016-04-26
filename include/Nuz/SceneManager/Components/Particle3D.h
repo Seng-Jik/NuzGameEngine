@@ -118,7 +118,7 @@ namespace Nuz{
 		/* 取得生命时长（帧）
 		 * @result 帧数
 		 */
-		virtual unsigned long GetLife() = 0;
+		virtual uint32_t GetLife() = 0;
 
 		/* 杀掉此粒子
 		 */

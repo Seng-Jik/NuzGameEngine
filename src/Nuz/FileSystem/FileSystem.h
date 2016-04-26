@@ -10,6 +10,6 @@ namespace Nuz_{
         std::set<std::shared_ptr<Nuz::IFileSource> > m_sources;
 	public:
 		virtual void Mount(std::shared_ptr<Nuz::IFileSource> source);
-		virtual std::shared_ptr<std::vector<unsigned char>> LoadFile(const std::string& path) const;
+		virtual std::shared_ptr<std::vector<uint8_t>> LoadFile(const std::string& path) const;
 	};
 }

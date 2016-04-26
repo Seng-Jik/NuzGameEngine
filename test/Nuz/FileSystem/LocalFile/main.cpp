@@ -2,12 +2,12 @@
 #include <iostream>
 #include <stdexcept>
 using namespace std;
-using namespace _Nuz;
+using namespace Nuz_;
 int main(){
     LocalFile localFile;
 
-    localFile.CopyFile("/0.aif","/1.aif");
-    cout<<localFile.GetFileSize("/0.aif");
+    localFile.CopyFile("/test/Nuz/FileSystem/LocalFile/0.txt","/test/Nuz/FileSystem/LocalFile/1.txt");
+    cout<<localFile.GetFileSize("/test/Nuz/FileSystem/LocalFile/1.txt");
 
 
     return 0;

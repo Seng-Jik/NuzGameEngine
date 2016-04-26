@@ -11,7 +11,7 @@ void FileSystem::Mount(std::shared_ptr<Nuz::IFileSource> source){
     m_sources.insert(source);
 }
 
-std::shared_ptr<std::vector<unsigned char>> FileSystem::LoadFile(const std::string& path) const{
+std::shared_ptr<std::vector<uint8_t>> FileSystem::LoadFile(const std::string& path) const{
     if(path.length() <= 1){
          throw InvalidFileName("Nuz::IFileSystem::LoadFile()::Invalid File Name " + path);
     }
@@ -19,7 +19,7 @@ std::shared_ptr<std::vector<unsigned char>> FileSystem::LoadFile(const std::stri
          throw InvalidFileName("Nuz::IFileSystem::LoadFile()::Invalid File Name " + path);
     }
 
-    std::shared_ptr<std::vector<unsigned char>> ret;
+    std::shared_ptr<std::vector<uint8_t>> ret;
 
     bool read = false;
     for(std::shared_ptr<Nuz::IFileSource> p:m_sources){

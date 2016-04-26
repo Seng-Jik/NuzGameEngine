@@ -23,66 +23,66 @@ SnowRVReader::SnowRVReader(const std::string& path)
 
     //Read As Binary File
     if((*buf)[0] == 0xFF){
-        unsigned int ptr = 4;
-        unsigned int strSize,intSize,fltSize;
-        for(unsigned int i = 0;i < sizeof(strSize);++i)
-            ((unsigned char*)(&strSize))[i] = (*buf)[ptr++];
-        for(unsigned int i = 0;i < sizeof(intSize);++i)
-            ((unsigned char*)(&intSize))[i] = (*buf)[ptr++];
-        for(unsigned int i = 0;i < sizeof(fltSize);++i)
-            ((unsigned char*)(&fltSize))[i] = (*buf)[ptr++];
+        uint32_t ptr = 4;
+        uint32_t strSize,intSize,fltSize;
+        for(uint32_t i = 0;i < sizeof(strSize);++i)
+            ((uint8_t*)(&strSize))[i] = (*buf)[ptr++];
+        for(uint32_t i = 0;i < sizeof(intSize);++i)
+            ((uint8_t*)(&intSize))[i] = (*buf)[ptr++];
+        for(uint32_t i = 0;i < sizeof(fltSize);++i)
+            ((uint8_t*)(&fltSize))[i] = (*buf)[ptr++];
 
         //Read Float Values
-        for(unsigned int fltNum = 0;fltNum < fltSize;++fltNum){
-            unsigned int length;
+        for(uint32_t fltNum = 0;fltNum < fltSize;++fltNum){
+            uint32_t length;
             std::string name;
-            for(unsigned int i = 0;i < sizeof(length);++i)
-                ((unsigned char*)&length)[i] = (*buf)[ptr++];
+            for(uint32_t i = 0;i < sizeof(length);++i)
+                ((uint8_t*)&length)[i] = (*buf)[ptr++];
 
-            for(unsigned int i = 0;i < length;++i)
+            for(uint32_t i = 0;i < length;++i)
                 name += (char)(*buf)[ptr++];
             double value;
-            for(unsigned int i = 0;i < sizeof(value);++i)
-                ((unsigned char*)(&value))[i] = (*buf)[ptr++];
+            for(uint32_t i = 0;i < sizeof(value);++i)
+                ((uint8_t*)(&value))[i] = (*buf)[ptr++];
             m_flts[name] = value;
         }
 
         //Read Int Values
-        for(unsigned int intNum = 0;intNum < intSize;++intNum){
-            unsigned int length;
+        for(uint32_t intNum = 0;intNum < intSize;++intNum){
+            uint32_t length;
             std::string name;
-            for(unsigned int i = 0;i < sizeof(length);++i)
-                ((unsigned char*)&length)[i] = (*buf)[ptr++];
+            for(uint32_t i = 0;i < sizeof(length);++i)
+                ((uint8_t*)&length)[i] = (*buf)[ptr++];
 
-            for(unsigned int i = 0;i < length;++i)
+            for(uint32_t i = 0;i < length;++i)
                 name += (char)(*buf)[ptr++];
             int value;
-            for(unsigned int i = 0;i < sizeof(value);++i)
-                ((unsigned char*)(&value))[i] = (*buf)[ptr++];
+            for(uint32_t i = 0;i < sizeof(value);++i)
+                ((uint8_t*)(&value))[i] = (*buf)[ptr++];
             m_ints[name] = value;
         }
 
         //Read String Values
-        for(unsigned int strNum = 0;strNum < strSize;++strNum){
-            unsigned int length;
+        for(uint32_t strNum = 0;strNum < strSize;++strNum){
+            uint32_t length;
             std::string name;
-            for(unsigned int i = 0;i < sizeof(length);++i)
-                ((unsigned char*)&length)[i] = (*buf)[ptr++];
-            for(unsigned int i = 0;i < length;++i)
+            for(uint32_t i = 0;i < sizeof(length);++i)
+                ((uint8_t*)&length)[i] = (*buf)[ptr++];
+            for(uint32_t i = 0;i < length;++i)
                 name += (char)(*buf)[ptr++];
 
             std::string value;
-            for(unsigned int i = 0;i < sizeof(length);++i)
-                ((unsigned char*)&length)[i] = (*buf)[ptr++];
-            for(unsigned int i = 0;i < length;++i)
+            for(uint32_t i = 0;i < sizeof(length);++i)
+                ((uint8_t*)&length)[i] = (*buf)[ptr++];
+            for(uint32_t i = 0;i < length;++i)
                 value += (char)(*buf)[ptr++];
             m_strs[name] = value;
         }
         return;
     }
 
-    unsigned int num = 0;
-    unsigned int lineNum = 1;
+    uint32_t num = 0;
+    uint32_t lineNum = 1;
     bool bRun = true;
     while(bRun){
         //GetLine
@@ -161,63 +161,63 @@ double SnowRVReader::GetFloat(const std::string& s)
 }
 
 void SnowRVReader::SaveToFastReadFile(const std::string& file){
-    std::shared_ptr<std::vector<unsigned char> > buf(new std::vector<unsigned char>);
+    std::shared_ptr<std::vector<uint8_t> > buf(new std::vector<uint8_t>);
     buf -> push_back(0xFF);
     buf -> push_back('N');
     buf -> push_back('u');
     buf -> push_back('z');
 
-    unsigned int strSize = m_strs.size(),intSize = m_ints.size(),fltSize = m_flts.size();
+    uint32_t strSize = m_strs.size(),intSize = m_ints.size(),fltSize = m_flts.size();
 
     //Sizes Output
-    for(unsigned int i = 0;i < sizeof(strSize);++i)
-        buf -> push_back(((unsigned char*)&strSize)[i]);
-    for(unsigned int i = 0;i < sizeof(intSize);++i)
-        buf -> push_back(((unsigned char*)&intSize)[i]);
-    for(unsigned int i = 0;i < sizeof(fltSize);++i)
-        buf -> push_back(((unsigned char*)&fltSize)[i]);
+    for(uint32_t i = 0;i < sizeof(strSize);++i)
+        buf -> push_back(((uint8_t*)&strSize)[i]);
+    for(uint32_t i = 0;i < sizeof(intSize);++i)
+        buf -> push_back(((uint8_t*)&intSize)[i]);
+    for(uint32_t i = 0;i < sizeof(fltSize);++i)
+        buf -> push_back(((uint8_t*)&fltSize)[i]);
 
     //Float values
     for(auto p = m_flts.begin();p != m_flts.end();++p){
         const std::string& s = p -> first;
-        unsigned int length = s.length();
-        for(unsigned int i = 0;i < sizeof(length);++i)
-            buf -> push_back(((unsigned char*)&length)[i]);
+        uint32_t length = s.length();
+        for(uint32_t i = 0;i < sizeof(length);++i)
+            buf -> push_back(((uint8_t*)&length)[i]);
         for(char c:s)
-            buf -> push_back((unsigned char)c);
+            buf -> push_back((uint8_t)c);
 
-        for(unsigned int i = 0;i < sizeof(double);++i)
-            buf -> push_back(((unsigned char*)&p->second)[i]);
+        for(uint32_t i = 0;i < sizeof(double);++i)
+            buf -> push_back(((uint8_t*)&p->second)[i]);
     }
 
     //Int Values
     for(auto p = m_ints.begin();p != m_ints.end();++p){
         const std::string& s = p -> first;
-        unsigned int length = s.length();
-        for(unsigned int i = 0;i < sizeof(length);++i)
-            buf -> push_back(((unsigned char*)&length)[i]);
+        uint32_t length = s.length();
+        for(uint32_t i = 0;i < sizeof(length);++i)
+            buf -> push_back(((uint8_t*)&length)[i]);
         for(char c:s)
-            buf -> push_back((unsigned char)c);
+            buf -> push_back((uint8_t)c);
 
-        for(unsigned int i = 0;i < sizeof(int);++i)
-            buf -> push_back(((unsigned char*)&p->second)[i]);
+        for(uint32_t i = 0;i < sizeof(int);++i)
+            buf -> push_back(((uint8_t*)&p->second)[i]);
     }
 
     //String Values
     for(auto p = m_strs.begin();p != m_strs.end();++p){
         const std::string& s = p -> first;
-        unsigned int length = s.length();
-        for(unsigned int i = 0;i < sizeof(length);++i)
-            buf -> push_back(((unsigned char*)&length)[i]);
+        uint32_t length = s.length();
+        for(uint32_t i = 0;i < sizeof(length);++i)
+            buf -> push_back(((uint8_t*)&length)[i]);
         for(char c:s)
-            buf -> push_back((unsigned char)c);
+            buf -> push_back((uint8_t)c);
 
         const std::string& s2 = p -> second;
         length = s2.length();
-        for(unsigned int i = 0;i < sizeof(length);++i)
-            buf -> push_back(((unsigned char*)&length)[i]);
+        for(uint32_t i = 0;i < sizeof(length);++i)
+            buf -> push_back(((uint8_t*)&length)[i]);
         for(char c:s2)
-            buf -> push_back((unsigned char)c);
+            buf -> push_back((uint8_t)c);
     }
     Nuz::GetGameDevice().GetLocalFile().SaveFile(buf,file);
 }

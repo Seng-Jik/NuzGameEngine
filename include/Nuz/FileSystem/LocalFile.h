@@ -1,4 +1,5 @@
 #pragma once
+#include <cstdint>
 #include "FileSource.h"
 
 namespace Nuz{
@@ -16,7 +17,7 @@ namespace Nuz{
 		 * @throw IFileSystem::CannotOpenFile
 		 * @result 返回给引擎的文件缓存区，如果加载失败请返回nullptr.
 		 */
-		virtual std::shared_ptr<std::vector<unsigned char> > ReadFile(const std::string& path) const = 0;
+		virtual std::shared_ptr<std::vector<uint8_t> > ReadFile(const std::string& path) const = 0;
 
 		/* 取文件大小
 		 * @param path 文件名
@@ -24,7 +25,7 @@ namespace Nuz{
 		 * @throw IFileSystem::CannotOpenFile
 		 * @result 文件大小（字节数）
 		 */
-		virtual unsigned long GetFileSize(const std::string& path) const = 0;
+		virtual uint32_t GetFileSize(const std::string& path) const = 0;
 
 		/* 保存缓存区到文件
 		 * @param 缓存区指针
@@ -32,7 +33,7 @@ namespace Nuz{
          * @throw IFileSystem::InvalidFileName
 		 * @throw IFileSystem::CannotOpenFile
 		 */
-		virtual void SaveFile(const std::shared_ptr<std::vector<unsigned char> >,const std::string path) const = 0;
+		virtual void SaveFile(const std::shared_ptr<std::vector<uint8_t> >,const std::string path) const = 0;
 
 		/* 复制文件
 		 * @param src 来源文件

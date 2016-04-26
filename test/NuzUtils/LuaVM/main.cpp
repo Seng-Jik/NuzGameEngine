@@ -16,7 +16,6 @@ int f(lua_State* s){
 }
 
 int main(){
-    Nuz::CreateGameDevice("",false);
     shared_ptr<Nuz::IFileSource> lf = shared_ptr<Nuz::IFileSource>(&Nuz::GetGameDevice().GetLocalFile());
     Nuz::GetGameDevice().GetFileSystem().Mount(lf);
     auto p = NuzUtils::CreateLuaVM();

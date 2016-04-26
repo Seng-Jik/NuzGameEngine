@@ -6,15 +6,15 @@
 using namespace std;
 using namespace Nuz;
 int main(){
-    IEngine& engine = CreateGameDevice("FFF",false);
+    IEngine& engine = GetGameDevice();
     IFileSystem& fs = engine.GetFileSystem();
     ILocalFile& lf = engine.GetLocalFile();
 
-    fs.Mount(shared_ptr<IFileSource>(&lf));
+    //fs.Mount(shared_ptr<IFileSource>(&lf));
 
-    auto buf = fs.LoadFile("/0.aif");
+    auto buf = fs.LoadFile("/test/Nuz/FileSystem/FileSystem/0.txt");
 
-    ofstream out("1.aif",ios::binary);
+    ofstream out("/test/Nuz/FileSystem/FileSystem/1.txt",ios::binary);
     out.write((char*)&((*buf)[0]),buf -> size());
 
     fs.Mount(shared_ptr<IFileSource>(&lf));
