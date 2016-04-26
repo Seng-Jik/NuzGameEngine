@@ -5,58 +5,58 @@
 
 namespace Nuz{
 
-	/* ×ÅÉ«Æ÷
+	/* ç€è‰²å™¨
 	 */
 	class IShader:public IComponent{
 	public:
 
-		/* Æô¶¯¸Ã×ÅÉ«Æ÷
+		/* å¯åŠ¨è¯¥ç€è‰²å™¨
 		 */
 		virtual void Use() = 0;
 
-		/* Í£ÓÃ¸Ã×ÅÉ«Æ÷
+		/* åœç”¨è¯¥ç€è‰²å™¨
 		 */
 		virtual void Unuse() = 0;
 
-		/* ÉèÖÃ×ÅÉ«Æ÷µÄUniform Float±äÁ¿
-		 * @param uniform uniform±äÁ¿Ãû
-		 * @param ÕâĞ©¶¼ÊÇ±äÁ¿£¬ÒòÎªËü¿ÉÄÜÓĞ¶à¸öfloatÖµ
+		/* è®¾ç½®ç€è‰²å™¨çš„Uniform Floatå˜é‡
+		 * @param uniform uniformå˜é‡å
+		 * @param è¿™äº›éƒ½æ˜¯å˜é‡ï¼Œå› ä¸ºå®ƒå¯èƒ½æœ‰å¤šä¸ªfloatå€¼
 		 */
 		virtual SetUniformFloat(const std::string& uniform,float,float = 0,float = 0,float = 0,float = 0) = 0;
 
-        /* ÉèÖÃ×ÅÉ«Æ÷µÄUniform Int±äÁ¿
-		 * @param uniform uniform±äÁ¿Ãû
-		 * @param ÕâĞ©¶¼ÊÇ±äÁ¿£¬ÒòÎªËü¿ÉÄÜÓĞ¶à¸öintÖµ
+        /* è®¾ç½®ç€è‰²å™¨çš„Uniform Intå˜é‡
+		 * @param uniform uniformå˜é‡å
+		 * @param è¿™äº›éƒ½æ˜¯å˜é‡ï¼Œå› ä¸ºå®ƒå¯èƒ½æœ‰å¤šä¸ªintå€¼
 		 */
-		virtual SetUniformFloat(const std::string& uniform,int,int = 0,int = 0,int = 0,int = 0) = 0;
+		virtual SetUniformInt(const std::string& uniform,int,int = 0,int = 0,int = 0,int = 0) = 0;
 
-		/* ×ÅÉ«Æ÷¾ä±ú */
+		/* ç€è‰²å™¨å¥æŸ„ */
 		typedef int ShaderHandle;
 
-		/* »ñÈ¡HandleÒÔÔÚ×é¼şÖĞ²Ù×÷×ÅÉ«Æ÷
+		/* è·å–Handleä»¥åœ¨ç»„ä»¶ä¸­æ“ä½œç€è‰²å™¨
 		 * @result Handle
 		 */
         virtual ShaderHandle GetHandle() = 0;
 	};
-	/* ´ÓÎÄ¼ş´´½¨×ÅÉ«Æ÷²¢·µ»Ø×ÅÉ«Æ÷ÊµÀı
-	 * @param vert ¶¥µã×ÅÉ«Æ÷ÎÄ¼şÃû
-	 * @param frag Æ¬Ôª×ÅÉ«Æ÷ÎÄ¼şÃû
-	 * @result ×ÅÉ«Æ÷ÊµÀı
+	/* ä»æ–‡ä»¶åˆ›å»ºç€è‰²å™¨å¹¶è¿”å›ç€è‰²å™¨å®ä¾‹
+	 * @param vert é¡¶ç‚¹ç€è‰²å™¨æ–‡ä»¶å
+	 * @param frag ç‰‡å…ƒç€è‰²å™¨æ–‡ä»¶å
+	 * @result ç€è‰²å™¨å®ä¾‹
 	 */
 	std::shared_ptr<IShader> CreateShaderFromFile(const std::string& vert,const std::string& frag);
 
-	/* ´Ó×Ö·û´®´´½¨×ÅÉ«Æ÷²¢·µ»Ø×ÅÉ«Æ÷ÊµÀı
-	 * @param vert ¶¥µã×ÅÉ«Æ÷ÎÄ¼şÃû
-	 * @param frag Æ¬Ôª×ÅÉ«Æ÷ÎÄ¼şÃû
-	 * @result ×ÅÉ«Æ÷ÊµÀı
+	/* ä»å­—ç¬¦ä¸²åˆ›å»ºç€è‰²å™¨å¹¶è¿”å›ç€è‰²å™¨å®ä¾‹
+	 * @param vert é¡¶ç‚¹ç€è‰²å™¨æ–‡ä»¶å
+	 * @param frag ç‰‡å…ƒç€è‰²å™¨æ–‡ä»¶å
+	 * @result ç€è‰²å™¨å®ä¾‹
 	 */
 	std::shared_ptr<IShader> CreateShaderFromString(const std::string& vert,const std::string& frag);
 }
-/* ¸üĞÂÈÕÖ¾£º
- * 2016Äê4ÔÂ19ÈÕ£º
- * ĞÇÒí ³õ¸å
- * 2016Äê4ÔÂ24ÈÕ£º
- * ĞÇÒí Ìí¼Ó·½·¨SetUniformFloatºÍSetUniformInt¡£
- * ĞÇÒí ÔÊĞí´Ó×Ö·û´®¼ÓÔØ×ÅÉ«Æ÷¡£
- * ĞÇÒí ÔÊĞíÈ¡µÃShaderHandle¡£
+/* æ›´æ–°æ—¥å¿—ï¼š
+ * 2016å¹´4æœˆ19æ—¥ï¼š
+ * æ˜Ÿç¿¼ åˆç¨¿
+ * 2016å¹´4æœˆ24æ—¥ï¼š
+ * æ˜Ÿç¿¼ æ·»åŠ æ–¹æ³•SetUniformFloatå’ŒSetUniformIntã€‚
+ * æ˜Ÿç¿¼ å…è®¸ä»å­—ç¬¦ä¸²åŠ è½½ç€è‰²å™¨ã€‚
+ * æ˜Ÿç¿¼ å…è®¸å–å¾—ShaderHandleã€‚
  */
