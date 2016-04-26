@@ -13,7 +13,7 @@ namespace Nuz{
         }
     }
 
-    void SetStdLogOutputStream(std::ostream& s){
+    void SetStdLogOutputStream(std::ostream& s) noexcept{
         stdLogOut = &s;
     }
 
@@ -36,7 +36,7 @@ namespace Nuz{
         }
     }
 
-    void SetErrLogOutputStream(std::ostream& e){
+    void SetErrLogOutputStream(std::ostream& e) noexcept{
         errLogOut = &e;
     }
 

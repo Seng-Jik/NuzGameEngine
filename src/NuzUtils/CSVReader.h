@@ -3,7 +3,7 @@
 #include <map>
 #include <vector>
 
-namespace _NuzUtils{
+namespace Nuz_Utils{
 
 	class CSVReader:public NuzUtils::ICSVReader{
     private:

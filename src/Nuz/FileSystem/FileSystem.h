@@ -3,7 +3,7 @@
 #include <set>
 #include <string>
 #include <vector>
-namespace _Nuz{
+namespace Nuz_{
 
 	class FileSystem:public Nuz::IFileSystem{
     private:

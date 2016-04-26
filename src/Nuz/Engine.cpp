@@ -1,11 +1,11 @@
 #include "Engine.h"
 #include <memory>
-using namespace _Nuz;
+using namespace Nuz_;
 using namespace Nuz;
 
-_Nuz::Engine* engine = nullptr;
+static Nuz_::Engine engine;
 
-Engine::Engine(const char* title,bool fullScreen,int w,int h){
+Engine::Engine(){
     //Todo:Init Libraries and Create Window Here
 }
 
@@ -23,25 +23,8 @@ Nuz::ILocalFile& Engine::GetLocalFile()
     return m_localFile;
 }
 
-Nuz::IEngine& Nuz::CreateGameDevice(const char* title,bool fullScreen,int w,int h){
-    if(engine){
-        throw CannotCreateEngine("Nuz::CreateGameDevice()::Engine already created.");
-    }
-    engine = new _Nuz::Engine(title,fullScreen,w,h);
-    return *engine;
+
+IEngine& Nuz::GetGameDevice() noexcept{
+    return engine;
 }
 
-IEngine& Nuz::GetGameDevice(){
-    if(!engine){
-        throw HaveNotEngine("Nuz::GetGameDevice()::Engine has not created.");
-    }
-    return *engine;
-}
-
-void Nuz::KillGameDevice(){
-    if(!engine){
-        throw HaveNotEngine("Nuz::KillGameDevice()::Engine has not created.");
-    }
-    delete engine;
-    engine = nullptr;
-}

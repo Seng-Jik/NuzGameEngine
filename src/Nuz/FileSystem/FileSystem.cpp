@@ -1,6 +1,6 @@
 #include "FileSystem.h"
 #include "../../../include/Nuz/FileSystem/FileSource.h"
-using namespace _Nuz;
+using namespace Nuz_;
 using namespace std;
 using namespace Nuz;
 

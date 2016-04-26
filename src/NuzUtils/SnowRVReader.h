@@ -2,7 +2,7 @@
 #include <map>
 #include "../../include/NuzUtils/SnowRVReader.h"
 
-namespace _NuzUtils{
+namespace Nuz_Utils{
 
 	class SnowRVReader:public NuzUtils::ISnowRVReader{
     private:

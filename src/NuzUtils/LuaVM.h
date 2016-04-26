@@ -5,7 +5,7 @@
 #include <vector>
 #include <map>
 #include "../../include/NuzUtils/LuaVM.h"
-namespace _NuzUtils{
+namespace Nuz_Utils{
 
 	class LuaVM:public NuzUtils::ILuaVM{
     private:

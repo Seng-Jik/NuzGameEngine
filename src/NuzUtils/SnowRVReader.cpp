@@ -6,7 +6,7 @@
 #include <cstdlib>
 using namespace Nuz;
 using namespace std;
-using namespace _NuzUtils;
+using namespace Nuz_Utils;
 
 std::string SnowRVReader::Trim(const std::string& s)
 {

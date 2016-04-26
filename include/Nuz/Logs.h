@@ -17,7 +17,7 @@ namespace Nuz{
      * Release下无效
      * @param 输出流
      */
-    void SetStdLogOutputStream(std::ostream&);
+    void SetStdLogOutputStream(std::ostream&) noexcept;
 
     /* 在普通日志里添加过滤白名单
      * Release下无效
@@ -52,7 +52,7 @@ namespace Nuz{
      * Release下仍然有效
      * @param 输出流
      */
-    void SetErrLogOutputStream(std::ostream&);
+    void SetErrLogOutputStream(std::ostream&) noexcept;
 
     /* 在错误日志里添加过滤黑名单
      * Release下仍然有效

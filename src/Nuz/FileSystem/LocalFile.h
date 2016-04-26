@@ -2,7 +2,7 @@
 
 #include "../../../include/Nuz/FileSystem/LocalFile.h"
 
-namespace _Nuz{
+namespace Nuz_{
 
     class LocalFile:public Nuz::ILocalFile{
     public:

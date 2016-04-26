@@ -2,7 +2,7 @@
 #include "../../include/Nuz/Engine.h"
 #include "../../include/Nuz/FileSystem/FileSystem.h"
 
-using namespace _NuzUtils;
+using namespace Nuz_Utils;
 using namespace NuzUtils;
 
 LuaVM::LuaVM(){

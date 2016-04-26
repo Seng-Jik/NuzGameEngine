@@ -6,19 +6,21 @@
 #include "FileSystem/LocalFile.h"
 
 
-namespace _Nuz{
+namespace Nuz_{
 
 	class Engine:public Nuz::IEngine{
     private:
-        _Nuz::FileSystem m_fileSystem;
-        _Nuz::LocalFile m_localFile;
+        Nuz_::FileSystem m_fileSystem;
+        Nuz_::LocalFile m_localFile;
 	public:
-	    Engine(const char* title,bool fullScreen,int w,int h);
+	    Engine();
 	    virtual ~Engine();
 		virtual Nuz::ISceneManager& GetSceneManager(){};
 		virtual Nuz::IFileSystem& GetFileSystem();
 		virtual Nuz::IInputDeviceManager& GetInputDeviceManager(){};
 		virtual Nuz::ILocalFile& GetLocalFile();
+		virtual void SetWindowTitle(const std::string&) noexcept {};
+		virtual void InitWindow(int w,int h,bool fullScreen){};
 	};
 
 }

@@ -3,7 +3,7 @@
 #include "../../include/Nuz/FileSystem/FileSystem.h"
 #include "../../include/Nuz/FileSystem/LocalFile.h"
 
-using namespace _NuzUtils;
+using namespace Nuz_Utils;
 using namespace NuzUtils;
 
 static std::string Trim(const std::string& s)

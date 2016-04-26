@@ -6,7 +6,7 @@
 using namespace std;
 
 using namespace Nuz;
-using namespace _Nuz;
+using namespace Nuz_;
 
 std::shared_ptr<std::vector<unsigned char> > LocalFile::ReadFile(const std::string& path) const
 {
