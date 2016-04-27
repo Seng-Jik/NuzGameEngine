@@ -2,14 +2,17 @@
 #include "../../../include/Nuz/FileSystem/FileSystem.h"
 #include <set>
 #include <string>
+#include <map>
 #include <vector>
+#include <mutex>
+
 namespace Nuz_{
 
 	class FileSystem:public Nuz::IFileSystem{
     private:
-        std::set<std::shared_ptr<Nuz::IFileSource> > m_sources;
+        std::map<std::string,std::shared_ptr<Nuz::IFileSource> > m_sources;
 	public:
-		virtual void Mount(std::shared_ptr<Nuz::IFileSource> source);
-		virtual std::shared_ptr<std::vector<uint8_t>> LoadFile(const std::string& path) const;
+        void Mount(std::shared_ptr<Nuz::IFileSource> source,const std::string& dir = "") override;
+        std::shared_ptr<std::vector<uint8_t>> LoadFile(const std::string& path) const override;
 	};
 }

@@ -10,7 +10,7 @@ namespace NuzUtils{
 	class ILuaVM{
 	public:
 
-		/* 载入Lua标准库 */
+		/* 载入Lua标准库（非线程安全） */
 		virtual void OpenLibMath() = 0;	//数学
 		virtual void OpenLibIO() = 0;	//IO
 		virtual void OpenLibString() = 0;	//字符串
@@ -49,7 +49,7 @@ namespace NuzUtils{
 		 */
         virtual void LoadProgramFromFile(const std::string&) = 0;
 
-		/* 调用函数
+		/* 调用函数（非线程安全）
 		 * 返回值会被放在栈里
 		 * @param functionName Lua函数名
          * @param argc 参数个数
@@ -57,7 +57,7 @@ namespace NuzUtils{
 		 */
 		virtual void Call(const std::string& functionName,int argc,int nresults) = 0;
 
-		/* 调用主函数
+		/* 调用主函数（非线程安全）
 		 */
 		virtual void Call() = 0;
 
@@ -69,7 +69,7 @@ namespace NuzUtils{
         /* 异常类：无法创建Lua虚拟机。 */
         class CannotCreateLuaVM:public std::runtime_error{
         public:
-            inline CannotCreateLuaVM(const std::string& s):std::runtime_error(s){};
+            CannotCreateLuaVM(const std::string& s):std::runtime_error(s){};
         };
 	};
 

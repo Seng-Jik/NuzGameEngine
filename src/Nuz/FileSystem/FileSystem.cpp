@@ -4,11 +4,8 @@ using namespace Nuz_;
 using namespace std;
 using namespace Nuz;
 
-void FileSystem::Mount(std::shared_ptr<Nuz::IFileSource> source){
-    if(m_sources.count(source)){
-        throw CannotMountFileSource("Nuz::IFileSystem::Mount()::A source is remounting!");
-    }
-    m_sources.insert(source);
+void FileSystem::Mount(std::shared_ptr<Nuz::IFileSource> source,const std::string& dir){
+    m_sources[dir] = source;
 }
 
 std::shared_ptr<std::vector<uint8_t>> FileSystem::LoadFile(const std::string& path) const{
@@ -19,19 +16,20 @@ std::shared_ptr<std::vector<uint8_t>> FileSystem::LoadFile(const std::string& pa
          throw InvalidFileName("Nuz::IFileSystem::LoadFile()::Invalid File Name " + path);
     }
 
-    std::shared_ptr<std::vector<uint8_t>> ret;
-
-    bool read = false;
-    for(std::shared_ptr<Nuz::IFileSource> p:m_sources){
-        try{
-            ret = p -> ReadFile(path);
-            read = true;
-            break;
-        }catch(CannotOpenFile&){
-            continue;
+    //Find dir
+    auto nextPos = path.find('/',1);    //Find sub dir symbol '/'
+    if(nextPos != string::npos){    //If it has a sub dir symbol
+        string dir = path.substr(1,nextPos-1);  //Find lv1 sub dir.
+        if(m_sources.count(dir)){   //If source found.
+            try{    //Try to load file and return.
+                auto ret = m_sources.at(dir) -> ReadFile(path.substr(nextPos,path.length()-nextPos));
+                return ret;
+            }catch(CannotOpenFile&){
+            }
         }
     }
-    if(!read) throw CannotOpenFile("Nuz::IFileSystem::LoadFile()::Can not open file " + path + ".");
+    if(m_sources.count("") == 0) throw CannotOpenFile("Nuz::IFileSystem::LoadFile()::File " + path + " not found.");
+    auto ret = m_sources.at("") ->ReadFile(path);
     return ret;
 }
 

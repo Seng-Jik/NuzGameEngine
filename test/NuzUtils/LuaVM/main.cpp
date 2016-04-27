@@ -16,8 +16,8 @@ int f(lua_State* s){
 }
 
 int main(){
-    shared_ptr<Nuz::IFileSource> lf = shared_ptr<Nuz::IFileSource>(&Nuz::GetGameDevice().GetLocalFile());
-    Nuz::GetGameDevice().GetFileSystem().Mount(lf);
+    auto lf = Nuz::GetGameDevice().GetLocalFile();
+    Nuz::GetGameDevice().GetFileSystem().Mount(lf,"test");
     auto p = NuzUtils::CreateLuaVM();
     p -> OpenLibIO();
     p -> OpenLibString();
@@ -27,7 +27,7 @@ int main(){
     p -> MountString(str,"str");
     p -> MountFunction(&f,"f");
     p -> MountBool(b,"b");
-    p -> LoadProgramFromFile("/test/NuzUtils/LuaVM/lua.lua");
+    p -> LoadProgramFromFile("/test/test/NuzUtils/LuaVM/lua.lua");
     p -> Call();
     p -> LoadProgram("x = 123");
     p -> Call();

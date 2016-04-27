@@ -6,11 +6,11 @@
 using namespace std;
 
 int main(){
-    shared_ptr<Nuz::IFileSource> lf = shared_ptr<Nuz::IFileSource>(&Nuz::GetGameDevice().GetLocalFile());
-    Nuz::GetGameDevice().GetFileSystem().Mount(lf);
-    auto p = NuzUtils::CreateCSVReader("/TestCSVReader.csv");
-    p -> SaveToFastReadFile("/TestCSVReader.cso");
-    p = NuzUtils::CreateCSVReader("/TestCSVReader.cso");
+    auto lf = Nuz::GetGameDevice().GetLocalFile();
+    Nuz::GetGameDevice().GetFileSystem().Mount(lf,"e");
+    auto p = NuzUtils::CreateCSVReader("/e/test/NuzUtils/CSVReader/0.csv");
+    p -> SaveToFastReadFile("/test/NuzUtils/CSVReader/0.elf");
+    p = NuzUtils::CreateCSVReader("/e/test/NuzUtils/CSVReader/0.elf");
 
     while(!p -> IsLastLine()){
         while(!p -> LineEnd()){

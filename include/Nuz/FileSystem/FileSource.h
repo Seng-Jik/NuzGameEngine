@@ -4,13 +4,14 @@
 #include <vector>
 namespace Nuz{
 	/* 文件数据源
-		完成该类后可以挂载到虚拟文件系统上。
+     * 完成该类后可以挂载到虚拟文件系统上。
+     * 你需要保证数据源线程安全
 	 */
 	class IFileSource{
 	public:
 	    virtual ~IFileSource(){};
 
-		/* 读取文件
+		/* 读取文件（你需要保证它线程安全）
 		 * 提供一个开头为/的文件路径
 		 * 从这里读取文件并返回。
 		 * 如果没有这个文件，请返回nullptr，可以不用设置size

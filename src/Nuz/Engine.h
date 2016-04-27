@@ -11,16 +11,16 @@ namespace Nuz_{
 	class Engine:public Nuz::IEngine{
     private:
         Nuz_::FileSystem m_fileSystem;
-        Nuz_::LocalFile m_localFile;
+        std::shared_ptr<Nuz_::LocalFile> m_localFile;
 	public:
 	    Engine();
-	    virtual ~Engine();
-		virtual Nuz::ISceneManager& GetSceneManager(){};
-		virtual Nuz::IFileSystem& GetFileSystem();
-		virtual Nuz::IInputDeviceManager& GetInputDeviceManager(){};
-		virtual Nuz::ILocalFile& GetLocalFile();
-		virtual void SetWindowTitle(const std::string&) noexcept {};
-		virtual void InitWindow(int w,int h,bool fullScreen){};
+        ~Engine();
+        Nuz::ISceneManager& GetSceneManager() override{};
+        Nuz::IFileSystem& GetFileSystem() override;
+        Nuz::IInputDeviceManager& GetInputDeviceManager() override{};
+        std::shared_ptr<Nuz::ILocalFile> GetLocalFile() override;
+        void SetWindowTitle(const std::string&) noexcept override {};
+        void InitWindow(int w,int h,bool fullScreen) override{};
 	};
 
 }

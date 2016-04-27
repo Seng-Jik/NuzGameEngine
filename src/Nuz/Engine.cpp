@@ -3,10 +3,9 @@
 using namespace Nuz_;
 using namespace Nuz;
 
-static Nuz_::Engine engine;
+Engine::Engine():m_localFile(new Nuz_::LocalFile){
+    //Todo:Init Libraries
 
-Engine::Engine(){
-    //Todo:Init Libraries and Create Window Here
 }
 
 Engine::~Engine(){
@@ -18,13 +17,14 @@ Nuz::IFileSystem& Engine::GetFileSystem()
     return m_fileSystem;
 }
 
-Nuz::ILocalFile& Engine::GetLocalFile()
+std::shared_ptr<Nuz::ILocalFile> Engine::GetLocalFile()
 {
     return m_localFile;
 }
 
 
 IEngine& Nuz::GetGameDevice() noexcept{
+    static Nuz_::Engine engine;
     return engine;
 }
 

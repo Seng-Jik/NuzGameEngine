@@ -1,14 +1,24 @@
-#include "../../../../src/Nuz/FileSystem/LocalFile.h"
+#include "../../../../include/Nuz.h"
 #include <iostream>
 #include <stdexcept>
+#include <stdint.h>
+#include <memory>
 using namespace std;
-using namespace Nuz_;
+using namespace Nuz;
 int main(){
-    LocalFile localFile;
+    shared_ptr<vector<uint8_t> > b(new vector<uint8_t>);
+    b ->push_back('H');
+    b ->push_back('e');
+    b ->push_back('l');
+    b ->push_back('l');
+    b ->push_back('o');
+    b ->push_back('W');
+    b ->push_back('o');
+    b ->push_back('r');
+    b ->push_back('l');
+    b ->push_back('d');
 
-    localFile.CopyFile("/test/Nuz/FileSystem/LocalFile/0.txt","/test/Nuz/FileSystem/LocalFile/1.txt");
-    cout<<localFile.GetFileSize("/test/Nuz/FileSystem/LocalFile/1.txt");
-
+    Nuz::GetGameDevice().GetLocalFile() -> SaveFile(b,"/test/Nuz/FileSystem/LocalFile/0.txt");
 
     return 0;
 }

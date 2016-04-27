@@ -17,15 +17,7 @@ namespace Nuz{
 		 * @throw IFileSystem::CannotOpenFile
 		 * @result 返回给引擎的文件缓存区，如果加载失败请返回nullptr.
 		 */
-		virtual std::shared_ptr<std::vector<uint8_t> > ReadFile(const std::string& path) const = 0;
-
-		/* 取文件大小
-		 * @param path 文件名
-         * @throw IFileSystem::InvalidFileName
-		 * @throw IFileSystem::CannotOpenFile
-		 * @result 文件大小（字节数）
-		 */
-		virtual uint32_t GetFileSize(const std::string& path) const = 0;
+		std::shared_ptr<std::vector<uint8_t> > ReadFile(const std::string& path) const override = 0;
 
 		/* 保存缓存区到文件
 		 * @param 缓存区指针
@@ -33,16 +25,7 @@ namespace Nuz{
          * @throw IFileSystem::InvalidFileName
 		 * @throw IFileSystem::CannotOpenFile
 		 */
-		virtual void SaveFile(const std::shared_ptr<std::vector<uint8_t> >,const std::string path) const = 0;
-
-		/* 复制文件
-		 * @param src 来源文件
-		 * @param dst 目标文件
-		 * @throw IFileSystem::InvalidFileName
-		 * @throw IFileSystem::CannotOpenFile
-		 */
-		virtual void CopyFile(const std::string& src,const std::string& dst) const = 0;
-
+		virtual void SaveFile(const std::shared_ptr<std::vector<uint8_t> >,const std::string& path) const = 0;
 	};
 }
 
@@ -51,4 +34,6 @@ namespace Nuz{
  * 星翼 初稿
  * 2016年4月21日：
  * 星翼 删除DeleteFile并加入异常
+ * 2016年4月27日：
+ * 星翼 删除CopyFile
  */

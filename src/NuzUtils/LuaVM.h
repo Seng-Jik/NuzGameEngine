@@ -4,8 +4,9 @@
 #include <lua.hpp>
 #include <vector>
 #include <map>
+#include <mutex>
 #include "../../include/NuzUtils/LuaVM.h"
-namespace Nuz_Utils{
+namespace NuzUtils_{
 
 	class LuaVM:public NuzUtils::ILuaVM{
     private:
@@ -16,26 +17,27 @@ namespace Nuz_Utils{
         std::map<std::string,float*> m_mflt;
         std::map<std::string,std::string*> m_mstr;
         std::map<std::string,bool*> m_mbool;
+        std::mutex m_lock;
 
         void syncSend();
         void syncGet();
 	public:
 	    LuaVM();
-	    virtual ~LuaVM();
-		virtual void OpenLibMath();
-		virtual void OpenLibIO();
-		virtual void OpenLibString();
-		virtual void OpenLibTable();
-		virtual void MountNumber(int&,const std::string&);
-		virtual void MountNumber(double&,const std::string&);
-		virtual void MountNumber(float&,const std::string&);
-		virtual void MountString(std::string&,const std::string&);
-		virtual void MountBool(bool&,const std::string&);
-		virtual void MountFunction(int (*func)(lua_State*),const std::string&);
-		virtual void LoadProgram(const std::string& code);
-        virtual void LoadProgramFromFile(const std::string&);
-		virtual void Call(const std::string& functionName,int argc,int nresults);
-		virtual void Call();
-		virtual lua_State* GetLuaState();
+	    ~LuaVM();
+        void OpenLibMath() override;
+		void OpenLibIO() override;
+		void OpenLibString() override;
+		void OpenLibTable() override;
+		void MountNumber(int&,const std::string&) override;
+		void MountNumber(double&,const std::string&) override;
+		void MountNumber(float&,const std::string&) override;
+		void MountString(std::string&,const std::string&) override;
+		void MountBool(bool&,const std::string&) override;
+		void MountFunction(int (*func)(lua_State*),const std::string&) override;
+		void LoadProgram(const std::string& code) override;
+        void LoadProgramFromFile(const std::string&) override;
+		void Call(const std::string& functionName,int argc,int nresults) override;
+		void Call() override;
+		lua_State* GetLuaState() override;
 	};
 }

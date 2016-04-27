@@ -3,7 +3,7 @@
 #include "../../include/Nuz/FileSystem/FileSystem.h"
 #include "../../include/Nuz/FileSystem/LocalFile.h"
 
-using namespace Nuz_Utils;
+using namespace NuzUtils_;
 using namespace NuzUtils;
 
 static std::string Trim(const std::string& s)
@@ -15,52 +15,41 @@ static std::string Trim(const std::string& s)
     return t;
 }
 
-std::shared_ptr<ICSVReader> NuzUtils::CreateCSVReader(const std::string& path){
-    auto p = new CSVReader;
-    p -> Load(path);
-    return std::shared_ptr<ICSVReader>(p);
-}
-
-void CSVReader::Load(const std::string& csv){
-    Nuz::IEngine& eng = Nuz::GetGameDevice();
-    auto buf = eng.GetFileSystem().LoadFile(csv);
-    m_csvCache.clear();
-
-    //Read binary CSV
-    if((*buf)[0] == 0xFF){
-        uint32_t ptr = 4;
-        uint32_t lineCount;
-        for(uint32_t i = 0;i < sizeof(lineCount);++i)
-            ((uint8_t*)(&lineCount))[i] = (*buf)[ptr++];
-        for(uint32_t lineNum = 0;lineNum < lineCount;++lineNum){
-            //ReadLine
-            //Line Size
-            uint32_t lineSize;
-            for(uint32_t i = 0;i < sizeof(lineSize);++i)
-                ((uint8_t*)(&lineSize))[i] = (*buf)[ptr++];
-
+void CSVReader::loadFromBin(std::shared_ptr<std::vector<uint8_t> > buf)
+{
+    uint32_t ptr = 4;
+    uint32_t lineCount;
+    for(uint32_t i = 0;i < sizeof(lineCount);++i)
+        ((uint8_t*)(&lineCount))[i] = (*buf)[ptr++];
+    for(uint32_t lineNum = 0;lineNum < lineCount;++lineNum){
+        //ReadLine
+        //Line Size
+        uint32_t lineSize;
+        for(uint32_t i = 0;i < sizeof(lineSize);++i)
+            ((uint8_t*)(&lineSize))[i] = (*buf)[ptr++];
             m_csvCache.push_back(std::vector<std::string>());
             auto p = m_csvCache.end();
             p--;
             //Read Units
-            for(uint32_t unitNum = 0;unitNum < lineSize;++unitNum){
-                //Read String Size
-                uint32_t length;
-                std::string unit;
-                for(uint32_t i = 0;i < sizeof(length);++i)
-                    ((uint8_t*)&length)[i] = (*buf)[ptr++];
+        for(uint32_t unitNum = 0;unitNum < lineSize;++unitNum){
+            //Read String Size
+            uint32_t length;
+            std::string unit;
+            for(uint32_t i = 0;i < sizeof(length);++i)
+                ((uint8_t*)&length)[i] = (*buf)[ptr++];
 
-                //GetUnit
-                for(uint32_t i = 0;i < length;++i)
-                    unit += (char)(*buf)[ptr++];
+            //GetUnit
+            for(uint32_t i = 0;i < length;++i)
+                unit += (char)(*buf)[ptr++];
 
-                p -> push_back(unit);
-            }
-
+            p -> push_back(unit);
         }
-        return;
-    }
 
+    }
+}
+
+void CSVReader::loadFromText(std::shared_ptr<std::vector<uint8_t> > buf)
+{
     uint32_t num = 0;
     uint32_t lineNum = 1;
     bool bRun = true;
@@ -105,11 +94,32 @@ void CSVReader::Load(const std::string& csv){
         }
         ++lineNum;
     }
+}
+
+
+std::shared_ptr<ICSVReader> NuzUtils::CreateCSVReader(const std::string& path){
+    auto p = new CSVReader;
+    p -> Load(path);
+    return std::shared_ptr<ICSVReader>(p);
+}
+
+void CSVReader::Load(const std::string& csv){
+    Nuz::IEngine& eng = Nuz::GetGameDevice();
+    auto buf = eng.GetFileSystem().LoadFile(csv);
+    m_csvCache.clear();
+
+    //If it is an empty file.
+    if(buf -> size() == 0) throw InvalidCSV("NuzUtils::CreateCSVReader()::It is an empty csv file.");
+    //Read binary CSV
+    if((*buf)[0] == 0xFF)
+        loadFromBin(buf);
+    else loadFromText(buf);
+
     Reset();
 }
 
 std::string CSVReader::PopString(){
-    if(LineEnd()) throw ValueNotFound("NuzUtil::CSVReader::Pop*()::This line is end.");
+    if(LineEnd()) throw ValueNotFound("NuzUtil::ICSVReader::Pop*()::This line is end.");
     return m_csvCache[m_y][m_x++];
 }
 
@@ -167,5 +177,5 @@ void CSVReader::SaveToFastReadFile(const std::string& file){
             }
         }
     }
-    Nuz::GetGameDevice().GetLocalFile().SaveFile(buf,file);
+    Nuz::GetGameDevice().GetLocalFile() -> SaveFile(buf,file);
 }

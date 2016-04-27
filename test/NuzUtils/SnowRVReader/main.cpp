@@ -5,12 +5,11 @@
 using namespace std;
 
 int main(){
-    Nuz::CreateGameDevice("",false);
-    shared_ptr<Nuz::IFileSource> lf = shared_ptr<Nuz::IFileSource>(&Nuz::GetGameDevice().GetLocalFile());
-    Nuz::GetGameDevice().GetFileSystem().Mount(lf);
-    auto p = NuzUtils::CreateSnowRVReader("/test.txt");
-    p -> SaveToFastReadFile("/test.rvo");
-    p = NuzUtils::CreateSnowRVReader("/test.rvo");
+    auto lf = Nuz::GetGameDevice().GetLocalFile();
+    Nuz::GetGameDevice().GetFileSystem().Mount(lf,"testSet");
+    auto p = NuzUtils::CreateSnowRVReader("/testSet/test/NuzUtils/SnowRVReader/test.rv");
+    p -> SaveToFastReadFile("/test/NuzUtils/SnowRVReader/test.elf");
+    p = NuzUtils::CreateSnowRVReader("/testSet/test/NuzUtils/SnowRVReader/test.elf");
 
     cout<<p -> GetInt("RVI")<<endl;
     cout<<p -> GetString("RVS")<<endl;

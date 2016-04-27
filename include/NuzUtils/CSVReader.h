@@ -62,7 +62,13 @@ namespace NuzUtils{
         /* 异常类：CSV中未找到对象 */
         class ValueNotFound:public std::runtime_error{
         public:
-            inline ValueNotFound(const std::string& s):std::runtime_error(s){};
+            ValueNotFound(const std::string& s):std::runtime_error(s){};
+        };
+
+        /* 异常类：无效CSV */
+        class InvalidCSV:public std::runtime_error{
+        public:
+            InvalidCSV(const std::string& s):std::runtime_error(s){};
         };
 	};
 
@@ -72,6 +78,7 @@ namespace NuzUtils{
 	 * @param path CSV文件
      * @throw IFileSystem::CannotOpenFile
      * @throw IFileSystem::InvaildFileName
+     * @throw ICSVReader::InvalidCSV
 	 * @result CSV阅读器
 	 */
 	std::shared_ptr<ICSVReader> CreateCSVReader(const std::string& path);

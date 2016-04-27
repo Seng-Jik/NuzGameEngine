@@ -40,13 +40,13 @@ namespace NuzUtils{
         /* 异常类：错误的SnowRV */
         class SnowRVCompileFailed:public std::runtime_error{
         public:
-            inline SnowRVCompileFailed(const std::string& s):std::runtime_error(s){};
+            SnowRVCompileFailed(const std::string& s):std::runtime_error(s){};
         };
 
         /* 异常类：SnowRV中未找到相应对象 */
         class ValueNotFound:public std::runtime_error{
         public:
-            inline ValueNotFound(const std::string& s):std::runtime_error(s){};
+            ValueNotFound(const std::string& s):std::runtime_error(s){};
         };
 	};
 

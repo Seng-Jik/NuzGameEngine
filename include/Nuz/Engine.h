@@ -13,7 +13,7 @@ namespace Nuz{
 	class IEngine{
 	public:
 
-	    /* 初始化游戏窗口
+	    /* 初始化游戏窗口（只允许调用一次）
 	     * @param w 宽度（如果全屏时采用屏幕分辨率，填入-1）
 	     * @param h 高度（如果全屏时采用屏幕分辨率，填入-1）
 	     * @param fullScreen 是否全屏
@@ -43,7 +43,7 @@ namespace Nuz{
 		/* 取得本地文件管理器
 		 * @result 本地文件管理器
 		 */
-		virtual ILocalFile& GetLocalFile() = 0;
+		virtual std::shared_ptr <ILocalFile> GetLocalFile() = 0;
 	};
 
 	/* 取得已被创建的引擎实例

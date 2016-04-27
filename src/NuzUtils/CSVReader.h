@@ -2,25 +2,29 @@
 #include "../../include/NuzUtils/CSVReader.h"
 #include <map>
 #include <vector>
+#include <memory>
+#include <atomic>
 
-namespace Nuz_Utils{
+namespace NuzUtils_{
 
 	class CSVReader:public NuzUtils::ICSVReader{
     private:
         std::vector<std::vector<std::string> > m_csvCache;
-        uint32_t m_x,m_y;
+        std::atomic<uint32_t> m_x,m_y;
 
+        void loadFromBin(std::shared_ptr<std::vector<uint8_t> >);
+        void loadFromText(std::shared_ptr<std::vector<uint8_t> >);
 	public:
         void Load(const std::string& csv);
-		virtual std::string PopString();
-		virtual float PopFloat();
-		virtual double PopDouble();
-		virtual int PopInt();
-		virtual bool LineEnd();
-		virtual bool NextLine();
-		virtual bool IsLastLine();
-		virtual void Reset();
-		virtual void SaveToFastReadFile(const std::string&);
+		std::string PopString() override;
+        float PopFloat() override;
+        double PopDouble() override;
+        int PopInt() override;
+        bool LineEnd() override;
+        bool NextLine() override;
+        bool IsLastLine() override;
+        void Reset() override;
+        void SaveToFastReadFile(const std::string&) override;
 	};
 
 	std::shared_ptr<NuzUtils::ICSVReader> CreateCSVReader(const std::string& path);
