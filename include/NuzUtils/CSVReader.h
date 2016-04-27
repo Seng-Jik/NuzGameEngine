@@ -5,6 +5,7 @@
 namespace NuzUtils{
 
 	/* CSV阅读器
+	 * 非线程安全注意
 	 */
 	class ICSVReader{
 	public:

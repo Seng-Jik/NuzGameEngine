@@ -6,6 +6,7 @@ struct lua_State;
 namespace NuzUtils{
 
 	/* Lua虚拟机
+	 * 非线程安全
 	 */
 	class ILuaVM{
 	public:

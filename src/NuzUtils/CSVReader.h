@@ -3,14 +3,13 @@
 #include <map>
 #include <vector>
 #include <memory>
-#include <atomic>
 
 namespace NuzUtils_{
 
 	class CSVReader:public NuzUtils::ICSVReader{
     private:
         std::vector<std::vector<std::string> > m_csvCache;
-        std::atomic<uint32_t> m_x,m_y;
+        uint16_t m_x,m_y;
 
         void loadFromBin(std::shared_ptr<std::vector<uint8_t> >);
         void loadFromText(std::shared_ptr<std::vector<uint8_t> >);
