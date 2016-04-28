@@ -19,10 +19,10 @@ namespace NuzUtils_{
         void loadFromText(std::shared_ptr<std::vector<uint8_t> >);
 	public:
 	    SnowRVReader(const std::string& path);
-        std::string GetString(const std::string&) override;
-        int GetInt(const std::string&) override;
-        double GetFloat(const std::string&) override;
-        void SaveToFastReadFile(const std::string&) override;
+        std::string GetString(const std::string&) const override;
+        int GetInt(const std::string&) const override;
+        double GetFloat(const std::string&) const override;
+        void SaveToFastReadFile(const std::string&) const override;
 	};
 
 }

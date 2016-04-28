@@ -71,18 +71,16 @@ namespace NuzUtils{
         public:
             InvalidCSV(const std::string& s):std::runtime_error(s){};
         };
+
+        /* 创建CSV阅读器
+         * @param path CSV文件
+         * @throw IFileSystem::CannotOpenFile
+         * @throw IFileSystem::InvaildFileName
+         * @throw ICSVReader::InvalidCSV
+         * @result CSV阅读器
+         */
+        static std::shared_ptr<ICSVReader> CreateCSVReader(const std::string& path);
 	};
-
-
-
-	/* 创建CSV阅读器
-	 * @param path CSV文件
-     * @throw IFileSystem::CannotOpenFile
-     * @throw IFileSystem::InvaildFileName
-     * @throw ICSVReader::InvalidCSV
-	 * @result CSV阅读器
-	 */
-	std::shared_ptr<ICSVReader> CreateCSVReader(const std::string& path);
 }
 
 /* 更新日志：

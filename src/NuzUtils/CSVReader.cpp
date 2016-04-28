@@ -97,19 +97,19 @@ void CSVReader::loadFromText(std::shared_ptr<std::vector<uint8_t> > buf)
 }
 
 
-std::shared_ptr<ICSVReader> NuzUtils::CreateCSVReader(const std::string& path){
+std::shared_ptr<ICSVReader> NuzUtils::ICSVReader::CreateCSVReader(const std::string& path){
     auto p = new CSVReader;
     p -> Load(path);
     return std::shared_ptr<ICSVReader>(p);
 }
 
 void CSVReader::Load(const std::string& csv){
-    Nuz::IEngine& eng = Nuz::GetGameDevice();
+    Nuz::IEngine& eng = Nuz::IEngine::GetGameDevice();
     auto buf = eng.GetFileSystem().LoadFile(csv);
     m_csvCache.clear();
 
     //If it is an empty file.
-    if(buf -> size() == 0) throw InvalidCSV("NuzUtils::CreateCSVReader()::It is an empty csv file.");
+    if(buf -> size() == 0) throw InvalidCSV("It is an empty csv file.");
     //Read binary CSV
     if((*buf)[0] == 0xFF)
         loadFromBin(buf);
@@ -119,7 +119,7 @@ void CSVReader::Load(const std::string& csv){
 }
 
 std::string CSVReader::PopString(){
-    if(LineEnd()) throw ValueNotFound("NuzUtil::ICSVReader::Pop*()::This line is end.");
+    if(LineEnd()) throw ValueNotFound("This line is end.");
     return m_csvCache[m_y][m_x++];
 }
 
@@ -140,7 +140,7 @@ bool CSVReader::LineEnd(){
 }
 
 bool CSVReader::NextLine(){
-    if(IsLastLine()) throw ValueNotFound("NuzUtil::CSVReader::NextLine()::CSV Table End.");
+    if(IsLastLine()) throw ValueNotFound("CSV Table End.");
     m_y++;
     m_x = 0;
     return !IsLastLine();
@@ -177,5 +177,5 @@ void CSVReader::SaveToFastReadFile(const std::string& file){
             }
         }
     }
-    Nuz::GetGameDevice().GetLocalFile() -> SaveFile(buf,file);
+    Nuz::IEngine::GetGameDevice().GetLocalFile() -> SaveFile(buf,file);
 }

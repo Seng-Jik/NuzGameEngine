@@ -67,18 +67,18 @@ namespace NuzUtils{
 		 */
         virtual lua_State* GetLuaState() = 0;
 
+        /* 创建Lua虚拟机
+         * @throw ILuaVM::CannotCreateLuaVM
+         * @result Lua虚拟机
+         */
+        static std::shared_ptr<ILuaVM> CreateLuaVM();
+
         /* 异常类：无法创建Lua虚拟机。 */
         class CannotCreateLuaVM:public std::runtime_error{
         public:
             CannotCreateLuaVM(const std::string& s):std::runtime_error(s){};
         };
 	};
-
-	/* 创建Lua虚拟机
-	 * @throw ILuaVM::CannotCreateLuaVM
-	 * @result Lua虚拟机
-	 */
-	std::shared_ptr<ILuaVM> CreateLuaVM();
 }
 
 /* 更新日志：

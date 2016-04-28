@@ -13,17 +13,10 @@ namespace Nuz{
 	 * 屏幕右下角为(1,1)
 	 * 从无限远到无限近为(-1~1)
 	 * 以此类推。
+	 * 你只可以挂载一个3D摄像机。
 	 */
 	class ICamera3D:public IComponent{
 	public:
-		/* 使用此摄像机
-		 */
-		virtual void Use() = 0;
-
-		/* 拍摄照片并返回照片
-		 * @result 照片
-		 */
-		virtual std::shared_ptr<ISprite2D> Photograph() = 0;
 
 		/* 设置中心坐标
 		 * @param x 中心x坐标
@@ -65,15 +58,17 @@ namespace Nuz{
 		 * @param 角度
 		 */
 		virtual void SetFov(float) = 0;
-	};
 
-	/* 创建一个3D摄像机
-	 * @result 摄像机
-	 */
-	std::shared_ptr<ICamera3D> CreateCamera3D();
+        /* 创建一个3D摄像机
+         * 当然，这个摄像机有个名字叫"_Camera3D"，你也明白这是什么意思
+         * @result 摄像机
+         */
+        static std::shared_ptr<ICamera3D> CreateCamera3D();
+	};
 }
 /* 更新日志：
  * 2016年4月18日：
  * 星翼 初稿
- *
+ * 2016年4月28日：
+ * 星翼 移动创建方法并给定名称
  */

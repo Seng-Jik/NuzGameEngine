@@ -29,15 +29,17 @@ namespace Nuz{
 		/* 设置为全局雾（默认，会丢失已绑定的体积雾参数）
 		*/
 		virtual void SetGlobal() = 0;
-	};
 
-	/* 创建一个雾气组件
-	 * @result 雾气组件
-	 */
-	std::shared_ptr<IFog2D> CreateFog2D();
+        /* 创建一个雾气组件
+         * @param name 组件名
+         * @result 雾气组件
+         */
+        static std::shared_ptr<IFog2D> CreateFog2D(const std::string& name);
+	};
 }
 /* 更新日志：
  * 2016年4月20日：
  * 星翼 初稿
- *
+ * 2016年4月28日：
+ * 星翼 移动创建方法并给定名称
  */

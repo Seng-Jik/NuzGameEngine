@@ -28,15 +28,16 @@ namespace Nuz{
          */
 		virtual void FreeImage(int where = -1) = 0;
 
+        /* 创建一个天空盒
+         * @param name 组件名称
+         * @result 天空盒
+         */
+        static std::shared_ptr<ISkyBox> CreateSkyBox(const std::string& name);
 	};
-
-	/* 创建一个天空盒
-	 * @result 天空盒
-	 */
-	std::shared_ptr<ISkyBox> CreateSkyBox();
 }
 /* 更新日志：
  * 2016年4月27日：
  * 星翼 初稿
- *
+ * 2016年4月28日：
+ * 星翼 给定名称
  */

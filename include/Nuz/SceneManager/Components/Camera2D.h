@@ -12,18 +12,10 @@ namespace Nuz{
 	 * 屏幕左上角为(-1,-1)
 	 * 屏幕右下角为(1,1)
 	 * 以此类推。
+     * 你只可以挂载一个2D摄像机。
 	 */
 	class ICamera2D:public IComponent{
 	public:
-		/* 使用此摄像机
-		 */
-		virtual void Use() = 0;
-
-		/* 拍摄照片并返回照片
-		 * @result 照片
-		 */
-		virtual std::shared_ptr<ISprite2D> Photograph() = 0;
-
 		/* 设置中心坐标
 		 * @param x 中心x坐标
 		 * @param y 中心y坐标
@@ -49,22 +41,24 @@ namespace Nuz{
 		 * @param yFlip 是否绕y轴翻转
 		 * @param xFilp 是否绕x轴旋转
 		 */
-		virtual void Rotate(float angle,float x,float y,bool yFilp,bool xFlip);
+		virtual void Rotate(float angle,float x,float y,bool yFilp,bool xFlip) = 0;
 
 		/* 以当前摄像机为基准进行平移
 		 * @param x 移动的x量
 		 * @param y 移动的y量
 		 */
-		virtual void Move(float x,float y);
-	};
+		virtual void Move(float x,float y) = 0;
 
-	/* 创建一个2D摄像机
-	 * @result 摄像机
-	 */
-	std::shared_ptr<ICamera2D> CreateCamera2D();
+        /* 创建一个2D摄像机
+         * 当然，这个摄像机有个名字叫"_Camera2D"，你也明白这是什么意思
+         * @result 摄像机
+         */
+        static std::shared_ptr<ICamera2D> CreateCamera2D();
+	};
 }
 /* 更新日志：
  * 2016年4月18日：
  * 星翼 初稿
- *
+ * 2016年4月28日：
+ * 星翼 移动创建方法并给定名称
  */

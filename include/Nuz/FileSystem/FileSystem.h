@@ -28,6 +28,14 @@ namespace Nuz{
 		 */
 		virtual std::shared_ptr<std::vector<uint8_t>> LoadFile(const std::string& path) const = 0;
 
+        /* 给定一个目录路径，求上一层目录路径
+         * 或者给定一个文件，求该文件的上一层目录
+         * @param path 给定的目录或文件
+         * @throw IFileSystem::InvaildFileName
+         * @result 上一层目录
+         */
+        static std::string GetUpperDir(const std::string&);
+
         /* 异常类：错误的文件名格式 */
         class InvalidFileName:public std::invalid_argument{
         public:

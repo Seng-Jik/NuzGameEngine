@@ -129,16 +129,18 @@ namespace Nuz{
 		 * 该粒子会立刻被粒子处理器处理
 		 */
 		virtual void AddDot() = 0;
-	};
 
-	/* 创建2D粒子系统
-	 * @result 2D粒子系统
-	 */
-	std::shared_ptr<IParticle2D> CreateParticle2D();
+        /* 创建2D粒子系统
+         * @param name 组件名称
+         * @result 2D粒子系统
+         */
+        static std::shared_ptr<IParticle2D> CreateParticle2D(const std::string& name);
+	};
 }
 
 /* 更新日志：
  * 2016年4月19日：
  * 星翼 初稿
- *
+ * 2016年4月28日：
+ * 星翼 给定名称
  */

@@ -44,13 +44,12 @@ namespace Nuz{
 		 * @result 本地文件管理器
 		 */
 		virtual std::shared_ptr <ILocalFile> GetLocalFile() = 0;
-	};
 
-	/* 取得已被创建的引擎实例
-     * @throw HaveNotEngine
-     * @result 引擎
-     */
-	IEngine& GetGameDevice() noexcept;
+        /* 取得已被创建的引擎实例
+         * @result 引擎
+         */
+        static IEngine& GetGameDevice() noexcept;
+	};
 
 }
 

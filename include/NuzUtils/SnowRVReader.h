@@ -14,28 +14,37 @@ namespace NuzUtils{
          * @throw ValueNotFound
 		 * @result 常量字符串
 		 */
-		virtual std::string GetString(const std::string&) = 0;
+		virtual std::string GetString(const std::string&) const = 0;
 
 		/* 取得数值常量
 		 * @param 常量名
          * @throw ValueNotFound
 		 * @result 常量数值
 		 */
-		virtual int GetInt(const std::string&) = 0;
+		virtual int GetInt(const std::string&) const = 0;
 
 		/* 取得浮点数常量
 		 * @param 常量名
          * @throw ValueNotFound
 		 * @result 常量浮点数
 		 */
-		virtual double GetFloat(const std::string&) = 0;
+		virtual double GetFloat(const std::string&) const = 0;
 
 		/* 存储为可以快速读取的二进制码
 		 * @param 文件名
          * @throw IFileSystem::CannotOpenFile
          * @throw IFileSystem::InvaildFileName
          */
-        virtual void SaveToFastReadFile(const std::string&) = 0;
+        virtual void SaveToFastReadFile(const std::string&) const = 0;
+
+        /* 创建SnowRV阅读器
+         * @param RV文件
+         * @throw ISnowRVReader::SnowRVCompileFailed
+         * @throw IFileSystem::CannotOpenFile
+         * @throw IFileSystem::InvaildFileName
+         * @result RV阅读器
+         */
+        static std::shared_ptr<ISnowRVReader> CreateSnowRVReader(const std::string& path);
 
         /* 异常类：错误的SnowRV */
         class SnowRVCompileFailed:public std::runtime_error{
@@ -49,15 +58,6 @@ namespace NuzUtils{
             ValueNotFound(const std::string& s):std::runtime_error(s){};
         };
 	};
-
-	/* 创建SnowRV阅读器
-	 * @param RV文件
-     * @throw ISnowRVReader::SnowRVCompileFailed
-     * @throw IFileSystem::CannotOpenFile
-     * @throw IFileSystem::InvaildFileName
-	 * @result RV阅读器
-	 */
-	std::shared_ptr<ISnowRVReader> CreateSnowRVReader(const std::string& path);
 }
 
 /* 更新日志：

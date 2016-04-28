@@ -7,7 +7,7 @@ using namespace NuzUtils;
 
 LuaVM::LuaVM(){
     m_vm = luaL_newstate();
-    if(!m_vm) throw CannotCreateLuaVM("NuzUtils::CreateLuaVM()::Lua State Create failed.");
+    if(!m_vm) throw CannotCreateLuaVM("Lua State Create failed.");
     luaopen_base(m_vm);
     #ifdef _DEBUG
     luaopen_debug(m_vm);
@@ -34,12 +34,12 @@ void LuaVM::MountFunction(int (*func)(lua_State*),const std::string& s){
 }
 
 void LuaVM::LoadProgram(const std::string& code){
-    luaL_loadbuffer(m_vm,code.c_str(),code.size(),"NuzUtils::LuaVM::LoadProgram()");
+    luaL_loadbuffer(m_vm,code.c_str(),code.size(),"NuzUtils::ILuaVM::LoadProgram()");
 }
 
 void LuaVM::LoadProgramFromFile(const std::string& file){
-    auto buf = Nuz::GetGameDevice().GetFileSystem().LoadFile(file);
-    luaL_loadbuffer(m_vm,(char*)(&(*buf)[0]),buf->size(),"NuzUtils::LuaVM::LoadProgramFromFile()");
+    auto buf = Nuz::IEngine::GetGameDevice().GetFileSystem().LoadFile(file);
+    luaL_loadbuffer(m_vm,(char*)(&(*buf)[0]),buf->size(),"NuzUtils::ILuaVM::LoadProgramFromFile()");
 }
 
 void LuaVM::Call(const std::string& functionName,int argc,int nresults){
@@ -108,6 +108,6 @@ void LuaVM::syncGet(){
     }
 }
 
-std::shared_ptr<ILuaVM> NuzUtils::CreateLuaVM(){
+std::shared_ptr<ILuaVM> NuzUtils::ILuaVM::CreateLuaVM(){
     return std::shared_ptr<ILuaVM>(new LuaVM);
 }

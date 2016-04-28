@@ -11,14 +11,14 @@ using namespace Nuz_;
 std::shared_ptr<std::vector<uint8_t> > LocalFile::ReadFile(const std::string& path) const
 {
     if(path.length() <=1){
-        throw IFileSystem::InvalidFileName("Nuz::ILocalFile::ReadFile()::Invalid File Name " + path);
+        throw IFileSystem::InvalidFileName("Invalid File Name " + path);
     }
     if(path[0] != '/'){
-        throw IFileSystem::InvalidFileName("Nuz::ILocalFile::ReadFile()::Invalid File Name " + path);
+        throw IFileSystem::InvalidFileName("Invalid File Name " + path);
     }
     ifstream in(path.substr(1,path.length()-1),ios::binary);
     if(!in.good()){
-        throw IFileSystem::CannotOpenFile("Nuz::ILocalFile::ReadFile()::File "+ path + " Not Found!");
+        throw IFileSystem::CannotOpenFile("File "+ path + " Not Found!");
     }
     in.seekg(0,ios::end);
     auto size = in.tellg();
@@ -33,14 +33,14 @@ std::shared_ptr<std::vector<uint8_t> > LocalFile::ReadFile(const std::string& pa
 void LocalFile::SaveFile(const std::shared_ptr<std::vector<uint8_t> > buffer, const std::string& path) const
 {
     if(path.length() <=1){
-        throw IFileSystem::InvalidFileName("Nuz::ILocalFile::SaveFile()::Invalid File Name " + path);
+        throw IFileSystem::InvalidFileName("Invalid File Name " + path);
     }
     if(path[0] != '/'){
-        throw IFileSystem::InvalidFileName("Nuz::ILocalFile::SaveFile()::Invalid File Name " + path);
+        throw IFileSystem::InvalidFileName("Invalid File Name " + path);
     }
     ofstream out(path.substr(1,path.length()-1),ios::binary);
     if(!out.good()){
-        throw IFileSystem::CannotOpenFile("Nuz::ILocalFile::SaveFile()::File "+ path + " Can not saved.");
+        throw IFileSystem::CannotOpenFile("File "+ path + " Can not saved.");
     }
     out.write((char*)(&(*buffer)[0]),buffer -> size());
     out.close();

@@ -23,7 +23,7 @@ std::shared_ptr<Nuz::ILocalFile> Engine::GetLocalFile()
 }
 
 
-IEngine& Nuz::GetGameDevice() noexcept{
+IEngine& Nuz::IEngine::GetGameDevice() noexcept{
     static Nuz_::Engine engine;
     return engine;
 }

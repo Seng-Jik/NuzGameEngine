@@ -10,10 +10,10 @@ void FileSystem::Mount(std::shared_ptr<Nuz::IFileSource> source,const std::strin
 
 std::shared_ptr<std::vector<uint8_t>> FileSystem::LoadFile(const std::string& path) const{
     if(path.length() <= 1){
-         throw InvalidFileName("Nuz::IFileSystem::LoadFile()::Invalid File Name " + path);
+         throw InvalidFileName("Invalid File Name " + path);
     }
     if(path[0] != '/'){
-         throw InvalidFileName("Nuz::IFileSystem::LoadFile()::Invalid File Name " + path);
+         throw InvalidFileName("Invalid File Name " + path);
     }
 
     //Find dir
@@ -28,8 +28,16 @@ std::shared_ptr<std::vector<uint8_t>> FileSystem::LoadFile(const std::string& pa
             }
         }
     }
-    if(m_sources.count("") == 0) throw CannotOpenFile("Nuz::IFileSystem::LoadFile()::File " + path + " not found.");
+    if(m_sources.count("") == 0) throw CannotOpenFile("File " + path + " not found.");
     auto ret = m_sources.at("") ->ReadFile(path);
     return ret;
 }
 
+std::string IFileSystem::GetUpperDir(const std::string& path){
+    if(path.length() <= 1){
+         throw IFileSystem::InvalidFileName("Invalid File Name " + path);
+    }
+    if(path[0] != '/'){
+         throw IFileSystem::InvalidFileName("Invalid File Name " + path);
+    }
+}
