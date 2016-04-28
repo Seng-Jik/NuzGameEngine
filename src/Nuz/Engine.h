@@ -21,6 +21,7 @@ namespace Nuz_{
         std::shared_ptr<Nuz::ILocalFile> GetLocalFile() override;
         void SetWindowTitle(const std::string&) noexcept override {};
         void InitWindow(int w,int h,bool fullScreen) override{};
+        void CloseWindow() override{};
 	};
 
 }

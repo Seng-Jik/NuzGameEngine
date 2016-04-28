@@ -25,6 +25,10 @@ namespace Nuz{
          */
         virtual void SetWindowTitle(const std::string& title) noexcept = 0;
 
+        /* 关闭游戏窗口
+         */
+        virtual void CloseWindow() = 0;
+
 	    /* 取得场景管理器
 	     * @result 场景管理器
 	     */
