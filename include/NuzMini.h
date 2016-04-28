@@ -21,6 +21,9 @@
 #include "Nuz/Input/InputDeviceManager.h"	//输入设备管理器
 #include "Nuz/Input/Keyboard.h"	//键盘设备
 
+#include "Nuz/Sound/BgmPlayer.h"	//BGM播放器
+#include "Nuz/Sound/SePlayer.h"	//Se播放器
+
 #include "Nuz/Logs.h"	//日志工具
 
 /* 更新日志：

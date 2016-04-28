@@ -18,9 +18,6 @@
 #include "Nuz/Input/GamePad.h"	//手柄支持
 #include "Nuz/Input/Joystick.h"	//摇杆支持
 
-#include "Nuz/Sound/BgmPlayer.h"	//BGM播放器
-#include "Nuz/Sound/SePlayer.h"	//Se播放器
-
 
 
 
