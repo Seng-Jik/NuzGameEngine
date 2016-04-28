@@ -22,6 +22,7 @@ namespace Nuz_{
         void SetWindowTitle(const std::string&) noexcept override {};
         void InitWindow(int w,int h,bool fullScreen) override{};
         void CloseWindow() override{};
+        void BindMessageProcessor(Message,std::function<void()>) override{};
 	};
 
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include <memory>
+#include <functional>
 
 namespace Nuz{
 	class ISceneManager;
@@ -49,10 +50,21 @@ namespace Nuz{
 		 */
 		virtual std::shared_ptr <ILocalFile> GetLocalFile() = 0;
 
+		/* 系统消息 */
+		enum class Message{
+            CloseWindow //窗口被要求关闭时
+		};
+		/* 绑定消息处理函数
+		 * @param 消息
+		 * @param 函数
+		 */
+        virtual void BindMessageProcessor(Message,std::function<void()>) = 0;
+
         /* 取得已被创建的引擎实例
          * @result 引擎
          */
         static IEngine& GetGameDevice() noexcept;
+
 	};
 
 }
