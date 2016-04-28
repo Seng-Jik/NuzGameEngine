@@ -18,7 +18,7 @@ int main(){
     b ->push_back('l');
     b ->push_back('d');
 
-    Nuz::GetGameDevice().GetLocalFile() -> SaveFile(b,"/test/Nuz/FileSystem/LocalFile/0.txt");
+    Nuz::IEngine::GetGameDevice().GetLocalFile() -> SaveFile(b,"/test/Nuz/FileSystem/LocalFile/0.txt");
 
     return 0;
 }

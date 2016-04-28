@@ -6,7 +6,7 @@
 using namespace std;
 using namespace Nuz;
 int main(){
-    IEngine& engine = GetGameDevice();
+    IEngine& engine = IEngine::GetGameDevice();
     IFileSystem& fs = engine.GetFileSystem();
     auto lf = engine.GetLocalFile();
 
