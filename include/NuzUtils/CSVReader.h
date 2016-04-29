@@ -68,13 +68,13 @@ namespace NuzUtils{
         /* 异常类：CSV中未找到对象 */
         class ValueNotFound:public std::runtime_error{
         public:
-            ValueNotFound(const std::string& s):std::runtime_error(s){};
+            using std::runtime_error::runtime_error;
         };
 
         /* 异常类：无效CSV */
         class InvalidCSV:public std::runtime_error{
         public:
-            InvalidCSV(const std::string& s):std::runtime_error(s){};
+            using std::runtime_error::runtime_error;
         };
 
         /* 创建CSV阅读器

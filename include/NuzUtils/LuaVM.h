@@ -76,7 +76,7 @@ namespace NuzUtils{
         /* 异常类：无法创建Lua虚拟机。 */
         class CannotCreateLuaVM:public std::runtime_error{
         public:
-            CannotCreateLuaVM(const std::string& s):std::runtime_error(s){};
+            using std::runtime_error::runtime_error;
         };
 	};
 }
