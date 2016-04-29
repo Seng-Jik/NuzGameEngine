@@ -1,28 +1,26 @@
 #pragma once
 
-/* NuzÒıÇæÍ·ÎÄ¼ş
- * °üº¬ÁËÍêÕûµÄNuzÒıÇæ¡£
+/* Nuzå¼•æ“å¤´æ–‡ä»¶
+ * åŒ…å«äº†å®Œæ•´çš„Nuzå¼•æ“ã€‚
  */
 #define NUZ_VER_FULL
-#include "NuzMini.h"	//×îĞ¡Nuz
+#include "NuzMini.h"	//æœ€å°Nuz
 
-#include "Nuz/SceneManager/Camera3D.h"	//3DÉãÏñ»ú
+#include "Nuz/SceneManager/Components/Shader.h"	//ç€è‰²å™¨æ”¯æŒ
+#include "Nuz/SceneManager/Components/Model3D.h"	//3Dæ¨¡å‹
+#include "Nuz/SceneManager/Components/Fog3D.h"	//3Dé›¾
+#include "Nuz/SceneManager/Components/Particle3D.h"	//3Dç²’å­
+#include "Nuz/SceneManager/Components/Particle2D.h"	//2Dç²’å­
+#include "Nuz/SceneManager/Components/Fog2D.h"	//2Dé›¾
 
-#include "Nuz/SceneManager/Components/Shader.h"	//×ÅÉ«Æ÷Ö§³Ö
-#include "Nuz/SceneManager/Components/Model3D.h"	//3DÄ£ĞÍ
-#include "Nuz/SceneManager/Components/Fog3D.h"	//3DÎí
-#include "Nuz/SceneManager/Components/Particle3D.h"	//3DÁ£×Ó
-#include "Nuz/SceneManager/Components/Particle2D.h"	//2DÁ£×Ó
-#include "Nuz/SceneManager/Components/Fog2D.h"	//2DÎí
-
-#include "Nuz/Input/GamePad.h"	//ÊÖ±úÖ§³Ö
-#include "Nuz/Input/Joystick.h"	//Ò¡¸ËÖ§³Ö
+#include "Nuz/Input/GamePad.h"	//æ‰‹æŸ„æ”¯æŒ
+#include "Nuz/Input/Joystick.h"	//æ‘‡æ†æ”¯æŒ
 
 
 
 
 
-/* ¸üĞÂÈÕÖ¾£º
- * 2016Äê4ÔÂ18ÈÕ£º
- * ĞÇÒí ³õ¸å(²»ÍêÕû)
+/* æ›´æ–°æ—¥å¿—ï¼š
+ * 2016å¹´4æœˆ18æ—¥ï¼š
+ * æ˜Ÿç¿¼ åˆç¨¿(ä¸å®Œæ•´)
  */
