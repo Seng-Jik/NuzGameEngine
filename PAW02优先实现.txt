@@ -11,7 +11,7 @@ Nuz/Sound/BgmPlayer.h
 Nuz/Sound/SePlayer.h
 
 延后：
-NuzUtils/UDPNet.h
+Nuz/SceneManager/Components/Shader.h
 Nuz/SceneManager/Components/Camera3D.h
 Nuz/SceneManager/Components/Model3D.h（仅转换2D图像到3D）
 Nuz/SceneManager/Components/Fog2D.h
