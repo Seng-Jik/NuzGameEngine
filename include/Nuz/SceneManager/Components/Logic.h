@@ -3,48 +3,47 @@
 
 namespace Nuz{
 
-	/* Âß¼­×é¼ş
-	 * ÊµÏÖÂß¼­
+	/* é€»è¾‘ç»„ä»¶
+	 * å®ç°é€»è¾‘
 	 */
 	class ILogic:public IComponent{
 	public:
-	    /* ¹¹ÔìÊ±×¢Òâ
-	     * ¸ø¶¨Ò»¸ö×é¼şÃû³Æ£¬Ïê¼û../IComponent.h
-	     * @param name ×é¼şÃû³Æ
+	    /* æ„é€ æ—¶æ³¨æ„
+	     * ç»„ä»¶åç§°ï¼Œè¯¦è§../IComponent.h
 	     */
 	    using IComponent::IComponent;
-		void OnInit() override{};	//µ±³õÊ¼»¯×é¼şÊ±Ö´ĞĞ
-        void OnQuit() override{};	//µ±¸Ã×é¼ş²»ÔÙÊ¹ÓÃÊ±Ö´ĞĞ
-        void OnShow() override{};	//µ±×é¼ş¿ªÊ¼±»ÏÔÊ¾Ê±Ö´ĞĞ
-        void OnHide() override{};	//µ±×é¼ş±»Òş²ØÊ±Ö´ĞĞ
-        void OnUpdate() override{};	//µ±×é¼şĞèÒª¸üĞÂÂß¼­Ê±Ö´ĞĞ
+		void OnInit() override{};	//å½“åˆå§‹åŒ–ç»„ä»¶æ—¶æ‰§è¡Œ
+        void OnQuit() override{};	//å½“è¯¥ç»„ä»¶ä¸å†ä½¿ç”¨æ—¶æ‰§è¡Œ
+        void OnShow() override{};	//å½“ç»„ä»¶å¼€å§‹è¢«æ˜¾ç¤ºæ—¶æ‰§è¡Œ
+        void OnHide() override{};	//å½“ç»„ä»¶è¢«éšè—æ—¶æ‰§è¡Œ
+        void OnUpdate() override{};	//å½“ç»„ä»¶éœ€è¦æ›´æ–°é€»è¾‘æ—¶æ‰§è¡Œ
 
-		/* µ±³¡¾°ÒªÇó±»ÇĞ³öÊ±Ö´ĞĞ
-		 * @param timeLimited Ê±¼äÏŞÖÆ£¨Ö¡£©
+		/* å½“åœºæ™¯è¦æ±‚è¢«åˆ‡å‡ºæ—¶æ‰§è¡Œ
+		 * @param timeLimited æ—¶é—´é™åˆ¶ï¼ˆå¸§ï¼‰
 		 */
         void OnFadeSwitchOut(int timeLimited) override{};
 
-		/* µ±³¡¾°±»ÇĞ³öÊ±»áÔö¼ÓµÄÔö²¹Âß¼­
-		 * @param finished Ê±¼äÊ£Óà°Ù·Ö±È
+		/* å½“åœºæ™¯è¢«åˆ‡å‡ºæ—¶ä¼šå¢åŠ çš„å¢è¡¥é€»è¾‘
+		 * @param finished æ—¶é—´å‰©ä½™ç™¾åˆ†æ¯”
 		 */
         void OnFadeSwitchOutUpdate(float finished) override{};
 
-		/* µ±³¡¾°ÒªÇó±»ÇĞÈëÊ±Ö´ĞĞ
-		 * @param timeLimited Ê±¼äÏŞÖÆ£¨Ö¡£©
+		/* å½“åœºæ™¯è¦æ±‚è¢«åˆ‡å…¥æ—¶æ‰§è¡Œ
+		 * @param timeLimited æ—¶é—´é™åˆ¶ï¼ˆå¸§ï¼‰
 		 */
         void OnFadeSwitchIn(int timeLimited) override{};
 
-		/* µ±³¡¾°±»ÇĞÈëÊ±»áÔö¼ÓµÄÔö²¹Âß¼­
-		 * @param finished Ê±¼äÊ£Óà°Ù·Ö±È
+		/* å½“åœºæ™¯è¢«åˆ‡å…¥æ—¶ä¼šå¢åŠ çš„å¢è¡¥é€»è¾‘
+		 * @param finished æ—¶é—´å‰©ä½™ç™¾åˆ†æ¯”
 		 */
         void OnFadeSwitchInUpdate(float finished) override{};
 	};
 }
-/* ¸üĞÂÈÕÖ¾£º
- * 2016Äê4ÔÂ18ÈÕ£º
- * ĞÇÒí ³õ¸å
- * 2016Äê4ÔÂ27ÈÕ£º
- * ĞÇÒí ĞŞ¸ÄÎªoverride·½Ê½
- * 2016Äê4ÔÂ28ÈÕ£º
- * ĞÇÒí ¸ø¶¨Ãû³Æ
+/* æ›´æ–°æ—¥å¿—ï¼š
+ * 2016å¹´4æœˆ18æ—¥ï¼š
+ * æ˜Ÿç¿¼ åˆç¨¿
+ * 2016å¹´4æœˆ27æ—¥ï¼š
+ * æ˜Ÿç¿¼ ä¿®æ”¹ä¸ºoverrideæ–¹å¼
+ * 2016å¹´4æœˆ28æ—¥ï¼š
+ * æ˜Ÿç¿¼ ç»™å®šåç§°
  */
