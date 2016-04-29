@@ -1,38 +1,39 @@
 #pragma once
 
-/* ×îĞ¡NuzÒıÇæÍ·ÎÄ¼ş
- * °üº¬ÁË×îĞ¡µÄNuzÒıÇæ¡£
+/* æœ€å°Nuzå¼•æ“å¤´æ–‡ä»¶
+ * åŒ…å«äº†æœ€å°çš„Nuzå¼•æ“ã€‚
  */
 
-#include "Nuz/Engine.h"	//ÒıÇæÖ÷Ìå
+#include "Nuz/Engine.h"	//å¼•æ“ä¸»ä½“
 
-#include "Nuz/SceneManager/SceneManager.h"	//³¡¾°¹ÜÀíÆ÷
-#include "Nuz/SceneManager/Scene.h"	//³¡¾°½Ó¿Ú
-#include "Nuz/SceneManager/GameObject.h"	//Îï¼ş½Ó¿Ú
-#include "Nuz/SceneManager/Component.h"	//×é¼ş½Ó¿Ú
-#include "Nuz/SceneManager/Components/Logic.h"	//Âß¼­×é¼ş½Ó¿Ú
-#include "Nuz/SceneManager/Components/Sprite2D.h"	//2D¾«Áé×é¼ş½Ó¿Ú
+#include "Nuz/SceneManager/SceneManager.h"	//åœºæ™¯ç®¡ç†å™¨
+#include "Nuz/SceneManager/Scene.h"	//åœºæ™¯æ¥å£
+#include "Nuz/SceneManager/GameObject.h"	//ç‰©ä»¶æ¥å£
+#include "Nuz/SceneManager/Component.h"	//ç»„ä»¶æ¥å£
+#include "Nuz/SceneManager/Components/Logic.h"	//é€»è¾‘ç»„ä»¶æ¥å£
+#include "Nuz/SceneManager/Components/Sprite2D.h"	//2Dç²¾çµç»„ä»¶æ¥å£
 
-#include "Nuz/SceneManager/Camera2D.h"	//2DÉãÏñ»ú½Ó¿Ú
+#include "Nuz/SceneManager/Camera2D.h"	//2Dæ‘„åƒæœºæ¥å£
+#include "Nuz/SceneManager/Camera3D.h"    //3Dæ‘„åƒæœº
 
-#include "Nuz/FileSystem/FileSystem.h"	//ÎÄ¼şÏµÍ³
-#include "Nuz/FileSystem/FileSource.h"	//ÎÄ¼şÏµÍ³µÄÊı¾İÔ´
-#include "Nuz/FileSystem/LocalFile.h"	//±¾µØÎÄ¼şÏµÍ³
+#include "Nuz/FileSystem/FileSystem.h"	//æ–‡ä»¶ç³»ç»Ÿ
+#include "Nuz/FileSystem/FileSource.h"	//æ–‡ä»¶ç³»ç»Ÿçš„æ•°æ®æº
+#include "Nuz/FileSystem/LocalFile.h"	//æœ¬åœ°æ–‡ä»¶ç³»ç»Ÿ
 
-#include "Nuz/Input/InputDeviceManager.h"	//ÊäÈëÉè±¸¹ÜÀíÆ÷
-#include "Nuz/Input/Keyboard.h"	//¼üÅÌÉè±¸
+#include "Nuz/Input/InputDeviceManager.h"	//è¾“å…¥è®¾å¤‡ç®¡ç†å™¨
+#include "Nuz/Input/Keyboard.h"	//é”®ç›˜è®¾å¤‡
 
-#include "Nuz/Sound/BgmPlayer.h"	//BGM²¥·ÅÆ÷
-#include "Nuz/Sound/SePlayer.h"	//Se²¥·ÅÆ÷
+#include "Nuz/Sound/BgmPlayer.h"	//BGMæ’­æ”¾å™¨
+#include "Nuz/Sound/SePlayer.h"	//Seæ’­æ”¾å™¨
 
-#include "Nuz/Logs.h"	//ÈÕÖ¾¹¤¾ß
+#include "Nuz/Logs.h"	//æ—¥å¿—å·¥å…·
 
-/* ¸üĞÂÈÕÖ¾£º
- * 2016Äê4ÔÂ17ÈÕ£º
- * ĞÇÒí ³õ¸å
- * 2016Äê4ÔÂ18ÈÕ£º
- * ĞÇÒí É¾³ı¶ş½øÖÆ»º´æ
- * ĞÇÒí Ôö¼Ó2DÉãÏñ»ú
- * 2016Äê4ÔÂ24ÈÕ£º
- * ĞÇÒí ÒÆÈëÈÕÖ¾¹¤¾ß
+/* æ›´æ–°æ—¥å¿—ï¼š
+ * 2016å¹´4æœˆ17æ—¥ï¼š
+ * æ˜Ÿç¿¼ åˆç¨¿
+ * 2016å¹´4æœˆ18æ—¥ï¼š
+ * æ˜Ÿç¿¼ åˆ é™¤äºŒè¿›åˆ¶ç¼“å­˜
+ * æ˜Ÿç¿¼ å¢åŠ 2Dæ‘„åƒæœº
+ * 2016å¹´4æœˆ24æ—¥ï¼š
+ * æ˜Ÿç¿¼ ç§»å…¥æ—¥å¿—å·¥å…·
  */
