@@ -1,6 +1,7 @@
 #pragma once
 #include <memory>
 #include <string>
+#include <cstdint>
 
 namespace NuzUtils{
 
@@ -29,7 +30,7 @@ namespace NuzUtils{
         struct UDPPacket{
             uint32_t ipAddress;	//IPv4地址
             uint16_t port;	//端口号
-            std::shared_ptr<std::string> data;	//数据
+            std::vector<uint8_t> data;	//数据
         };
 
         /* 解析IP地址
@@ -44,4 +45,6 @@ namespace NuzUtils{
 /* 更新日志：
  * 2016年4月19日：
  * 星翼 初稿
+ * 2016年4月29日：
+ * 星翼 修正data问题
  */

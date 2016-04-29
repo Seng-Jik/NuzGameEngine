@@ -1,8 +1,6 @@
 #pragma once
-#include "../Component.h"
 
 namespace Nuz{
-	class ISprite2D;
 
 	/* 2D摄像机
 	* 实现2D图像的定位。
@@ -12,9 +10,8 @@ namespace Nuz{
 	 * 屏幕左上角为(-1,-1)
 	 * 屏幕右下角为(1,1)
 	 * 以此类推。
-     * 你只可以挂载一个2D摄像机。
 	 */
-	class ICamera2D:public IComponent{
+	class ICamera2D{
 	public:
 		/* 设置中心坐标
 		 * @param x 中心x坐标
@@ -50,7 +47,6 @@ namespace Nuz{
 		virtual void Move(float x,float y) = 0;
 
         /* 创建一个2D摄像机
-         * 当然，这个摄像机有个名字叫"_Camera2D"，你也明白这是什么意思
          * @result 摄像机
          */
         static std::shared_ptr<ICamera2D> CreateCamera2D();
@@ -61,4 +57,6 @@ namespace Nuz{
  * 星翼 初稿
  * 2016年4月28日：
  * 星翼 移动创建方法并给定名称
+ * 2016年4月29日：
+ * 星翼 不再是组件
  */

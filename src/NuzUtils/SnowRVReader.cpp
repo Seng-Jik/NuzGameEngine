@@ -17,7 +17,7 @@ std::string SnowRVReader::Trim(const std::string& s)
     return t;
 }
 
-void SnowRVReader::loadFromBin(std::shared_ptr<std::vector<uint8_t> > buf)
+void SnowRVReader::loadFromBin(const std::shared_ptr<std::vector<uint8_t> >& buf)
 {
     uint32_t ptr = 4;
     uint32_t strSize,intSize,fltSize;
@@ -58,7 +58,7 @@ void SnowRVReader::loadFromBin(std::shared_ptr<std::vector<uint8_t> > buf)
         m_ints[name] = value;
     }
 
-    //Read String Values
+    //Read string Values
     for(uint32_t strNum = 0;strNum < strSize;++strNum){
         uint32_t length;
         std::string name;
@@ -76,7 +76,7 @@ void SnowRVReader::loadFromBin(std::shared_ptr<std::vector<uint8_t> > buf)
     }
 }
 
-void SnowRVReader::loadFromText(std::shared_ptr<std::vector<uint8_t> > buf)
+void SnowRVReader::loadFromText(const std::shared_ptr<std::vector<uint8_t> >& buf)
 {
     uint32_t num = 0;
     uint32_t lineNum = 1;
@@ -151,12 +151,14 @@ SnowRVReader::SnowRVReader(const std::string& path)
         loadFromBin(buf);
     else
         loadFromText(buf);
+
+    m_currentDir = IFileSystem::GetUpperDir(path);
 }
 
 std::string SnowRVReader::GetString(const std::string& s) const
 {
     if(m_strs.count(s)) return m_strs.at(s);
-    else throw ValueNotFound("String value " + s +" not found.");
+    else throw ValueNotFound("string value " + s +" not found.");
 }
 
 int SnowRVReader::GetInt(const std::string& s) const
@@ -214,7 +216,7 @@ void SnowRVReader::SaveToFastReadFile(const std::string& file) const{
             buf -> push_back(((uint8_t*)&p->second)[i]);
     }
 
-    //String Values
+    //string Values
     for(auto p = m_strs.begin();p != m_strs.end();++p){
         const std::string& s = p -> first;
         uint32_t length = s.length();
@@ -232,6 +234,12 @@ void SnowRVReader::SaveToFastReadFile(const std::string& file) const{
     }
     Nuz::IEngine::GetGameDevice().GetLocalFile() -> SaveFile(buf,file);
 }
+
+std::string SnowRVReader::GetCurrentDir() const
+{
+    return m_currentDir;
+}
+
 
 std::shared_ptr<NuzUtils::ISnowRVReader> NuzUtils::ISnowRVReader::CreateSnowRVReader(const std::string& path){
     return std::shared_ptr<NuzUtils::ISnowRVReader>(new SnowRVReader(path));

@@ -4,7 +4,7 @@ using namespace Nuz_;
 using namespace std;
 using namespace Nuz;
 
-void FileSystem::Mount(std::shared_ptr<Nuz::IFileSource> source,const std::string& dir){
+void FileSystem::Mount(const std::shared_ptr<const Nuz::IFileSource>& source,const std::string& dir){
     m_sources[dir] = source;
 }
 
@@ -40,4 +40,6 @@ std::string IFileSystem::GetUpperDir(const std::string& path){
     if(path[0] != '/'){
          throw IFileSystem::InvalidFileName("Invalid File Name " + path);
     }
+    auto pos = path.rfind('/');
+    return path.substr(0,pos);
 }

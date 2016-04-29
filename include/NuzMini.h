@@ -12,7 +12,8 @@
 #include "Nuz/SceneManager/Component.h"	//组件接口
 #include "Nuz/SceneManager/Components/Logic.h"	//逻辑组件接口
 #include "Nuz/SceneManager/Components/Sprite2D.h"	//2D精灵组件接口
-#include "Nuz/SceneManager/Components/Camera2D.h"	//2D摄像机接口
+
+#include "Nuz/SceneManager/Camera2D.h"	//2D摄像机接口
 
 #include "Nuz/FileSystem/FileSystem.h"	//文件系统
 #include "Nuz/FileSystem/FileSource.h"	//文件系统的数据源

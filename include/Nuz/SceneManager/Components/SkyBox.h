@@ -2,7 +2,6 @@
 #include "../Component.h"
 #include <memory>
 #include <string>
-#include "Camera3D.h"
 
 namespace Nuz{
 
@@ -18,11 +17,6 @@ namespace Nuz{
 		 */
 		virtual void UseImage(const std::string& path,int num = 0,int where = -1) = 0;
 
-		/* 设置跟随目标
-         * @param ICamera3D对象
-         */
-		virtual void SetCamera3D(const std::shared_ptr<ICamera3D>) = 0;
-
 		/* 释放图像
          * @param where 编号（0-顶，1-底，2-前，3-后，4-左，5-右，-1-全部，-2-四方）
          */
@@ -32,7 +26,7 @@ namespace Nuz{
          * @param name 组件名称
          * @result 天空盒
          */
-        static std::shared_ptr<ISkyBox> CreateSkyBox(const std::string& name);
+        static std::shared_ptr<ISkyBox> CreateSkyBox(const std::string& name = "");
 	};
 }
 /* 更新日志：

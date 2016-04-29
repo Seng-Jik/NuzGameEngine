@@ -7,6 +7,7 @@ namespace Nuz{
 
 	/* 着色器
 	 * 每个游戏物件仅可使用一个Shader注意！
+     * 如果Shader被挂在到了场景上，那么它的处理对象是场景的帧缓存而非场景内的物件。
 	 */
 	class IShader:public IComponent{
 	public:
@@ -32,20 +33,20 @@ namespace Nuz{
         virtual ShaderHandle GetHandle() = 0;
 
         /* 从文件创建着色器并返回着色器实例
-         * @param name 组件名称
          * @param vert 顶点着色器文件名
          * @param frag 片元着色器文件名
+         * @param name 组件名称
          * @result 着色器实例
          */
-        static std::shared_ptr<IShader> CreateShaderFromFile(const std::string& name,const std::string& vert,const std::string& frag);
+        static std::shared_ptr<IShader> CreateShaderFromFile(const std::string& vert,const std::string& frag,const std::string& name = "");
 
         /* 从字符串创建着色器并返回着色器实例
-         * @param name 组件名称
          * @param vert 顶点着色器文件名
          * @param frag 片元着色器文件名
+         * @param name 组件名称
          * @result 着色器实例
          */
-        static std::shared_ptr<IShader> CreateShaderFromString(const std::string& name,const std::string& vert,const std::string& frag);
+        static std::shared_ptr<IShader> CreateShaderFromstring(const std::string& vert,const std::string& frag,const std::string& name = "");
 	};
 }
 /* 更新日志：

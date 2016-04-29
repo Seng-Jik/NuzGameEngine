@@ -6,11 +6,11 @@
 #define NUZ_VER_FULL
 #include "NuzMini.h"	//最小Nuz
 
+#include "Nuz/SceneManager/Camera3D.h"	//3D摄像机
+
 #include "Nuz/SceneManager/Components/Shader.h"	//着色器支持
-#include "Nuz/SceneManager/Components/Camera3D.h"	//3D摄像机
 #include "Nuz/SceneManager/Components/Model3D.h"	//3D模型
 #include "Nuz/SceneManager/Components/Fog3D.h"	//3D雾
-#include "Nuz/SceneManager/Components/Camera3D.h"	//3D摄像机
 #include "Nuz/SceneManager/Components/Particle3D.h"	//3D粒子
 #include "Nuz/SceneManager/Components/Particle2D.h"	//2D粒子
 #include "Nuz/SceneManager/Components/Fog2D.h"	//2D雾

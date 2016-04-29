@@ -34,7 +34,7 @@ namespace Nuz{
          * @param name 组件名
          * @result 雾气组件
          */
-        static std::shared_ptr<IFog2D> CreateFog2D(const std::string& name);
+        static std::shared_ptr<IFog2D> CreateFog2D(const std::string& name = "");
 	};
 }
 /* 更新日志：

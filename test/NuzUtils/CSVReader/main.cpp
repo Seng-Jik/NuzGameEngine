@@ -19,7 +19,7 @@ int main(){
         cout<<endl;
         p -> NextLine();
     }
-
+    cout<<p ->GetCurrentDir();
 
     return 0;
 }

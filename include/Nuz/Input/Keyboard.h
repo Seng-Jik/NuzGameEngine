@@ -27,7 +27,7 @@ namespace Nuz{
 		 * @param 按键
 		 * @result 是否已经按下
 		 */
-		virtual bool KeyPressed(KeyCode) = 0;
+		virtual bool KeyPressed(KeyCode) const = 0;
 	};
 }
 

@@ -18,17 +18,17 @@ namespace Nuz{
 		virtual void Clear() = 0;
 
 		/* 播放音效
-		 * @param 淡入时长（毫秒）
+		 * @param fadein 淡入时长（毫秒）
 		 */
 		virtual void Play(int fadein = 0) = 0;
 
 		/* 暂停音效
-		 * @param 淡出时长（毫秒）
+		 * @param fadeout 淡出时长（毫秒）
 		 */
 		virtual void Pause(int fadeout = 0) = 0;
 
 		/* 继续音效
-		 * @param 淡入时长（毫秒）
+		 * @param fadein 淡入时长（毫秒）
 		 */
 		virtual void Resume(int fadein = 0) = 0;
 

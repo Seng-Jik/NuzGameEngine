@@ -30,7 +30,7 @@ std::shared_ptr<std::vector<uint8_t> > LocalFile::ReadFile(const std::string& pa
     return buffer;
 }
 
-void LocalFile::SaveFile(const std::shared_ptr<std::vector<uint8_t> > buffer, const std::string& path) const
+void LocalFile::SaveFile(const std::shared_ptr<const std::vector<uint8_t> >& buffer, const std::string& path) const
 {
     if(path.length() <=1){
         throw IFileSystem::InvalidFileName("Invalid File Name " + path);

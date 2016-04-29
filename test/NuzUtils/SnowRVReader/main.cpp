@@ -14,7 +14,6 @@ int main(){
     cout<<p -> GetInt("RVI")<<endl;
     cout<<p -> GetString("RVS")<<endl;
     cout<<p -> GetFloat("KEC")<<endl;
-    //cout<<p -> GetFloat("233")<<endl;
-
+    cout<<p -> GetCurrentDir()<<endl;
     return 0;
 }

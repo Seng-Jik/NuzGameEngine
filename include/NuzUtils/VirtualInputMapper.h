@@ -10,47 +10,47 @@ namespace Nuz{
 
 namespace NuzUtils{
 
-	/* ĞéÄâ¿ØÖÆÆ÷
-	 * ËüÊÇÒ»¸öÈıÎ¬ÏòÁ¿×é£¨Èı¸öÖµ·¶Î§¾ùÎª-32768~32767£©
-	 * ¶ÔÓÚ°´¼ü£¬¿É°ó¶¨²»Í¬·½ÏòµÄÖµ
-	 * ¶ÔÓÚÒ¡¸Ë£¬¿ÉÒÔ°ó¶¨µ½XºÍY·½Ïò
-	 * ¶ÔÓÚÊó±êºÍ´¥ÆÁ£¬ÔòÎª±ÈÂÊ£¬ÖĞĞÄµãÎª(0,0)¡£
-	 * ±£Ö¤ÖÁÉÙÓĞÒ»¸öÏòÁ¿
+	/* è™šæ‹Ÿæ§åˆ¶å™¨
+	 * å®ƒæ˜¯ä¸€ä¸ªä¸‰ç»´å‘é‡ç»„ï¼ˆä¸‰ä¸ªå€¼èŒƒå›´å‡ä¸º-32768~32767ï¼‰
+	 * å¯¹äºæŒ‰é”®ï¼Œå¯ç»‘å®šä¸åŒæ–¹å‘çš„å€¼
+	 * å¯¹äºæ‘‡æ†ï¼Œå¯ä»¥ç»‘å®šåˆ°Xå’ŒYæ–¹å‘
+	 * å¯¹äºé¼ æ ‡å’Œè§¦å±ï¼Œåˆ™ä¸ºæ¯”ç‡ï¼Œä¸­å¿ƒç‚¹ä¸º(0,0)ã€‚
+	 * ä¿è¯è‡³å°‘æœ‰ä¸€ä¸ªå‘é‡
 	 */
 	class IVirtualInputMapper{
 	public:
 
-		/* »ñµÃ¸÷·½Ïò·ÖÏòÁ¿
-		 * @param ÏòÁ¿±àºÅ
-		 * @result ·ÖÏòÁ¿Ä£³¤
+		/* è·å¾—å„æ–¹å‘åˆ†å‘é‡
+		 * @param å‘é‡ç¼–å·
+		 * @result åˆ†å‘é‡æ¨¡é•¿
 		 */
-		virtual int GetX() = 0;	//X·½Ïò
-		virtual int GetY() = 0;	//Y·½Ïò
-		virtual int GetZ() = 0;	//Z·½Ïò
+		virtual int GetX() const = 0;	//Xæ–¹å‘
+		virtual int GetY() const = 0;	//Yæ–¹å‘
+		virtual int GetZ() const = 0;	//Zæ–¹å‘
 
-		/* »ñµÃÏòÁ¿¸öÊı
-		 * @result ÏòÁ¿¸öÊı
+		/* è·å¾—å‘é‡ä¸ªæ•°
+		 * @result å‘é‡ä¸ªæ•°
 		 */
-		virtual int GetVectorNum() = 0;
+		virtual int GetVectorNum() const = 0;
 
-		/* ÉèÖÃÏòÁ¿¸öÊı
-		 * @param ÏòÁ¿¸öÊı
+		/* è®¾ç½®å‘é‡ä¸ªæ•°
+		 * @param å‘é‡ä¸ªæ•°
 		 */
 		virtual void SetVectorNum(int) = 0;
 
-		/* °ó¶¨¼üÅÌ°´¼üµ½ÏòÁ¿
-		 * @param ¼üÅÌÖ¸Õë
-		 * @param ¼üÅÌ°´¼ü
-		 * @param vectorNum ÏòÁ¿±àºÅ
-		 * @param useX Õ¼ÓÃX·½Ïò
-		 * @param x Õ¼ÓÃÊ±XµÄÖµ
-		 * @param useY Õ¼ÓÃY·½Ïò
-		 * @param y Õ¼ÓÃÊ±YµÄÖµ
-		 * @param useZ Õ¼ÓÃZ·½Ïò
-		 * @param z Õ¼ÓÃZ·½ÏòµÄÖµ
+		/* ç»‘å®šé”®ç›˜æŒ‰é”®åˆ°å‘é‡
+		 * @param é”®ç›˜
+		 * @param é”®ç›˜æŒ‰é”®
+		 * @param vectorNum å‘é‡ç¼–å·
+		 * @param useX å ç”¨Xæ–¹å‘
+		 * @param x å ç”¨æ—¶Xçš„å€¼
+		 * @param useY å ç”¨Yæ–¹å‘
+		 * @param y å ç”¨æ—¶Yçš„å€¼
+		 * @param useZ å ç”¨Zæ–¹å‘
+		 * @param z å ç”¨Zæ–¹å‘çš„å€¼
 		 */
 		virtual void BindKeyboardKey(
-			std::shared_ptr<IKeyboard>,
+			const Nuz::IKeyboard&,
 			KeyCode,
 			int vectorNum,
 			bool useX,int x,
@@ -58,19 +58,19 @@ namespace NuzUtils{
 			bool useZ,int z
 		) = 0;
 
-		/* °ó¶¨ÊÖ±ú°´¼üµ½ÏòÁ¿
-		 * @param ÊÖ±úÖ¸Õë
-		 * @param key ÊÖ±ú°´¼ü
-		 * @param vectorNum ÏòÁ¿±àºÅ
-		 * @param useX Õ¼ÓÃX·½Ïò
-		 * @param x Õ¼ÓÃÊ±XµÄÖµ
-		 * @param useY Õ¼ÓÃY·½Ïò
-		 * @param y Õ¼ÓÃÊ±YµÄÖµ
-		 * @param useZ Õ¼ÓÃZ·½Ïò
-		 * @param z Õ¼ÓÃZ·½ÏòµÄÖµ
+		/* ç»‘å®šæ‰‹æŸ„æŒ‰é”®åˆ°å‘é‡
+		 * @param æ‰‹æŸ„æŒ‡é’ˆ
+		 * @param key æ‰‹æŸ„æŒ‰é”®
+		 * @param vectorNum å‘é‡ç¼–å·
+		 * @param useX å ç”¨Xæ–¹å‘
+		 * @param x å ç”¨æ—¶Xçš„å€¼
+		 * @param useY å ç”¨Yæ–¹å‘
+		 * @param y å ç”¨æ—¶Yçš„å€¼
+		 * @param useZ å ç”¨Zæ–¹å‘
+		 * @param z å ç”¨Zæ–¹å‘çš„å€¼
 		 */
 		virtual void BindGamePadKey(
-			std::shared_ptr<IGamePad>,
+			const Nuz::IGamePad&,
 			int key,
 			int vectorNum,
 			bool useX,int x,
@@ -78,25 +78,25 @@ namespace NuzUtils{
 			bool useZ,int z
 		) = 0;
 
-		/* °ó¶¨Ò¡¸Ë»òÊ®×Ö¼üµ½XºÍY·½Ïò
-		 * @param Ò¡¸Ë»òÊ®×Ö¼üÖ¸Õë
-		 * @param vectorNum ÏòÁ¿±àºÅ
+		/* ç»‘å®šæ‘‡æ†æˆ–åå­—é”®åˆ°Xå’ŒYæ–¹å‘
+		 * @param æ‘‡æ†æˆ–åå­—é”®æŒ‡é’ˆ
+		 * @param vectorNum å‘é‡ç¼–å·
 		 */
 		virtual void BindJoystick(
-			std::shared_ptr<IJoystick>,
+			const Nuz::IJoystick&,
 			int vectorNum;
 		) = 0;
 
 
-        /* ĞéÄâÊäÈëÉè±¸
-         * @param ÏòÁ¿¸öÊı
-         * @result ĞéÄâÊäÈëÉè±¸
+        /* è™šæ‹Ÿè¾“å…¥è®¾å¤‡
+         * @param å‘é‡ä¸ªæ•°
+         * @result è™šæ‹Ÿè¾“å…¥è®¾å¤‡
          */
         static std::shared_ptr<IVirtualInputMapper> CreateVirtualInputMapper(int);
 	};
 }
 
-/* ¸üĞÂÈÕÖ¾£º
- * 2016Äê4ÔÂ19ÈÕ£º
- * ĞÇÒí ³õ¸å
+/* æ›´æ–°æ—¥å¿—ï¼š
+ * 2016å¹´4æœˆ19æ—¥ï¼š
+ * æ˜Ÿç¿¼ åˆç¨¿
  */

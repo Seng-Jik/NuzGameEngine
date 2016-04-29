@@ -37,6 +37,11 @@ namespace NuzUtils{
          */
         virtual void SaveToFastReadFile(const std::string&) const = 0;
 
+        /* 取得此rv所在的目录
+         * @result 路径
+         */
+        virtual std::string GetCurrentDir() const = 0;
+
         /* 创建SnowRV阅读器
          * @param RV文件
          * @throw ISnowRVReader::SnowRVCompileFailed

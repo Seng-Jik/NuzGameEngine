@@ -15,7 +15,7 @@ static std::string Trim(const std::string& s)
     return t;
 }
 
-void CSVReader::loadFromBin(std::shared_ptr<std::vector<uint8_t> > buf)
+void CSVReader::loadFromBin(const std::shared_ptr<std::vector<uint8_t> >& buf)
 {
     uint32_t ptr = 4;
     uint32_t lineCount;
@@ -32,7 +32,7 @@ void CSVReader::loadFromBin(std::shared_ptr<std::vector<uint8_t> > buf)
             p--;
             //Read Units
         for(uint32_t unitNum = 0;unitNum < lineSize;++unitNum){
-            //Read String Size
+            //Read string Size
             uint32_t length;
             std::string unit;
             for(uint32_t i = 0;i < sizeof(length);++i)
@@ -48,7 +48,7 @@ void CSVReader::loadFromBin(std::shared_ptr<std::vector<uint8_t> > buf)
     }
 }
 
-void CSVReader::loadFromText(std::shared_ptr<std::vector<uint8_t> > buf)
+void CSVReader::loadFromText(const std::shared_ptr<std::vector<uint8_t> >& buf)
 {
     uint32_t num = 0;
     uint32_t lineNum = 1;
@@ -116,6 +116,7 @@ void CSVReader::Load(const std::string& csv){
     else loadFromText(buf);
 
     Reset();
+    m_currentDir = Nuz::IFileSystem::GetUpperDir(csv);
 }
 
 std::string CSVReader::PopString(){
@@ -127,6 +128,12 @@ double CSVReader::PopDouble(){
     return atof(PopString().c_str());
 }
 
+std::string CSVReader::GetCurrentDir() const
+{
+    return m_currentDir;
+}
+
+
 float CSVReader::PopFloat(){
     return PopDouble();
 }
@@ -135,7 +142,7 @@ int CSVReader::PopInt(){
     return atoi(PopString().c_str());
 }
 
-bool CSVReader::LineEnd(){
+bool CSVReader::LineEnd() const{
     return m_x >= m_csvCache[m_y].size();
 }
 
@@ -146,7 +153,7 @@ bool CSVReader::NextLine(){
     return !IsLastLine();
 }
 
-bool CSVReader::IsLastLine(){
+bool CSVReader::IsLastLine() const{
     return m_y >= m_csvCache.size();
 }
 
@@ -154,7 +161,7 @@ void CSVReader::Reset(){
     m_x = m_y = 0;
 }
 
-void CSVReader::SaveToFastReadFile(const std::string& file){
+void CSVReader::SaveToFastReadFile(const std::string& file) const{
     std::shared_ptr<std::vector<uint8_t> > buf(new std::vector<uint8_t>);
     buf -> push_back(0xFF);
     buf -> push_back('N');
@@ -164,11 +171,11 @@ void CSVReader::SaveToFastReadFile(const std::string& file){
     for(uint32_t i = 0;i < sizeof(lineCount);++i)
         buf -> push_back(((uint8_t*)&lineCount)[i]);
 
-    for(std::vector<std::string>& thisLine:m_csvCache){
+    for(const std::vector<std::string>& thisLine:m_csvCache){
         uint32_t size = thisLine.size();
         for(uint32_t i = 0;i < sizeof(size);++i)
             buf -> push_back(((uint8_t*)&size)[i]);
-        for(std::string& s:thisLine){
+        for(const std::string& s:thisLine){
             uint32_t length = s.length();
             for(uint32_t i = 0;i < sizeof(length);++i)
                 buf -> push_back(((uint8_t*)&length)[i]);

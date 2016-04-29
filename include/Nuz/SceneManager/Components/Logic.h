@@ -20,22 +20,22 @@ namespace Nuz{
         void OnUpdate() override{};	//当组件需要更新逻辑时执行
 
 		/* 当场景要求被切出时执行
-		 * @param 时间限制（帧）
+		 * @param timeLimited 时间限制（帧）
 		 */
         void OnFadeSwitchOut(int timeLimited) override{};
 
 		/* 当场景被切出时会增加的增补逻辑
-		 * @param 时间剩余百分比
+		 * @param finished 时间剩余百分比
 		 */
         void OnFadeSwitchOutUpdate(float finished) override{};
 
 		/* 当场景要求被切入时执行
-		 * @param 时间限制（帧）
+		 * @param timeLimited 时间限制（帧）
 		 */
         void OnFadeSwitchIn(int timeLimited) override{};
 
 		/* 当场景被切入时会增加的增补逻辑
-		 * @param 时间剩余百分比
+		 * @param finished 时间剩余百分比
 		 */
         void OnFadeSwitchInUpdate(float finished) override{};
 	};

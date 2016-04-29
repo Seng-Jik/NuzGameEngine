@@ -20,12 +20,12 @@ namespace Nuz{
 		std::shared_ptr<std::vector<uint8_t> > ReadFile(const std::string& path) const override = 0;
 
 		/* 保存缓存区到文件
-		 * @param 缓存区指针
+		 * @param buffer 缓存区指针
 		 * @param path 文件名
          * @throw IFileSystem::InvalidFileName
 		 * @throw IFileSystem::CannotOpenFile
 		 */
-		virtual void SaveFile(const std::shared_ptr<std::vector<uint8_t> >,const std::string& path) const = 0;
+		virtual void SaveFile(const std::shared_ptr<const std::vector<uint8_t> >& buffer, const std::string& path) const = 0;
 	};
 }
 

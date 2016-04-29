@@ -31,7 +31,7 @@ namespace Nuz{
 		/* 取得速度
 		 * @result 速度
 		 */
-		virtual float GetSpeed() = 0;
+		virtual float GetSpeed() const = 0;
 
 		/* 设置透明度
 		 * @param a 透明度
@@ -46,12 +46,12 @@ namespace Nuz{
 		/* 获取透明度
 		 * @result 透明度
 		 */
-		virtual float GetAlpha() = 0;
+		virtual float GetAlpha() const = 0;
 
 		/* 获取当前角度
 		 * @result 角度
 		 */
-		virtual float GetAngle() = 0;
+		virtual float GetAngle() const = 0;
 
 		/* 设置角度
 		 * @param a 角度
@@ -75,7 +75,7 @@ namespace Nuz{
 		 * @param n 状态号
 		 * @result 状态
 		 */
-		virtual float GetStatus(int n) = 0;
+		virtual float GetStatus(int n) const = 0;
 
 		/* 设置粒子颜色过滤
 		 * @param r 红(0~1)
@@ -89,7 +89,7 @@ namespace Nuz{
 		 * @param g 绿(0~1)
 		 * @param b 蓝(0~1)
 		 */
-		virtual void GetRGB(float& r,float& g,float& b) = 0;
+		virtual void GetRGB(float& r,float& g,float& b) const = 0;
 
 		/* 在当前基础上增加过滤量
 		 * @param r 红(加和在0~1之间)
@@ -102,12 +102,27 @@ namespace Nuz{
 		 * @param x x位置
 		 * @param y y位置
 		 */
-		virtual void GetPos(float& x,float& y) = 0;
+		virtual void GetPos(float& x,float& y) const = 0;
+
+        /* 设置大小
+		 * @param 大小（1为普通大小，0为不显示）
+		 */
+        virtual void SetSize(float) = 0;
+
+        /* 获取大小
+         * @result 大小
+         */
+        virtual float GetSize() const = 0;
+
+        /* 在已有基础上增加大小
+         * @param 增量
+         */
+        virtual void AddSize(float) = 0;
 
 		/* 取得生命时长（帧）
 		 * @result 帧数
 		 */
-		virtual uint32_t GetLife() = 0;
+		virtual uint32_t GetLife() const = 0;
 
 		/* 杀掉此粒子
 		 */
@@ -134,7 +149,7 @@ namespace Nuz{
          * @param name 组件名称
          * @result 2D粒子系统
          */
-        static std::shared_ptr<IParticle2D> CreateParticle2D(const std::string& name);
+        static std::shared_ptr<IParticle2D> CreateParticle2D(const std::string& name = "");
 	};
 }
 

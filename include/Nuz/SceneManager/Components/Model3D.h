@@ -6,7 +6,6 @@
 namespace Nuz{
 
 	/* 3D模型组件
-	* 实现2D图像的绘制。
 	*/
 	class IModel3D:public IComponent{
 	public:
@@ -26,7 +25,7 @@ namespace Nuz{
 		 * @param text 文本
 		 * @param size 字体大小
 		 */
-		virtual void UseText2D(const std::string& fontPath,const std::wstring& text,int size) = 0;
+		virtual void UseText2D(const std::string& fontPath,const std::string& text,int size) = 0;
 
 		/* 释放模型
 		*/
@@ -38,11 +37,6 @@ namespace Nuz{
 		 * @param z z位置
 		 */
 		virtual void SetPos(float x,float y) = 0;
-
-		/* 设置是否显示
-		 * @param 是否显示
-		 */
-		virtual void SetVisible(bool) = 0;
 
 		/* 设置旋转
 		 * @param x 旋转中心x
@@ -71,7 +65,7 @@ namespace Nuz{
          * @param name 组件名称
          * @result 模型组件
          */
-        static std::shared_ptr<IModel3D> CreateModel3D(const std::string& name);
+        static std::shared_ptr<IModel3D> CreateModel3D(const std::string& name = "");
 	};
 }
 /* 更新日志：

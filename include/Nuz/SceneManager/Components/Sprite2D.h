@@ -47,7 +47,7 @@ namespace Nuz{
 		* @param w 宽
 		* @param h 高
 		*/
-		virtual void GetSize(int& w,int& h) = 0;
+		virtual void GetSize(int& w,int& h) const = 0;
 
 		/* 设置图像绘制的目的中心位置
 		* @param x 当前摄像机x位置
@@ -60,11 +60,6 @@ namespace Nuz{
 		* @param h 高度（比率）
 		*/
 		virtual void SetDstSize(float w,float h) = 0;
-
-		/* 设置是否显示
-		 * @param 是否显示
-		 */
-		virtual void SetVisible(bool) = 0;
 
 		/* 设置旋转
 		 * @param x 旋转中心x
@@ -79,7 +74,7 @@ namespace Nuz{
          * @param name 组件名称
          * @result 精灵组件
          */
-        static std::shared_ptr<ISprite2D> CreateSprite2D(const std::string& name);
+        static std::shared_ptr<ISprite2D> CreateSprite2D(const std::string& name ="");
 	};
 }
 /* 更新日志：

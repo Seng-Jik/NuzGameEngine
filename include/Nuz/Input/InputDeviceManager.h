@@ -18,7 +18,7 @@ namespace Nuz{
 		/* 获取键盘控制器
 		 * @result 键盘控制器指针（当键盘不存在时为nullptr）
 		 */
-		virtual std::shared_ptr<IKeyboard> GetKeyboard() = 0;
+		virtual IKeyboard& GetKeyboard() const = 0;
 
 		/* 此处不属于最小Nuz范围 */
 		#ifdef NUZ_VER_FULL
@@ -26,13 +26,13 @@ namespace Nuz{
 		/* 获取接入手柄数量
 		 * @result 手柄数量
 		 */
-		virtual int GetGamePadNum() = 0;
+		virtual int GetGamePadNum() const = 0;
 
 		/* 获取接入手柄
 		 * @param 手柄编号
 		 * @result 手柄实例
 		 */
-		 virtual std::shared_ptr<IGamePad> GetGamePad(int) = 0;
+		 virtual IGamePad& GetGamePad(int) const = 0;
 		#endif
 	};
 }

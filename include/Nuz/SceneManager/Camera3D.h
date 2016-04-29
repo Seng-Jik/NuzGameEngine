@@ -1,5 +1,4 @@
 #pragma once
-#include "../Component.h"
 
 namespace Nuz{
 
@@ -13,9 +12,8 @@ namespace Nuz{
 	 * 屏幕右下角为(1,1)
 	 * 从无限远到无限近为(-1~1)
 	 * 以此类推。
-	 * 你只可以挂载一个3D摄像机。
 	 */
-	class ICamera3D:public IComponent{
+	class ICamera3D{
 	public:
 
 		/* 设置中心坐标
@@ -60,7 +58,6 @@ namespace Nuz{
 		virtual void SetFov(float) = 0;
 
         /* 创建一个3D摄像机
-         * 当然，这个摄像机有个名字叫"_Camera3D"，你也明白这是什么意思
          * @result 摄像机
          */
         static std::shared_ptr<ICamera3D> CreateCamera3D();
@@ -71,4 +68,5 @@ namespace Nuz{
  * 星翼 初稿
  * 2016年4月28日：
  * 星翼 移动创建方法并给定名称
+ * 星翼 不再是组件
  */

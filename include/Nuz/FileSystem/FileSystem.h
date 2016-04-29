@@ -17,7 +17,7 @@ namespace Nuz{
 		 * @param dir 挂在到的目录名（比如传入"mnt"，则访问时该数据源目录为"/mnt"，为空则为根目录）
          * @throw CannotMountFileSource 如果挂载时出错则报出异常
 		 */
-		virtual void Mount(std::shared_ptr<IFileSource> source,const std::string& dir = "") = 0;
+		virtual void Mount(const std::shared_ptr<const Nuz::IFileSource>& source,const std::string& dir = "") = 0;
 
 		/* 加载文件
 		 * 它会把整个文件加载到内存中并返回一个已经被加载完的缓存区指针。
@@ -34,24 +34,24 @@ namespace Nuz{
          * @throw IFileSystem::InvaildFileName
          * @result 上一层目录
          */
-        static std::string GetUpperDir(const std::string&);
+        static std::string GetUpperDir(const std::string& path);
 
         /* 异常类：错误的文件名格式 */
         class InvalidFileName:public std::invalid_argument{
         public:
-            InvalidFileName(const std::string& s):std::invalid_argument(s){};
+            using std::invalid_argument::invalid_argument;
         };
 
         /* 异常类：无法打开文件 */
         class CannotOpenFile:public std::runtime_error{
         public:
-            CannotOpenFile(const std::string& s):std::runtime_error(s){};
+            using std::runtime_error::runtime_error;
         };
 
         /* 异常类：无法挂载数据源 */
         class CannotMountFileSource:public std::runtime_error{
         public:
-            CannotMountFileSource(const std::string& s):std::runtime_error(s){};
+            using std::runtime_error::runtime_error;
         };
 	};
 }

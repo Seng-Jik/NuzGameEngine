@@ -10,13 +10,6 @@ namespace Nuz{
 	 */
 	class ILight:public IComponent{
 	public:
-		/* 启动该光源
-		 */
-		virtual void Enable() = 0;
-
-		/* 关闭该光源
-		 */
-		virtual void Disable() = 0;
 
 		/* 设置颜色（光源默认为白色最亮）
 		 * @param r 红
@@ -43,7 +36,7 @@ namespace Nuz{
          * @param name 组件
          * @result 光源
          */
-        static std::shared_ptr<ILight> CreateLight(const std::string& name);
+        static std::shared_ptr<ILight> CreateLight(const std::string& name = "");
 	};
 }
 /* 更新日志：
