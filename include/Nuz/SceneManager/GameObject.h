@@ -4,84 +4,84 @@
 namespace Nuz{
 	class IComponent;
 
-	/* Îï¼ş
-	 * ÓÎÏ·ÖĞÒ»¸ö¿ÉÒÔ¹ÒÔØ×é¼şµÄÎïÆ·¡£
-	 * ÏÂ²ãÎï¼ş»áĞü¸¡ÔÚÉÏ²ãÎï¼şµÄÉÏ·½£¨2D»æÖÆµÄ×´Ì¬ÏÂ£©¡£
+	/* ç‰©ä»¶
+	 * æ¸¸æˆä¸­ä¸€ä¸ªå¯ä»¥æŒ‚è½½ç»„ä»¶çš„ç‰©å“ã€‚
+	 * ä¸‹å±‚ç‰©ä»¶ä¼šæ‚¬æµ®åœ¨ä¸Šå±‚ç‰©ä»¶çš„ä¸Šæ–¹ï¼ˆ2Dç»˜åˆ¶çš„çŠ¶æ€ä¸‹ï¼‰ã€‚
 	 */
 	class IGameObject{
 	public:
 	    virtual ~IGameObject(){};
 
-		/* ¹ÒÔØ×é¼ş
-         * Í¬Ò»¸ö×é¼ş¶à´Î¹ÒÔØºÍµ¥´Î¹ÒÔØÃ»Ê²Ã´²»Í¬
-         * ¹ÒÔØÃûÔÚ±¾Îï¼şÀïÊÇÎ¨Ò»µÄ£¬ÔÚÈ«¾Ö¿ÉÒÔÓĞÖØÃû£¬·½±ãÒÔÎï¼şÎªµ¥Î»¹ÜÀí×é¼ş¡£
-		 * @param ×é¼şÊµÀı
-		 * @param ¹ÒÔØÃû£¨¿ÉÒÔÄäÃû£¬µ«Äã½«ÎŞ·¨Í¨¹ı¹ÒÔØÃûÕÒ»ØËü£©
+		/* æŒ‚è½½ç»„ä»¶
+         * åŒä¸€ä¸ªç»„ä»¶å¤šæ¬¡æŒ‚è½½å’Œå•æ¬¡æŒ‚è½½æ²¡ä»€ä¹ˆä¸åŒ
+         * æŒ‚è½½ååœ¨æœ¬ç‰©ä»¶é‡Œæ˜¯å”¯ä¸€çš„ï¼Œåœ¨å…¨å±€å¯ä»¥æœ‰é‡åï¼Œæ–¹ä¾¿ä»¥ç‰©ä»¶ä¸ºå•ä½ç®¡ç†ç»„ä»¶ã€‚
+		 * @param ç»„ä»¶å®ä¾‹
+		 * @param æŒ‚è½½åï¼ˆå¯ä»¥åŒ¿åï¼Œä½†ä½ å°†æ— æ³•é€šè¿‡æŒ‚è½½åæ‰¾å›å®ƒï¼‰
 		 */
 		virtual void MountComponent(const std::shared_ptr<IComponent>&,const std::string& mountName = "") = 0;
 
-		/* Ğ¶ÔØÒÑ¹ÒÔØ×é¼ş
-		 * @param name ×é¼şÃû³Æ
+		/* å¸è½½å·²æŒ‚è½½ç»„ä»¶
+		 * @param name ç»„ä»¶åç§°
 		 */
 		virtual void UnmountComponent(const std::string& name) = 0;
 
-		/* Ğ¶ÔØÒÑ¹ÒÔØ×é¼ş
-		 * @param mountName ×é¼ş¹ÒÔØÃû
+		/* å¸è½½å·²æŒ‚è½½ç»„ä»¶
+		 * @param mountName ç»„ä»¶æŒ‚è½½å
 		 */
 		virtual void UnmountComponentByMountName(const std::string& mountName) = 0;
 
-		/* »ñÈ¡ÒÑ¹ÒÔØ×é¼şÊµÀı
-		 * @param mountName ×é¼ş¹ÒÔØÃû
-		 * @result ×é¼şÊµÀı
+		/* è·å–å·²æŒ‚è½½ç»„ä»¶å®ä¾‹
+		 * @param mountName ç»„ä»¶æŒ‚è½½å
+		 * @result ç»„ä»¶å®ä¾‹
 		 */
 		virtual std::shared_ptr<IComponent> GetMountedComponentByMountName(const std::string& mountName) const = 0;
 
-		/* ¹ÒÔØÎï¼ş
-		 * @param Îï¼şÊµÀı
-		 * @param mountName Îï¼ş¹ÒÔØÃû£¨¿ÉÒÔÄäÃû£©
+		/* æŒ‚è½½ç‰©ä»¶
+		 * @param ç‰©ä»¶å®ä¾‹
+		 * @param mountName ç‰©ä»¶æŒ‚è½½åï¼ˆå¯ä»¥åŒ¿åï¼‰
 		 */
 		virtual void MountGameObject(const std::shared_ptr<IGameObject>&,const std::string& mountName = "") = 0;
 
-		/* Ğ¶ÔØÒÑ¹ÒÔØÎï¼ş
-		 * @param name Îï¼şÃû³Æ
+		/* å¸è½½å·²æŒ‚è½½ç‰©ä»¶
+		 * @param name ç‰©ä»¶åç§°
 		 */
 		virtual void UnmountGameObject(const std::string& name) = 0;
 
-        /* Ğ¶ÔØÒÑ¹ÒÔØÎï¼ş
-		 * @param name Îï¼şÃû³Æ
+        /* å¸è½½å·²æŒ‚è½½ç‰©ä»¶
+		 * @param name ç‰©ä»¶æŒ‚è½½å
 		 */
 		virtual void UnmountGameObjectByMountName(const std::string& mountName) = 0;
 
-		/* »ñÈ¡ÒÑ¹ÒÔØÎï¼şÊµÀı
-		 * @param name Îï¼ş¹ÒÔØÃû
-		 * @result Îï¼şÊµÀı
+		/* è·å–å·²æŒ‚è½½ç‰©ä»¶å®ä¾‹
+		 * @param name ç‰©ä»¶æŒ‚è½½å
+		 * @result ç‰©ä»¶å®ä¾‹
 		 */
 		virtual std::shared_ptr<IGameObject> GetMountedGameObject(const std::string& mountName) const = 0;
 
-		/* »ñÈ¡Îï¼şÃû³Æ
-		 * @result Îï¼şÃû³Æ
+		/* è·å–ç‰©ä»¶åç§°
+		 * @result ç‰©ä»¶åç§°
 		 */
         virtual std::string GetName() const = 0;
 
-        /* ´´½¨Îï¼ş
-         * ´´½¨Îï¼şÊ±£¬Ãû³Æ±ØĞë±£Ö¤Î¨Ò»£¬·ñÔòµ¯³öÒì³£¡£
-         * ¿ÉÒÔ´´½¨ÄäÃûÎï¼ş£¬ÄäÃûÎï¼ş²»¿ÉÓÃÃû³Æ»ñÈ¡¡£
-         * @param name Îï¼şÃû³Æ
-         * @result Îï¼şÊµÀı
+        /* åˆ›å»ºç‰©ä»¶
+         * åˆ›å»ºç‰©ä»¶æ—¶ï¼Œåç§°å¿…é¡»ä¿è¯å”¯ä¸€ï¼Œå¦åˆ™å¼¹å‡ºå¼‚å¸¸ã€‚
+         * å¯ä»¥åˆ›å»ºåŒ¿åç‰©ä»¶ï¼ŒåŒ¿åç‰©ä»¶ä¸å¯ç”¨åç§°è·å–ã€‚
+         * @param name ç‰©ä»¶åç§°
+         * @result ç‰©ä»¶å®ä¾‹
          */
         static std::shared_ptr<IGameObject> CreateGameObject(const std::string& name = "");
 
-        /* ¸ø¶¨Ãû³Æ»ñÈ¡Îï¼ş
-         * @param name Îï¼şÃû³Æ
-         * @result Îï¼ş
+        /* ç»™å®šåç§°è·å–ç‰©ä»¶
+         * @param name ç‰©ä»¶åç§°
+         * @result ç‰©ä»¶
          */
         static std::shared_ptr<IGameObject> GetGameObject(const std::string& name);
 	};
 }
 
-/* ¸üĞÂÈÕÖ¾£º
- * 2016Äê4ÔÂ18ÈÕ£º
- * ĞÇÒí ³õ¸å
- * 2016Äê4ÔÂ28ÈÕ£º
- * ĞÇÒí ¸ø³öÃû³Æ
+/* æ›´æ–°æ—¥å¿—ï¼š
+ * 2016å¹´4æœˆ18æ—¥ï¼š
+ * æ˜Ÿç¿¼ åˆç¨¿
+ * 2016å¹´4æœˆ28æ—¥ï¼š
+ * æ˜Ÿç¿¼ ç»™å‡ºåç§°
  */
