@@ -8,101 +8,101 @@ namespace Nuz{
 	class IComponent;
 	class IGameObject;
 
-	/* ³¡¾°
-	 * ÓÎÏ·ÖĞÒ»¸ö¿ÉÒÔ¹ÒÔØ×é¼şºÍÎï¼şºÍ×Ó³¡¾°µÄ³¡Ãæ¡£
-     * ÉÏ²ã³¡¾°»áĞü¸¡ÔÚÏÂ²ã³¡¾°µÄÉÏ·½¡£
-     * ³¡¾°»á±»×ª»»Îª2DÍ¼Ïñ½øĞĞ¸²¸ÇÏÔÊ¾¡£
+	/* åœºæ™¯
+	 * æ¸¸æˆä¸­ä¸€ä¸ªå¯ä»¥æŒ‚è½½ç»„ä»¶å’Œç‰©ä»¶å’Œå­åœºæ™¯çš„åœºé¢ã€‚
+     * ä¸Šå±‚åœºæ™¯ä¼šæ‚¬æµ®åœ¨ä¸‹å±‚åœºæ™¯çš„ä¸Šæ–¹ã€‚
+     * åœºæ™¯ä¼šè¢«è½¬æ¢ä¸º2Då›¾åƒè¿›è¡Œè¦†ç›–æ˜¾ç¤ºã€‚
 	 */
 	class IScene{
 	public:
 	    virtual ~IScene(){};
 
-		/* ¹ÒÔØ×é¼ş
-		 * Í¬Ò»¸ö×é¼ş¶à´Î¹ÒÔØºÍµ¥´Î¹ÒÔØÃ»Ê²Ã´²»Í¬
-		 * @param ×é¼şÊµÀı
-		 * @param mountName ¹ÒÔØÃû£¬¿ÉÒÔÄäÃû
+		/* æŒ‚è½½ç»„ä»¶
+		 * åŒä¸€ä¸ªç»„ä»¶å¤šæ¬¡æŒ‚è½½å’Œå•æ¬¡æŒ‚è½½æ²¡ä»€ä¹ˆä¸åŒ
+		 * @param ç»„ä»¶å®ä¾‹
+		 * @param mountName æŒ‚è½½åï¼Œå¯ä»¥åŒ¿å
 		 */
 		virtual void MountComponent(const std::shared_ptr<IComponent>&,const std::string mountName = "") = 0;
 
-		/* Ğ¶ÔØÒÑ¹ÒÔØµ½¸Ã³¡¾°µÄ×é¼ş
-		 * @param name ×é¼şÃû³Æ
+		/* å¸è½½å·²æŒ‚è½½åˆ°è¯¥åœºæ™¯çš„ç»„ä»¶
+		 * @param name ç»„ä»¶åç§°
 		 */
 		virtual void UnmountComponent(const std::string& name) = 0;
 
-        /* Ğ¶ÔØÒÑ¹ÒÔØµ½¸Ã³¡¾°µÄ×é¼ş
-		 * @param mountName ×é¼şÃû³Æ
+        /* å¸è½½å·²æŒ‚è½½åˆ°è¯¥åœºæ™¯çš„ç»„ä»¶
+		 * @param mountName ç»„ä»¶æŒ‚è½½å
 		 */
 		virtual void UnmountComponentByMountName(const std::string& mountName) = 0;
 
-		/* »ñÈ¡ÒÑ¹ÒÔØµ½¸Ã³¡¾°×é¼şÊµÀı
-		 * @param mountName ¹ÒÔØÃû
-		 * @result ×é¼şÊµÀı
+		/* è·å–å·²æŒ‚è½½åˆ°è¯¥åœºæ™¯ç»„ä»¶å®ä¾‹
+		 * @param mountName æŒ‚è½½å
+		 * @result ç»„ä»¶å®ä¾‹
 		 */
 		virtual std::shared_ptr<IComponent> GetMountedComponent(const std::string& mountName) const = 0;
 
-		/* ¹ÒÔØÎï¼ş
-		 * Í¬Ò»¸öÎï¼ş±»¹ÒÔØ¶à´ÎºÍ¹ÒÔØÒ»´ÎÃ»Ê²Ã´²»Í¬¡£
-		 * @param Îï¼şÊµÀı
-		 * @param mountName ¹ÒÔØÃû£¨¿ÉÒÔÄäÃû£©
+		/* æŒ‚è½½ç‰©ä»¶
+		 * åŒä¸€ä¸ªç‰©ä»¶è¢«æŒ‚è½½å¤šæ¬¡å’ŒæŒ‚è½½ä¸€æ¬¡æ²¡ä»€ä¹ˆä¸åŒã€‚
+		 * @param ç‰©ä»¶å®ä¾‹
+		 * @param mountName æŒ‚è½½åï¼ˆå¯ä»¥åŒ¿åï¼‰
 		 */
 		virtual void MountGameObject(const std::shared_ptr<IGameObject>&,const std::string& mountName = "") = 0;
 
-		/* Ğ¶ÔØÒÑ¹ÒÔØÎï¼ş
-		 * @param name Îï¼şÃû³Æ
+		/* å¸è½½å·²æŒ‚è½½ç‰©ä»¶
+		 * @param name ç‰©ä»¶åç§°
 		 */
 		virtual void UnmountGameObject(const std::string& name) = 0;
 
-        /* Ğ¶ÔØÒÑ¹ÒÔØÎï¼ş
-		 * @param mountNameame Îï¼ş¹ÒÔØÃû
+        /* å¸è½½å·²æŒ‚è½½ç‰©ä»¶
+		 * @param mountNameame ç‰©ä»¶æŒ‚è½½å
 		 */
 		virtual void UnmountGameObjectByMountName(const std::string& mountName) = 0;
 
-		/* »ñÈ¡ÒÑ¹ÒÔØÎï¼şÊµÀı
-		 * @param mountName Îï¼ş¹ÒÔØÃû
-		 * @result Îï¼şÊµÀı
+		/* è·å–å·²æŒ‚è½½ç‰©ä»¶å®ä¾‹
+		 * @param mountName ç‰©ä»¶æŒ‚è½½å
+		 * @result ç‰©ä»¶å®ä¾‹
 		 */
 		virtual std::shared_ptr<IGameObject> GetMountedGameObject(const std::string& mountName) const = 0;
 
-		/* ¹ÒÔØÒ»¸ö³¡¾°
-		 * @param ³¡¾°ÊµÀı
+		/* æŒ‚è½½ä¸€ä¸ªåœºæ™¯
+		 * @param åœºæ™¯å®ä¾‹
 		 */
 		virtual void MountScene(const std::shared_ptr<IScene>&) = 0;
 
-		/* Ğ¶ÔØÒÑ¹ÒÔØµÄ³¡¾°
-		 * @param name ³¡¾°Ãû³Æ
+		/* å¸è½½å·²æŒ‚è½½çš„åœºæ™¯
+		 * @param name åœºæ™¯åç§°
 		 */
 		virtual void UnmountScene(const std::string& name);
 
-		/* ÉèÖÃÉãÏñ»ú
-		 * 2D/3DÉãÏñ»ú¾ù¿É¸÷ÉèÖÃÒ»¸ö¡£
-		 * @param camera ÉãÏñ»ú
+		/* è®¾ç½®æ‘„åƒæœº
+		 * 2D/3Dæ‘„åƒæœºå‡å¯å„è®¾ç½®ä¸€ä¸ªã€‚
+		 * @param camera æ‘„åƒæœº
 		 */
         virtual void SetCamera2D(const std::shared_ptr<const ICamera2D>& camera) = 0;
         virtual void SetCamera3D(const std::shared_ptr<const ICamera3D>& camera) = 0;
 
-		/* »ñÈ¡³¡¾°Ãû³Æ
-		 * @result ³¡¾°Ãû³Æ
+		/* è·å–åœºæ™¯åç§°
+		 * @result åœºæ™¯åç§°
 		 */
         virtual std::string GetName() const = 0;
 
-		/* ´´½¨³¡¾°
-         * ´´½¨³¡¾°Ê±£¬Ãû³Æ±ØĞë±£Ö¤Î¨Ò»£¬·ñÔòµ¯³öÒì³£¡£
-		 * @param name ³¡¾°Ãû³Æ
-         * @result ³¡¾°ÊµÀı
+		/* åˆ›å»ºåœºæ™¯
+         * åˆ›å»ºåœºæ™¯æ—¶ï¼Œåç§°å¿…é¡»ä¿è¯å”¯ä¸€ï¼Œå¦åˆ™å¼¹å‡ºå¼‚å¸¸ã€‚
+		 * @param name åœºæ™¯åç§°
+         * @result åœºæ™¯å®ä¾‹
          */
         static std::shared_ptr<IScene> CreateScene(const std::string& name);
 
-        /* Í¨¹ıÃû³Æ»ñÈ¡³¡¾°
-         * @param name ³¡¾°Ãû³Æ
-         * @result ³¡¾°
+        /* é€šè¿‡åç§°è·å–åœºæ™¯
+         * @param name åœºæ™¯åç§°
+         * @result åœºæ™¯
          */
         static std::shared_ptr<IScene> GetScene(const std::string& name);
 	};
 }
 
-/* ¸üĞÂÈÕÖ¾£º
- * 2016Äê4ÔÂ18ÈÕ£º
- * ĞÇÒí ³õ¸å
- * 2016Äê4ÔÂ28ÈÕ£º
- * ĞÇÒí ¸ø¶¨Ãû³Æ
+/* æ›´æ–°æ—¥å¿—ï¼š
+ * 2016å¹´4æœˆ18æ—¥ï¼š
+ * æ˜Ÿç¿¼ åˆç¨¿
+ * 2016å¹´4æœˆ28æ—¥ï¼š
+ * æ˜Ÿç¿¼ ç»™å®šåç§°
  */
