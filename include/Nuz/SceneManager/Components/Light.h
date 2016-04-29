@@ -4,44 +4,44 @@
 
 namespace Nuz{
 
-	/* ¹âÔ´
-	 * Ã»ÓĞ¹âÔ´Ê±£¬Ê¹ÓÃÒıÇæ×Ô´øµÄÈ«¾Ö¹â¡£
-	 * ÓĞ¹âÔ´Ê±£¬ÒıÇæ²»Ìá¹©¹âÔ´¡£
+	/* å…‰æº
+	 * æ²¡æœ‰å…‰æºæ—¶ï¼Œä½¿ç”¨å¼•æ“è‡ªå¸¦çš„å…¨å±€å…‰ã€‚
+	 * æœ‰å…‰æºæ—¶ï¼Œå¼•æ“ä¸æä¾›å…‰æºã€‚
 	 */
 	class ILight:public IComponent{
 	public:
 
-		/* ÉèÖÃÑÕÉ«£¨¹âÔ´Ä¬ÈÏÎª°×É«×îÁÁ£©
-		 * @param r ºì
-		 * @param g ÂÌ
-		 * @param b À¶
+		/* è®¾ç½®é¢œè‰²ï¼ˆå…‰æºé»˜è®¤ä¸ºç™½è‰²æœ€äº®ï¼‰
+		 * @param r çº¢
+		 * @param g ç»¿
+		 * @param b è“
 		 * @param a Alpha
 		 */
 		virtual void SetColor(float r,float g,float b,float a) = 0;
 
-		/* ÉèÖÃ×ø±ê
-		 * @param x x×ø±ê
-		 * @param y y×ø±ê
-		 * @param z z×ø±ê
+		/* è®¾ç½®åæ ‡
+		 * @param x xåæ ‡
+		 * @param y yåæ ‡
+		 * @param z zåæ ‡
 		 */
 		virtual void SetPos(float x,float y,float z) = 0;
 
-		/* ÉèÖÃÎª»·¾³¹â */
+		/* è®¾ç½®ä¸ºç¯å¢ƒå…‰ */
 		virtual void SetAmbient() = 0;
 
-		/* ÉèÖÃÎªÂşÉä¹â */
+		/* è®¾ç½®ä¸ºæ¼«å°„å…‰ */
 		virtual void SetDiffuse() = 0;
 
-        /* ´´½¨Ò»¸ö¹âÔ´
-         * @param name ×é¼ş
-         * @result ¹âÔ´
+        /* åˆ›å»ºä¸€ä¸ªå…‰æº
+         * @param name ç»„ä»¶å
+         * @result å…‰æº
          */
         static std::shared_ptr<ILight> CreateLight(const std::string& name = "");
 	};
 }
-/* ¸üĞÂÈÕÖ¾£º
- * 2016Äê4ÔÂ20ÈÕ£º
- * ĞÇÒí ³õ¸å
- * 2016Äê4ÔÂ28ÈÕ£º
- * ĞÇÒí ÒÆ¶¯´´½¨·½·¨²¢¸ø¶¨Ãû³Æ
+/* æ›´æ–°æ—¥å¿—ï¼š
+ * 2016å¹´4æœˆ20æ—¥ï¼š
+ * æ˜Ÿç¿¼ åˆç¨¿
+ * 2016å¹´4æœˆ28æ—¥ï¼š
+ * æ˜Ÿç¿¼ ç§»åŠ¨åˆ›å»ºæ–¹æ³•å¹¶ç»™å®šåç§°
  */
