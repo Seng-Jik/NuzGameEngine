@@ -3,72 +3,57 @@
 #include <ostream>
 namespace Nuz{
 
-    #ifdef _DEBUG
-
-    /* ¼ÇÂ¼ÆÕÍ¨ÈÕÖ¾
-     * ReleaseÏÂÎŞĞ§
-     * @param log ÈÕÖ¾ÄÚÈİ
-     * @param module ÈÕÖ¾À´Ô´×é¼ş
+    /* è®°å½•æ™®é€šæ—¥å¿—
+     * @param log æ—¥å¿—å†…å®¹
+     * @param module æ—¥å¿—æ¥æºç»„ä»¶
      */
     void LogStd(const std::string& log,const std::string& module = "");
 
-    /* ÆÕÍ¨ÈÕÖ¾µÄÊä³öÎ»ÖÃ
-     * Ä¬ÈÏÊÇcoutÁ÷
-     * ReleaseÏÂÎŞĞ§
-     * @param Êä³öÁ÷
+    /* æ™®é€šæ—¥å¿—çš„è¾“å‡ºä½ç½®
+     * é»˜è®¤æ˜¯coutæµ
+     * @param è¾“å‡ºæµ
      */
     void SetStdLogOutputStream(std::ostream&) noexcept;
 
-    /* ÔÚÆÕÍ¨ÈÕÖ¾ÀïÌí¼Ó¹ıÂË°×Ãûµ¥
-     * ReleaseÏÂÎŞĞ§
-     * Ä¬ÈÏÇé¿öÏÂ²»ÔÊĞíÈÎºÎÄ£¿éÊä³öÈÕÖ¾£¬Ã»ÓĞÄ£¿éÃûµÄ³ıÍâ
-     * @param module ÔÊĞíµÄÄ£¿é
+    /* åœ¨æ™®é€šæ—¥å¿—é‡Œæ·»åŠ è¿‡æ»¤ç™½åå•
+     * é»˜è®¤æƒ…å†µä¸‹ä¸å…è®¸ä»»ä½•æ¨¡å—è¾“å‡ºæ—¥å¿—ï¼Œæ²¡æœ‰æ¨¡å—åçš„é™¤å¤–
+     * @param module å…è®¸çš„æ¨¡å—
      */
     void AddStdLogWhiteFliter(const std::string& module);
 
-    /* Çå¿ÕÆÕÍ¨ÈÕÖ¾°×Ãûµ¥
-     * ReleaseÏÂÎŞĞ§
+    /* æ¸…ç©ºæ™®é€šæ—¥å¿—ç™½åå•
      */
     void ClearStdLogWhiteFliter();
 
-    #else
-
-    #define LogStd(...)
-    #define SetStdLogOutputStream(...)
-    #define AddStdLogWhiteFliter(...)
-    #define ClearStdLogWhiteFliter(...)
-
-    #endif
-
-    /* ¼ÇÂ¼´íÎóÈÕÖ¾
-     * ReleaseÏÂÈÔÈ»ÓĞĞ§
-     * @param log ÈÕÖ¾ÄÚÈİ
-     * @param module ÈÕÖ¾À´Ô´×é¼ş
+    /* è®°å½•é”™è¯¯æ—¥å¿—
+     * Releaseä¸‹ä»ç„¶æœ‰æ•ˆ
+     * @param log æ—¥å¿—å†…å®¹
+     * @param module æ—¥å¿—æ¥æºç»„ä»¶
      */
     void LogErr(const std::string& log,const std::string& module = "");
 
-    /* ´íÎóÈÕÖ¾µÄÊä³öÎ»ÖÃ
-     * Ä¬ÈÏÊÇcerrÁ÷
-     * ReleaseÏÂÈÔÈ»ÓĞĞ§
-     * @param Êä³öÁ÷
+    /* é”™è¯¯æ—¥å¿—çš„è¾“å‡ºä½ç½®
+     * é»˜è®¤æ˜¯cerræµ
+     * Releaseä¸‹ä»ç„¶æœ‰æ•ˆ
+     * @param è¾“å‡ºæµ
      */
     void SetErrLogOutputStream(std::ostream&) noexcept;
 
-    /* ÔÚ´íÎóÈÕÖ¾ÀïÌí¼Ó¹ıÂËºÚÃûµ¥
-     * ReleaseÏÂÈÔÈ»ÓĞĞ§
-     * Ä¬ÈÏÇé¿öÏÂÔÊĞíÈÎºÎÄ£¿éÊä³öÈÕÖ¾
-     * @param module ²»ÔÊĞíµÄÄ£¿é
+    /* åœ¨é”™è¯¯æ—¥å¿—é‡Œæ·»åŠ è¿‡æ»¤é»‘åå•
+     * Releaseä¸‹ä»ç„¶æœ‰æ•ˆ
+     * é»˜è®¤æƒ…å†µä¸‹å…è®¸ä»»ä½•æ¨¡å—è¾“å‡ºæ—¥å¿—
+     * @param module ä¸å…è®¸çš„æ¨¡å—
      */
     void AddErrLogBlackFliter(const std::string& module);
 
-    /* Çå¿ÕÆÕÍ¨ÈÕÖ¾ºÚÃûµ¥
-     * ReleaseÏÂÈÔÈ»ÓĞĞ§
+    /* æ¸…ç©ºæ™®é€šæ—¥å¿—é»‘åå•
+     * Releaseä¸‹ä»ç„¶æœ‰æ•ˆ
      */
     void ClearErrLogBlackFliter();
 
-    /* ¸üĞÂÈÕÖ¾£º
-     * 2016Äê4ÔÂ19ÈÕ£º
-     * ĞÇÒí ³õ¸å
+    /* æ›´æ–°æ—¥å¿—ï¼š
+     * 2016å¹´4æœˆ19æ—¥ï¼š
+     * æ˜Ÿç¿¼ åˆç¨¿
      *
      */
 
