@@ -4,7 +4,6 @@
 #include <mutex>
 using namespace std;
 namespace Nuz{
-    #ifdef _DEBUG
     static std::mutex stdlock;
     static set<string> stdWhiteFliter;
     static ostream* stdLogOut = &cout;
@@ -30,8 +29,6 @@ namespace Nuz{
         lock_guard<mutex> g(stdlock);
         stdWhiteFliter.clear();
     }
-
-    #endif // _DEBUG
 
     static set<string> errBlackFliter;
     static ostream* errLogOut = &cout;
