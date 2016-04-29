@@ -5,72 +5,72 @@
 
 namespace Nuz{
 
-	/* 3DÄ£ĞÍ×é¼ş
+	/* 3Dæ¨¡å‹ç»„ä»¶
 	*/
 	class IModel3D:public IComponent{
 	public:
-		/* Ê¹ÓÃÄ£ĞÍ
-		 * @param 3DÄ£ĞÍÂ·¾¶
+		/* ä½¿ç”¨æ¨¡å‹
+		 * @param 3Dæ¨¡å‹è·¯å¾„
 		 */
 		virtual void UseModel(const std::string&) = 0;
 
-		/* Ê¹ÓÃ2DÍ¼Ïñ£¨Éú³ÉÒ»¸ö3D¿Õ¼äµÄËÄ±ßĞÎ£©
-		* @param path Í¼ÏñÎÄ¼ş
-		* @param num Í¼Ïñ±àºÅ
+		/* ä½¿ç”¨2Då›¾åƒï¼ˆç”Ÿæˆä¸€ä¸ª3Dç©ºé—´çš„å››è¾¹å½¢ï¼‰
+		* @param path å›¾åƒæ–‡ä»¶
+		* @param num å›¾åƒç¼–å·
 		*/
 		virtual void UseImage2D(const std::string& path,int num = 0) = 0;
 
-		/* Ê¹ÓÃÎÄ±¾£¨Éú³ÉÒ»¸ö3D¿Õ¼äµÄËÄ±ßĞÎ£©
-		 * @param fontPath ×ÖÌåÂ·¾¶
-		 * @param text ÎÄ±¾
-		 * @param size ×ÖÌå´óĞ¡
+		/* ä½¿ç”¨æ–‡æœ¬ï¼ˆç”Ÿæˆä¸€ä¸ª3Dç©ºé—´çš„å››è¾¹å½¢ï¼‰
+		 * @param fontPath å­—ä½“è·¯å¾„
+		 * @param text æ–‡æœ¬
+		 * @param size å­—ä½“å¤§å°
 		 */
 		virtual void UseText2D(const std::string& fontPath,const std::string& text,int size) = 0;
 
-		/* ÊÍ·ÅÄ£ĞÍ
+		/* é‡Šæ”¾æ¨¡å‹
 		*/
 		virtual void FreeModel() = 0;
 
-		/* ÉèÖÃÄ£ĞÍµÄ×ø±êÎ»ÖÃ
-		 * @param x xÎ»ÖÃ
-		 * @param y yÎ»ÖÃ
-		 * @param z zÎ»ÖÃ
+		/* è®¾ç½®æ¨¡å‹çš„åæ ‡ä½ç½®
+		 * @param x xä½ç½®
+		 * @param y yä½ç½®
+		 * @param z zä½ç½®
 		 */
 		virtual void SetPos(float x,float y) = 0;
 
-		/* ÉèÖÃĞı×ª
-		 * @param x Ğı×ªÖĞĞÄx
-		 * @param y Ğı×ªÖĞĞÄy
-		 * @param angle Ğı×ª½Ç¶È
-		 * @param yFlip ÊÇ·ñÈÆyÖáĞı×ª
-		 * @param xFlip ÊÇ·ñÈÆxÖáĞı×ª
+		/* æ—‹è½¬
+		 * @param x æ—‹è½¬ä¸­å¿ƒx
+		 * @param y æ—‹è½¬ä¸­å¿ƒy
+		 * @param angle æ—‹è½¬è§’åº¦
+		 * @param yFlip æ˜¯å¦ç»•yè½´æ—‹è½¬
+		 * @param xFlip æ˜¯å¦ç»•xè½´æ—‹è½¬
 		 */
-		virtual void SetRotate(float x,float y,float angle,bool yFlip,bool xFlip) = 0;
+		virtual void Rotate(float x,float y,float angle,bool yFlip,bool xFlip) = 0;
 
-		/* ÉèÖÃËõ·Å
-		 * @param x x·½ÏòËõ·Å
-		 * @param y y·½ÏòËõ·Å
-		 * @param z z·½ÏòËõ·Å
+		/* è®¾ç½®ç¼©æ”¾
+		 * @param x xæ–¹å‘ç¼©æ”¾
+		 * @param y yæ–¹å‘ç¼©æ”¾
+		 * @param z zæ–¹å‘ç¼©æ”¾
 		 */
 		virtual void SetZoom(float x,float y,float z) = 0;
 
-		/* ÔÚµ±Ç°»ù´¡ÉÏËõ·Å
-		 * @param x x·½ÏòËõ·Å
-		 * @param y y·½ÏòËõ·Å
-		 * @param z z·½ÏòËõ·Å
+		/* åœ¨å½“å‰åŸºç¡€ä¸Šç¼©æ”¾
+		 * @param x xæ–¹å‘ç¼©æ”¾
+		 * @param y yæ–¹å‘ç¼©æ”¾
+		 * @param z zæ–¹å‘ç¼©æ”¾
 		 */
 		 virtual void Zoom(float x,float y,float z) = 0;
 
-        /* ´´½¨Ò»¸ö3DÄ£ĞÍ×é¼ş
-         * @param name ×é¼şÃû³Æ
-         * @result Ä£ĞÍ×é¼ş
+        /* åˆ›å»ºä¸€ä¸ª3Dæ¨¡å‹ç»„ä»¶
+         * @param name ç»„ä»¶åç§°
+         * @result æ¨¡å‹ç»„ä»¶
          */
         static std::shared_ptr<IModel3D> CreateModel3D(const std::string& name = "");
 	};
 }
-/* ¸üĞÂÈÕÖ¾£º
- * 2016Äê4ÔÂ20ÈÕ£º
- * ĞÇÒí ³õ¸å
- * 2016Äê4ÔÂ28ÈÕ£º
- * ĞÇÒí ¸ø¶¨Ãû³Æ
+/* æ›´æ–°æ—¥å¿—ï¼š
+ * 2016å¹´4æœˆ20æ—¥ï¼š
+ * æ˜Ÿç¿¼ åˆç¨¿
+ * 2016å¹´4æœˆ28æ—¥ï¼š
+ * æ˜Ÿç¿¼ ç»™å®šåç§°
  */
