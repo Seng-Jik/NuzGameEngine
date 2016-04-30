@@ -6,7 +6,7 @@
 using namespace std;
 using namespace Nuz;
 int main(){
-    shared_ptr<vector<uint8_t> > b(new vector<uint8_t>);
+    shared_ptr<vector<uint8_t> > b(new vector<uint8_t>);    //新建缓存区
     b ->push_back('H');
     b ->push_back('e');
     b ->push_back('l');
@@ -18,7 +18,7 @@ int main(){
     b ->push_back('l');
     b ->push_back('d');
 
-    Nuz::IEngine::GetGameDevice().GetLocalFile() -> SaveFile(b,"/test/Nuz/FileSystem/LocalFile/0.txt");
+    Nuz::IEngine::GetGameDevice().GetLocalFile() -> SaveFile(b,"/test/Nuz/FileSystem/LocalFile/0.txt"); //保存到文件
 
     return 0;
 }
