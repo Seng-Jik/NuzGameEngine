@@ -1,10 +1,10 @@
-#include "../../../../include/Nuz.h"    //Nuz引擎头文件
+#include "../../../../include/Nuz.h"
 #include <iostream>
 #include <fstream>
 #include <stdexcept>
 #include <memory>
 using namespace std;
-using namespace Nuz;    //Nuz引擎命名空间
+using namespace Nuz;
 int main(){
     IEngine& engine = IEngine::GetGameDevice(); //取得引擎实例
     IFileSystem& fs = engine.GetFileSystem();   //取得文件系统
