@@ -10,6 +10,10 @@ namespace Nuz{
      * 一个实例只允许被挂载到一个实例（物件或场景）上。
 	 */
 	class IGameObject{
+    protected:
+        /* 从父节点上卸载该物件
+         */
+        virtual void UnmountSelf() = 0;
 	public:
 	    virtual ~IGameObject(){};
 
