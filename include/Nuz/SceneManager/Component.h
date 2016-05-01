@@ -107,6 +107,11 @@ namespace Nuz{
 		 * @result 组件名
 		 */
         virtual std::string GetName() const = 0;
+        
+        /* 克隆组件实例
+         * @result 新实例
+         */
+        virtual std::shared_ptr<IComponent> Clone() = 0;
 
         /* 给定名称返回组件
          * @param name 组件名
