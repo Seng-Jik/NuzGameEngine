@@ -48,7 +48,7 @@ namespace Nuz{
          */
         virtual std::string GetSceneName() = 0;
         
-        /* 从物件中卸载自身
+        /* 从父节点上卸载自身
          */
         virtual void UnmountSelf() = 0;
 	public:
