@@ -15,6 +15,10 @@ namespace Nuz{
      * 一个场景只允许被挂载到一个场景上。
 	 */
 	class IScene{
+    protected:
+        /* 从被挂载的父场景上卸载本场景。
+         */
+        virtual void UnmountSelf() = 0;
 	public:
 	    virtual ~IScene(){};
 
