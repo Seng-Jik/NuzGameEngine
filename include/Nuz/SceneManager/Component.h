@@ -5,116 +5,121 @@ namespace Nuz{
 	class IScene;
 	class IGameObject;
 
-	/* ×é¼ş
-	* ÒÀÀµÔÚÎï¼ş»ò³¡¾°ÉÏµÄÒ»×éÂß¼­ºÍ¹¦ÄÜ¡£
-	*/
+	/* ç»„ä»¶
+ 	 * ä¾èµ–åœ¨ç‰©ä»¶æˆ–åœºæ™¯ä¸Šçš„ä¸€ç»„é€»è¾‘å’ŒåŠŸèƒ½ã€‚
+     * ä¸€ä¸ªå®ä¾‹åªå…è®¸è¢«æŒ‚è½½åˆ°ä¸€ä¸ªç‰©ä»¶ä¸Šã€‚
+	 */
 	class IComponent{
 	protected:
-        /* ¸¸½ÚµãÀàĞÍ */
+        /* çˆ¶èŠ‚ç‚¹ç±»å‹ */
 		enum class ParentType{
-		    None,   //Ã»ÓĞ±»¹ÒÔØ
-			TypeScene,	//³¡¾°
-			TypeGameObject	//ÓÎÏ·Îï¼ş
+		    None,   //æ²¡æœ‰è¢«æŒ‚è½½
+			TypeScene,	//åœºæ™¯
+			TypeGameObject	//æ¸¸æˆç‰©ä»¶
 		};
 
-		/* »ñÈ¡¸¸½ÚµãÀàĞÍ
-		 * @result ¸¸½ÚµãÀàĞÍ
+		/* è·å–çˆ¶èŠ‚ç‚¹ç±»å‹
+		 * @result çˆ¶èŠ‚ç‚¹ç±»å‹
 		 */
 		virtual ParentType GetParentType() = 0;
 
-        /* »ñÈ¡×÷Îª³¡¾°µÄ¸¸½ÚµãÊµÀı
-		 * @result ¸¸½Úµã
+        /* è·å–ä½œä¸ºåœºæ™¯çš„çˆ¶èŠ‚ç‚¹å®ä¾‹
+		 * @result çˆ¶èŠ‚ç‚¹
 		 */
 		virtual std::shared_ptr<IScene> GetSceneParent() = 0;
 
-        /* »ñÈ¡×÷ÎªÎï¼şµÄ¸¸½ÚµãÊµÀı
-		 * @result ¸¸½Úµã
+        /* è·å–ä½œä¸ºç‰©ä»¶çš„çˆ¶èŠ‚ç‚¹å®ä¾‹
+		 * @result çˆ¶èŠ‚ç‚¹
 		 */
 		virtual std::shared_ptr<IGameObject> GetGameObjectParent() = 0;
 
-		/* ¸ø¶¨¹ÒÔØÃû£¬È¡¸¸½ÚµãÖĞ¶ÔÓ¦¹ÒÔØÃûµÄ×é¼ş
-		 * @param ¹ÒÔØÃû
+		/* ç»™å®šæŒ‚è½½åï¼Œå–çˆ¶èŠ‚ç‚¹ä¸­å¯¹åº”æŒ‚è½½åçš„ç»„ä»¶
+		 * @param æŒ‚è½½å
 		 */
         virtual std::shared_ptr<IComponent> GetOtherComponent(const std::string& mountName) = 0;
 
-        /* ¸ø¶¨¹ÒÔØÃû£¬È¡¸¸½ÚµãÖĞ¶ÔÓ¦¹ÒÔØÃûµÄÎï¼ş
-		 * @param ¹ÒÔØÃû
+        /* ç»™å®šæŒ‚è½½åï¼Œå–çˆ¶èŠ‚ç‚¹ä¸­å¯¹åº”æŒ‚è½½åçš„ç‰©ä»¶
+		 * @param æŒ‚è½½å
 		 */
         virtual std::shared_ptr<IGameObject> GetGameObjectByMountName(const std::string& mountName) = 0;
 
-        /* »ñÈ¡¸Ã×é¼şËùÔÚµÄ³¡¾°
-         * @result ³¡¾°Ãû³Æ
+        /* è·å–è¯¥ç»„ä»¶æ‰€åœ¨çš„åœºæ™¯
+         * @result åœºæ™¯åç§°
          */
         virtual std::string GetSceneName() = 0;
+        
+        /* ä»ç‰©ä»¶ä¸­å¸è½½è‡ªèº«
+         */
+        virtual void UnmountSelf() = 0;
 	public:
-	    /* ¹¹ÔìÊ±×¢ÒâÊÂÏî
-	     * Äã±ØĞë±£Ö¤Ã¿¸ö×é¼ş¶¼ÓĞÒ»¸öÎ¨Ò»µÄ×é¼şÃû³Æ
-         * µ±Ãû³ÆÎª¿ÕÊ±ÔòÎªÄäÃû£¬ÄäÃû×é¼ş²»¿ÉÓÃÃû³Æ»ñÈ¡¡£
-	     * µ±Ãû³Æ³åÍ»Ê±½«»áµ¯³öÒì³£
-	     * @param name ×é¼şÃû³Æ
+	    /* æ„é€ æ—¶æ³¨æ„äº‹é¡¹
+	     * ä½ å¿…é¡»ä¿è¯æ¯ä¸ªç»„ä»¶éƒ½æœ‰ä¸€ä¸ªå”¯ä¸€çš„ç»„ä»¶åç§°
+         * å½“åç§°ä¸ºç©ºæ—¶åˆ™ä¸ºåŒ¿åï¼ŒåŒ¿åç»„ä»¶ä¸å¯ç”¨åç§°è·å–ã€‚
+	     * å½“åç§°å†²çªæ—¶å°†ä¼šå¼¹å‡ºå¼‚å¸¸
+	     * @param name ç»„ä»¶åç§°
 	     */
 	    IComponent(const std::string& name = "");
 	    virtual ~IComponent(){};
 
-		virtual void OnInit(){};	//µ±³õÊ¼»¯×é¼ş±»ÒıÇæ¿ªÊ¼Ê¹ÓÃÊ±
-		virtual void OnQuit(){};	//µ±¸Ã×é¼ş²»ÔÙ±»ÒıÇæÊ¹ÓÃÊ±
-		virtual void OnShow(){};	//µ±Îï¼ş¿ªÊ¼±»ÏÔÊ¾Ê±Ö´ĞĞ
-		virtual void OnHide(){};	//µ±Îï¼ş±»Òş²ØÊ±Ö´ĞĞ
-		virtual void OnUpdate(){};	//µ±×é¼şĞèÒª¸üĞÂÂß¼­Ê±Ö´ĞĞ
+		virtual void OnInit(){};	//å½“åˆå§‹åŒ–ç»„ä»¶è¢«å¼•æ“å¼€å§‹ä½¿ç”¨æ—¶
+		virtual void OnQuit(){};	//å½“è¯¥ç»„ä»¶ä¸å†è¢«å¼•æ“ä½¿ç”¨æ—¶
+		virtual void OnShow(){};	//å½“ç‰©ä»¶å¼€å§‹è¢«æ˜¾ç¤ºæ—¶æ‰§è¡Œ
+		virtual void OnHide(){};	//å½“ç‰©ä»¶è¢«éšè—æ—¶æ‰§è¡Œ
+		virtual void OnUpdate(){};	//å½“ç»„ä»¶éœ€è¦æ›´æ–°é€»è¾‘æ—¶æ‰§è¡Œ
 
-		virtual void OnDraw3DReady(){};	//µ±×¼±¸»æÖÆ3DÊ±Ö´ĞĞ
-		virtual void OnDraw3D(){};	//µ±×é¼şĞèÒª»æÖÆ3DÊ±Ö´ĞĞ
-		virtual void OnDraw3DFinished(){};	//µ±3D»æÖÆÍê³Éºó
+		virtual void OnDraw3DReady(){};	//å½“å‡†å¤‡ç»˜åˆ¶3Dæ—¶æ‰§è¡Œ
+		virtual void OnDraw3D(){};	//å½“ç»„ä»¶éœ€è¦ç»˜åˆ¶3Dæ—¶æ‰§è¡Œ
+		virtual void OnDraw3DFinished(){};	//å½“3Dç»˜åˆ¶å®Œæˆå
 
-        virtual void OnDraw2DReady(){};	//µ±×¼±¸»æÖÆ2DÎï¼şÊ±Ö´ĞĞ
-		virtual void OnDraw2D(){};	//µ±×é¼şĞèÒª»æÖÆ2DÎï¼şÊ±Ö´ĞĞ
-		virtual void OnDraw2DFinished(){};	//µ±2DÎï¼ş»æÖÆÍê³Éºó
+        virtual void OnDraw2DReady(){};	//å½“å‡†å¤‡ç»˜åˆ¶2Dç‰©ä»¶æ—¶æ‰§è¡Œ
+		virtual void OnDraw2D(){};	//å½“ç»„ä»¶éœ€è¦ç»˜åˆ¶2Dç‰©ä»¶æ—¶æ‰§è¡Œ
+		virtual void OnDraw2DFinished(){};	//å½“2Dç‰©ä»¶ç»˜åˆ¶å®Œæˆå
 
-        virtual void OnDrawSceneReady(){};    //µ±³¡¾°»æÖÆ×¼±¸¿ªÊ¼Ê±
-		virtual void OnDrawScene(){}; //µ±»æÖÆ³¡¾°Ê±
-		virtual void OnDrawSceneFinished(){}; //µ±³¡¾°»æÖÆ½áÊøÊ±
-		/* »æÖÆÁ÷³Ì
-		 * Èç¹û±»¹ÒÔØµÄÊÇ2D»ò3DÎï¼ş£¬Ôò»áÖ»µ÷ÓÃÎï¼ş»æÖÆº¯Êı£¬²»µ÷ÓÃScene»æÖÆº¯Êı¡£
-		 * Èç¹û±»¹ÒÔØµÄÊÇ³¡¾°£¬ÔòÏÈ×÷ÎªÒ»¸öÎï¼ş½øĞĞ»æÖÆ£¬È»ºó°Ñ¸Ã³¡¾°»æÖÆµÃµ½µÄÍ¼Ïñ×÷ÎªÖ¡»º´æ£¬ÔÙ´Îµ÷ÓÃ³¡¾°»æÖÆº¯Êı¡£
+        virtual void OnDrawSceneReady(){};    //å½“åœºæ™¯ç»˜åˆ¶å‡†å¤‡å¼€å§‹æ—¶
+		virtual void OnDrawScene(){}; //å½“ç»˜åˆ¶åœºæ™¯æ—¶
+		virtual void OnDrawSceneFinished(){}; //å½“åœºæ™¯ç»˜åˆ¶ç»“æŸæ—¶
+		/* ç»˜åˆ¶æµç¨‹
+		 * å¦‚æœè¢«æŒ‚è½½çš„æ˜¯2Dæˆ–3Dç‰©ä»¶ï¼Œåˆ™ä¼šåªè°ƒç”¨ç‰©ä»¶ç»˜åˆ¶å‡½æ•°ï¼Œä¸è°ƒç”¨Sceneç»˜åˆ¶å‡½æ•°ã€‚
+		 * å¦‚æœè¢«æŒ‚è½½çš„æ˜¯åœºæ™¯ï¼Œåˆ™å…ˆä½œä¸ºä¸€ä¸ªç‰©ä»¶è¿›è¡Œç»˜åˆ¶ï¼Œç„¶åæŠŠè¯¥åœºæ™¯ç»˜åˆ¶å¾—åˆ°çš„å›¾åƒä½œä¸ºå¸§ç¼“å­˜ï¼Œå†æ¬¡è°ƒç”¨åœºæ™¯ç»˜åˆ¶å‡½æ•°ã€‚
 		 */
 
-		/* µ±³¡¾°ÒªÇó±»ÇĞ³öÊ±Ö´ĞĞ
-		 * @param timeLimited Ê±¼äÏŞÖÆ£¨Ö¡£©
+		/* å½“åœºæ™¯è¦æ±‚è¢«åˆ‡å‡ºæ—¶æ‰§è¡Œ
+		 * @param timeLimited æ—¶é—´é™åˆ¶ï¼ˆå¸§ï¼‰
 		 */
 		virtual void OnFadeSwitchOut(int timeLimited){};
 
-		/* µ±³¡¾°±»ÇĞ³öÊ±»áÔö¼ÓµÄÔö²¹Âß¼­
-		 * @param finished Ê±¼äÊ£Óà°Ù·Ö±È
+		/* å½“åœºæ™¯è¢«åˆ‡å‡ºæ—¶ä¼šå¢åŠ çš„å¢è¡¥é€»è¾‘
+		 * @param finished æ—¶é—´å‰©ä½™ç™¾åˆ†æ¯”
 		 */
 		virtual void OnFadeSwitchOutUpdate(float finished){};
 
-		/* µ±³¡¾°ÒªÇó±»ÇĞÈëÊ±Ö´ĞĞ
-		 * @param timeLimited Ê±¼äÏŞÖÆ£¨Ö¡£©
+		/* å½“åœºæ™¯è¦æ±‚è¢«åˆ‡å…¥æ—¶æ‰§è¡Œ
+		 * @param timeLimited æ—¶é—´é™åˆ¶ï¼ˆå¸§ï¼‰
 		 */
 		virtual void OnFadeSwitchIn(int timeLimited){};
 
-		/* µ±³¡¾°±»ÇĞÈëÊ±»áÔö¼ÓµÄÔö²¹Âß¼­
-		 * @param finished Ê±¼äÊ£Óà°Ù·Ö±È
+		/* å½“åœºæ™¯è¢«åˆ‡å…¥æ—¶ä¼šå¢åŠ çš„å¢è¡¥é€»è¾‘
+		 * @param finished æ—¶é—´å‰©ä½™ç™¾åˆ†æ¯”
 		 */
 		virtual void OnFadeSwitchInUpdate(float finished){};
 
-		/* È¡µÃ×é¼şÃû³Æ
-		 * @result ×é¼şÃû
+		/* å–å¾—ç»„ä»¶åç§°
+		 * @result ç»„ä»¶å
 		 */
         virtual std::string GetName() const = 0;
 
-        /* ¸ø¶¨Ãû³Æ·µ»Ø×é¼ş
-         * @param name ×é¼şÃû
-         * @result ×é¼ş
+        /* ç»™å®šåç§°è¿”å›ç»„ä»¶
+         * @param name ç»„ä»¶å
+         * @result ç»„ä»¶
          */
         static std::shared_ptr<IComponent> GetComponent(const std::string name);
 	};
 
 }
 
-/* ¸üĞÂÈÕÖ¾£º
- * 2016Äê4ÔÂ18ÈÕ£º
- * ĞÇÒí ³õ¸å
- * 2016Äê4ÔÂ28ÈÕ£º
- * ĞÇÒí ¸ø³ö×é¼şÃû³Æ
+/* æ›´æ–°æ—¥å¿—ï¼š
+ * 2016å¹´4æœˆ18æ—¥ï¼š
+ * æ˜Ÿç¿¼ åˆç¨¿
+ * 2016å¹´4æœˆ28æ—¥ï¼š
+ * æ˜Ÿç¿¼ ç»™å‡ºç»„ä»¶åç§°
  */
