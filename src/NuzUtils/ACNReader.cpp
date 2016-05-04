@@ -8,7 +8,7 @@ using namespace NuzUtils_;
 using namespace NuzUtils;
 using namespace std;
 
-//É¾³ı×ó±ßËùÓĞµÄ¿Õ¸ñºÍÖÆ±í·û£¬²¢¹ıÂË\r
+//åˆ é™¤å·¦è¾¹æ‰€æœ‰çš„ç©ºæ ¼å’Œåˆ¶è¡¨ç¬¦ï¼Œå¹¶è¿‡æ»¤\r,å’Œå…¶å®ƒæ–‡ä»¶çš„Trimä¸åŒ
 static std::string Trim(const std::string& s)
 {
     std::string t;
@@ -59,11 +59,11 @@ void ACNReader::loadFromText(const std::shared_ptr<std::vector<uint8_t> >& buf)
             m_oprs.push_back(opr);
         }else if(line[0] == '-'){
             opr.opr = NuzUtils::IACNReader::ACNOpr::CreateVar;
-            auto pos = line.find(':');
+            auto pos = line.find(':');  //æ­¤å¤„éœ€è¦ä¸€ä¸ªæ£€æµ‹nposçš„æŠ¥é”™
             opr.arg = line.substr(1,pos-1);
             m_oprs.push_back(opr);
-            //TODO:ÔÚ´Ë´¦·Ö¸î³ö¸÷¸öÖµ²¢ÇÒ´´½¨Ö¸Áî
-            //Î´Íê³É
+            //TODO:åœ¨æ­¤å¤„åˆ†å‰²å‡ºå„ä¸ªå€¼å¹¶ä¸”åˆ›å»ºæŒ‡ä»¤
+            //æœªå®Œæˆ
         }
         else cout<<"Line:"<<line<<endl;
 
