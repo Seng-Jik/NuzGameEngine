@@ -1,0 +1,22 @@
+@Root
+	-type:scene
+	-alpha:128
+	-pos:500,600
+	-ints:1,2,3,4,5,6,7
+	
+	#this is a test.
+	@Child
+		-type:object
+		-alpha:256
+		-pos:300,400
+		-ints:123,456
+		@Child
+			-ints:234
+		$end
+	$end
+	@Child
+		-type:object
+		-alpha:256
+		-alpha:128
+	$end
+$end
