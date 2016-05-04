@@ -173,7 +173,7 @@ double SnowRVReader::GetFloat(const std::string& s) const
     else throw ValueNotFound("Float value " + s +" not found.");
 }
 
-void SnowRVReader::SaveToFastReadFile(const std::string& file) const{
+void SnowRVReader::SaveToBinaryFile(const std::string& file) const{
     std::shared_ptr<std::vector<uint8_t> > buf(new std::vector<uint8_t>);
     buf -> push_back(0xFF);
     buf -> push_back('N');

@@ -35,7 +35,7 @@ namespace NuzUtils{
          * @throw IFileSystem::CannotOpenFile
          * @throw IFileSystem::InvaildFileName
          */
-        virtual void SaveToFastReadFile(const std::string&) const = 0;
+        virtual void SaveToBinaryFile(const std::string&) const = 0;
 
         /* 取得此rv所在的目录
          * @result 路径

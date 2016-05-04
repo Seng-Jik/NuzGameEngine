@@ -26,7 +26,7 @@ namespace NuzUtils_{
         bool IsLastLine() const override;
         void Reset() override;
         std::string GetCurrentDir() const override;
-        void SaveToFastReadFile(const std::string&) const override;
+        void SaveToBinaryFile(const std::string&) const override;
 	};
 
 	std::shared_ptr<NuzUtils::ICSVReader> CreateCSVReader(const std::string& path);

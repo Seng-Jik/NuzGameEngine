@@ -161,7 +161,7 @@ void CSVReader::Reset(){
     m_x = m_y = 0;
 }
 
-void CSVReader::SaveToFastReadFile(const std::string& file) const{
+void CSVReader::SaveToBinaryFile(const std::string& file) const{
     std::shared_ptr<std::vector<uint8_t> > buf(new std::vector<uint8_t>);
     buf -> push_back(0xFF);
     buf -> push_back('N');

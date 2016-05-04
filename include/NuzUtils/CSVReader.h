@@ -63,7 +63,7 @@ namespace NuzUtils{
 		 * @throw IFileSystem::CannotOpenFile
 		 * @throw IFileSystem::InvaildFileName
 		 */
-        virtual void SaveToFastReadFile(const std::string&) const = 0;
+        virtual void SaveToBinaryFile(const std::string&) const = 0;
 
         /* 异常类：CSV中未找到对象 */
         class ValueNotFound:public std::runtime_error{

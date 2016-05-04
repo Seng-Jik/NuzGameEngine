@@ -25,7 +25,7 @@ namespace NuzUtils_{
         int GetInt(const std::string&) const override;
         double GetFloat(const std::string&) const override;
         std::string GetCurrentDir() const override;
-        void SaveToFastReadFile(const std::string&) const override;
+        void SaveToBinaryFile(const std::string&) const override;
 	};
 
 }

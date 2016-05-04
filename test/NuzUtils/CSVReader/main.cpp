@@ -9,7 +9,7 @@ int main(){
     auto lf = Nuz::IEngine::GetGameDevice().GetLocalFile(); //获取本地文件系统实例
     Nuz::IEngine::GetGameDevice().GetFileSystem().Mount(lf,"e");    //把本地文件系统挂载到文件系统的目录“e”下
     auto p = NuzUtils::ICSVReader::CreateCSVReader("/e/test/NuzUtils/CSVReader/0.csv"); //从文件创建CSV读取器
-    p -> SaveToFastReadFile("/test/NuzUtils/CSVReader/0.elf");  //输出可以快速读取的二进制形式的csv文件
+    p -> SaveToBinaryFile("/test/NuzUtils/CSVReader/0.elf");  //输出可以快速读取的二进制形式的csv文件
     p = NuzUtils::ICSVReader::CreateCSVReader("/e/test/NuzUtils/CSVReader/0.elf");  //读取二进制形式的csv
 
     while(!p -> IsLastLine()){  //如果当前不在最后一行
