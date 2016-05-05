@@ -6,7 +6,7 @@
 	
 	#this is a test.
 	@Child
-		-type:object
+		-type:"obje ct",128,ob ject
 		-alpha:256
 		-pos:300,400
 		-ints:123,456

@@ -31,8 +31,27 @@ namespace NuzUtils{
          */
         virtual void Reset() noexcept = 0;
 
+		/* 存储到高速读取的二进制文件中
+		 * @param 文件路径
+		 * @throw IFileSystem::CannotOpenFile
+		 * @throw IFileSystem::InvaildFileName
+		 */
+        virtual void SaveToBinaryFile(const std::string&) const = 0;
+
+        /* 取得该ACN文件所在目录
+		 * @result 目录
+		 */
+        virtual std::string GetCurrentDir() const noexcept = 0;
+
+        /* 异常类：无效ACN */
+        class InvalidACN:public std::runtime_error{
+        public:
+            using std::runtime_error::runtime_error;
+        };
+
         /* 从文件创建ACN文件读取器
          * @param path ACN文件路径
+         * @throw InvalidACN
          * @result ACN文件读取器
          */
         static std::shared_ptr<IACNReader> CreateACNReader(const std::string& path);

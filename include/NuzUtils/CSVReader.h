@@ -59,7 +59,7 @@ namespace NuzUtils{
         virtual std::string GetCurrentDir() const = 0;
 
 		/* 存储到高速读取的二进制文件中
-		 * @param 文件名
+		 * @param 文件路径
 		 * @throw IFileSystem::CannotOpenFile
 		 * @throw IFileSystem::InvaildFileName
 		 */

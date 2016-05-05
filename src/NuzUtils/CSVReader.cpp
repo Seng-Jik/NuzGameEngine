@@ -51,7 +51,6 @@ void CSVReader::loadFromBin(const std::shared_ptr<std::vector<uint8_t> >& buf)
 void CSVReader::loadFromText(const std::shared_ptr<std::vector<uint8_t> >& buf)
 {
     uint32_t num = 0;
-    uint32_t lineNum = 1;
     bool bRun = true;
     while(bRun){
         //GetLine
@@ -92,7 +91,6 @@ void CSVReader::loadFromText(const std::shared_ptr<std::vector<uint8_t> >& buf)
             }
             p -> push_back(thisUnit);
         }
-        ++lineNum;
     }
 }
 

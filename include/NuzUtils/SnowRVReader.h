@@ -31,7 +31,7 @@ namespace NuzUtils{
 		virtual double GetFloat(const std::string&) const = 0;
 
 		/* 存储为可以快速读取的二进制码
-		 * @param 文件名
+		 * @param 文件路径
          * @throw IFileSystem::CannotOpenFile
          * @throw IFileSystem::InvaildFileName
          */
