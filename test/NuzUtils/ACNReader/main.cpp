@@ -19,5 +19,7 @@ int main(){
         cout<<"ACN OPR:"<<int(opr)<<" "<<arg<<endl;
         if(opr == NuzUtils::IACNReader::ACNOpr::End) break;
     }
+
+    cout<<acn -> GetCurrentDir()<<endl;
     return 0;
 }
