@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="头文件\Interfaces">
+      <UniqueIdentifier>{b57ae854-bb36-4fba-8126-aa5477b9ff01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Interfaces\Nuz">
+      <UniqueIdentifier>{3664ea9a-a7ab-4e68-972d-6cecd8ef35ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Interfaces\Nuz\FileSystem">
+      <UniqueIdentifier>{9ac0e2b9-3b5f-4db0-a3ad-287e993e06af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Interfaces\Nuz\Sound">
+      <UniqueIdentifier>{a048750a-aeee-4b1a-adf3-0d8a5a2e5c6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Interfaces\Nuz\Input">
+      <UniqueIdentifier>{faf48f3f-732d-44b8-a3a5-eb768ff04cf1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Interfaces\Nuz\SceneManager">
+      <UniqueIdentifier>{79f50710-36e8-45ce-868a-bb71a1b0cd7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Interfaces\Nuz\SceneManager\Components">
+      <UniqueIdentifier>{cdfbb25c-d783-47d2-88bf-a17271449528}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Realize">
+      <UniqueIdentifier>{e2f9cf4f-384b-48b3-9707-fc23f653feae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Nuz">
+      <UniqueIdentifier>{5ec47fe8-02fe-4a04-963c-16222f93c57a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Nuz\FileSystem">
+      <UniqueIdentifier>{264fecb9-0850-49b3-9efc-70171d1dcdfe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Interfaces\NuzUtils">
+      <UniqueIdentifier>{57447c23-0648-400b-9908-6ec590b65f1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Realize\NuzUtils_">
+      <UniqueIdentifier>{4dce5439-ce33-4e78-90c7-fc81cbc4abb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Realize\Nuz_">
+      <UniqueIdentifier>{f585e0e7-01a6-4c68-93b5-4ca8ba3ce205}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Realize\Nuz_\FileSystem">
+      <UniqueIdentifier>{0468648c-56f3-46ac-85c0-8ea61e9ae574}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\NuzUtils">
+      <UniqueIdentifier>{bae1007f-f51b-477b-b0c8-cbfa27245e23}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\NuzUtils\ACNReader.h">
+      <Filter>头文件\Realize\NuzUtils_</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\NuzUtils\CSVReader.h">
+      <Filter>头文件\Realize\NuzUtils_</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\NuzUtils\LuaVM.h">
+      <Filter>头文件\Realize\NuzUtils_</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\NuzUtils\SnowRVReader.h">
+      <Filter>头文件\Realize\NuzUtils_</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Nuz\FileSystem\FileSystem.h">
+      <Filter>头文件\Realize\Nuz_\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Nuz\FileSystem\LocalFile.h">
+      <Filter>头文件\Realize\Nuz_\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Nuz\Engine.h">
+      <Filter>头文件\Realize\Nuz_</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Nuz\FileSystem\FileSource.h">
+      <Filter>头文件\Interfaces\Nuz\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Nuz\FileSystem\FileSystem.h">
+      <Filter>头文件\Interfaces\Nuz\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Nuz\FileSystem\LocalFile.h">
+      <Filter>头文件\Interfaces\Nuz\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Nuz\Input\GamePad.h">
+      <Filter>头文件\Interfaces\Nuz\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Nuz\Input\InputDeviceManager.h">
+      <Filter>头文件\Interfaces\Nuz\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Nuz\Input\Joystick.h">
+      <Filter>头文件\Interfaces\Nuz\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Nuz\Input\Keyboard.h">
+      <Filter>头文件\Interfaces\Nuz\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Nuz\SceneManager\Components\Fog2D.h">
+      <Filter>头文件\Interfaces\Nuz\SceneManager\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Nuz\SceneManager\Components\Fog3D.h">
+      <Filter>头文件\Interfaces\Nuz\SceneManager\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Nuz\SceneManager\Components\Light.h">
+      <Filter>头文件\Interfaces\Nuz\SceneManager\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Nuz\SceneManager\Components\Logic.h">
+      <Filter>头文件\Interfaces\Nuz\SceneManager\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Nuz\SceneManager\Components\Model3D.h">
+      <Filter>头文件\Interfaces\Nuz\SceneManager\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Nuz\SceneManager\Components\Particle2D.h">
+      <Filter>头文件\Interfaces\Nuz\SceneManager\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Nuz\SceneManager\Components\Particle3D.h">
+      <Filter>头文件\Interfaces\Nuz\SceneManager\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Nuz\SceneManager\Components\Shader.h">
+      <Filter>头文件\Interfaces\Nuz\SceneManager\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Nuz\SceneManager\Components\SkyBox.h">
+      <Filter>头文件\Interfaces\Nuz\SceneManager\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Nuz\SceneManager\Components\Sprite2D.h">
+      <Filter>头文件\Interfaces\Nuz\SceneManager\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Nuz\SceneManager\Camera2D.h">
+      <Filter>头文件\Interfaces\Nuz\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Nuz\SceneManager\Camera3D.h">
+      <Filter>头文件\Interfaces\Nuz\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Nuz\SceneManager\Component.h">
+      <Filter>头文件\Interfaces\Nuz\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Nuz\SceneManager\GameObject.h">
+      <Filter>头文件\Interfaces\Nuz\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Nuz\SceneManager\Scene.h">
+      <Filter>头文件\Interfaces\Nuz\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Nuz\SceneManager\SceneManager.h">
+      <Filter>头文件\Interfaces\Nuz\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Nuz\Sound\BgmPlayer.h">
+      <Filter>头文件\Interfaces\Nuz\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Nuz\Sound\SePlayer.h">
+      <Filter>头文件\Interfaces\Nuz\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\NuzUtils\ACNReader.h">
+      <Filter>头文件\Interfaces\NuzUtils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\NuzUtils\CSVReader.h">
+      <Filter>头文件\Interfaces\NuzUtils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\NuzUtils\LuaVM.h">
+      <Filter>头文件\Interfaces\NuzUtils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\NuzUtils\SnowRVReader.h">
+      <Filter>头文件\Interfaces\NuzUtils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\NuzUtils\UDPNet.h">
+      <Filter>头文件\Interfaces\NuzUtils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\NuzUtils\VirtualInputMapper.h">
+      <Filter>头文件\Interfaces\NuzUtils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Nuz.h">
+      <Filter>头文件\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\NuzMini.h">
+      <Filter>头文件\Interfaces</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\Nuz\FileSystem\FileSystem.cpp">
+      <Filter>源文件\Nuz\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Nuz\FileSystem\LocalFile.cpp">
+      <Filter>源文件\Nuz\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Nuz\Engine.cpp">
+      <Filter>源文件\Nuz</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Nuz\Logs.cpp">
+      <Filter>源文件\Nuz</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\NuzUtils\ACNReader.cpp">
+      <Filter>源文件\NuzUtils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\NuzUtils\CSVReader.cpp">
+      <Filter>源文件\NuzUtils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\NuzUtils\LuaVM.cpp">
+      <Filter>源文件\NuzUtils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\NuzUtils\SnowRVReader.cpp">
+      <Filter>源文件\NuzUtils</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
