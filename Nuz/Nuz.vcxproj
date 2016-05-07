@@ -69,7 +69,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)\lib\include\Lua;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\lib\include\SDL2;$(SolutionDir)\lib\include\Lua;$(IncludePath)</IncludePath>
     <ReferencePath>$(ReferencePath)</ReferencePath>
     <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
@@ -79,7 +79,7 @@
     <LibraryPath>lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)\lib\include\Lua;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\lib\include\SDL2;$(SolutionDir)\lib\include\Lua;$(IncludePath)</IncludePath>
     <ReferencePath>$(ReferencePath)</ReferencePath>
     <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
