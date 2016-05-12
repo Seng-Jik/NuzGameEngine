@@ -58,6 +58,9 @@
     <Filter Include="源文件\NuzUtils">
       <UniqueIdentifier>{bae1007f-f51b-477b-b0c8-cbfa27245e23}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\Nuz\SceneManager">
+      <UniqueIdentifier>{116f3509-0533-4d74-b9ef-fd7ffcfa1d37}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\NuzUtils\ACNReader.h">
@@ -180,6 +183,18 @@
     <ClInclude Include="..\include\NuzMini.h">
       <Filter>头文件\Interfaces</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\Nuz\Engine.h">
+      <Filter>头文件\Interfaces\Nuz</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Nuz\Logs.h">
+      <Filter>头文件\Interfaces\Nuz</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Nuz\Timer.h">
+      <Filter>头文件\Interfaces\Nuz</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Nuz\SceneManager\SceneManager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Nuz\FileSystem\FileSystem.cpp">
@@ -205,6 +220,12 @@
     </ClCompile>
     <ClCompile Include="..\src\NuzUtils\SnowRVReader.cpp">
       <Filter>源文件\NuzUtils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Nuz\SceneManager\SceneManager.cpp">
+      <Filter>源文件\Nuz\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\Nuz\Logs\main.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

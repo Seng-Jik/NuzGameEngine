@@ -70,7 +70,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>$(SolutionDir)\lib\include\SDL2;$(SolutionDir)\lib\include\Lua;$(IncludePath)</IncludePath>
-    <ReferencePath>$(ReferencePath)</ReferencePath>
+    <ReferencePath>$(SolutionDir)\lib;$(ReferencePath)</ReferencePath>
     <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -80,8 +80,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>$(SolutionDir)\lib\include\SDL2;$(SolutionDir)\lib\include\Lua;$(IncludePath)</IncludePath>
-    <ReferencePath>$(ReferencePath)</ReferencePath>
-    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <ReferencePath>$(SolutionDir)\lib\x86;$(ReferencePath)</ReferencePath>
+    <LibraryPath>$(SolutionDir)\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>..\lib\include\Lua;$(IncludePath)</IncludePath>
@@ -94,6 +94,9 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
     </ClCompile>
+    <Link>
+      <AdditionalDependencies>lua.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -137,6 +140,7 @@
     <ClInclude Include="..\include\NuzUtils\SnowRVReader.h" />
     <ClInclude Include="..\include\NuzUtils\UDPNet.h" />
     <ClInclude Include="..\include\NuzUtils\VirtualInputMapper.h" />
+    <ClInclude Include="..\include\Nuz\Engine.h" />
     <ClInclude Include="..\include\Nuz\FileSystem\FileSource.h" />
     <ClInclude Include="..\include\Nuz\FileSystem\FileSystem.h" />
     <ClInclude Include="..\include\Nuz\FileSystem\LocalFile.h" />
@@ -144,6 +148,7 @@
     <ClInclude Include="..\include\Nuz\Input\InputDeviceManager.h" />
     <ClInclude Include="..\include\Nuz\Input\Joystick.h" />
     <ClInclude Include="..\include\Nuz\Input\Keyboard.h" />
+    <ClInclude Include="..\include\Nuz\Logs.h" />
     <ClInclude Include="..\include\Nuz\SceneManager\Camera2D.h" />
     <ClInclude Include="..\include\Nuz\SceneManager\Camera3D.h" />
     <ClInclude Include="..\include\Nuz\SceneManager\Component.h" />
@@ -162,6 +167,7 @@
     <ClInclude Include="..\include\Nuz\SceneManager\SceneManager.h" />
     <ClInclude Include="..\include\Nuz\Sound\BgmPlayer.h" />
     <ClInclude Include="..\include\Nuz\Sound\SePlayer.h" />
+    <ClInclude Include="..\include\Nuz\Timer.h" />
     <ClInclude Include="..\src\NuzUtils\ACNReader.h" />
     <ClInclude Include="..\src\NuzUtils\CSVReader.h" />
     <ClInclude Include="..\src\NuzUtils\LuaVM.h" />
@@ -169,6 +175,7 @@
     <ClInclude Include="..\src\Nuz\Engine.h" />
     <ClInclude Include="..\src\Nuz\FileSystem\FileSystem.h" />
     <ClInclude Include="..\src\Nuz\FileSystem\LocalFile.h" />
+    <ClInclude Include="..\src\Nuz\SceneManager\SceneManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\NuzUtils\ACNReader.cpp" />
@@ -179,6 +186,8 @@
     <ClCompile Include="..\src\Nuz\FileSystem\FileSystem.cpp" />
     <ClCompile Include="..\src\Nuz\FileSystem\LocalFile.cpp" />
     <ClCompile Include="..\src\Nuz\Logs.cpp" />
+    <ClCompile Include="..\src\Nuz\SceneManager\SceneManager.cpp" />
+    <ClCompile Include="..\test\Nuz\Logs\main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
