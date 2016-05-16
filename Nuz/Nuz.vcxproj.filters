@@ -61,6 +61,9 @@
     <Filter Include="源文件\Nuz\SceneManager">
       <UniqueIdentifier>{116f3509-0533-4d74-b9ef-fd7ffcfa1d37}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\Realize\Nuz_\SceneManager">
+      <UniqueIdentifier>{92cc71eb-42ed-451f-a2e9-83898a2450c7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\NuzUtils\ACNReader.h">
@@ -193,7 +196,10 @@
       <Filter>头文件\Interfaces\Nuz</Filter>
     </ClInclude>
     <ClInclude Include="..\src\Nuz\SceneManager\SceneManager.h">
-      <Filter>头文件</Filter>
+      <Filter>头文件\Realize\Nuz_\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Nuz\SceneManager\Scene.h">
+      <Filter>头文件\Realize\Nuz_\SceneManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -224,8 +230,11 @@
     <ClCompile Include="..\src\Nuz\SceneManager\SceneManager.cpp">
       <Filter>源文件\Nuz\SceneManager</Filter>
     </ClCompile>
-    <ClCompile Include="..\test\Nuz\Logs\main.cpp">
+    <ClCompile Include="..\test\Nuz\Engine\main.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Nuz\SceneManager\Scene.cpp">
+      <Filter>源文件\Nuz\SceneManager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
