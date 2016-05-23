@@ -2,14 +2,14 @@
 #include "Scene.h"
 #include "../Engine.h"
 #include <SDL.h>
+#include <SDL_opengl.h>
 
-#define FPS 60
 using namespace Nuz_;
 
 /* 精准FPS控制，返回值为FPS值 */
-static float waitFps() {
+static float waitFps(int FPS) {
 	static int fps_count = 0, count0t;
-	static int f[FPS];
+	static int f[60];
 	static float ave;
 
 	{
@@ -59,6 +59,7 @@ void Nuz_::SceneManager::Start(std::shared_ptr<Nuz::IScene> p)
 {
 	m_mainLoop = true;
 	Nuz_::Scene* now = (Nuz_::Scene*)p.get();
+	Nuz_::Engine* engine = (Nuz_::Engine*)&Nuz::IEngine::GetGameDevice();
 	auto window = ((Nuz_::Engine*)&Nuz::IEngine::GetGameDevice()) -> GetWindow();
 	SDL_Event e;
 	while (m_mainLoop) {
@@ -66,14 +67,29 @@ void Nuz_::SceneManager::Start(std::shared_ptr<Nuz::IScene> p)
 			//TODO:这里是消息的源头，在这里分发输入和消息
 		};
 
+
+		//初始化GL状态机
+		glClearColor(0, 0, 0, 1);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 		//场景生命周期，在这里处理场景的生命周期
+		now->OnUpdate();
+		now->OnDrawScreenReady();
+		now->OnDraw3D();
 		now->OnDraw2D();
+		now->OnDrawScreenFinished();
 
 		SDL_GL_SwapWindow(window);
-		float fps = waitFps();
-		
-		std::string title = ((Nuz_::Engine*)&Nuz::IEngine::GetGameDevice())->GetWindowTitle() + "  FPS:" + std::to_string(fps);
-		SDL_SetWindowTitle(window, title.c_str());
-		title.clear();
+		float fps = waitFps(60/engine->GetSkipFrame());
+
+		if (engine->GetFPSShowEnable()) {
+			std::string title = 
+				((Nuz_::Engine*)&Nuz::IEngine::GetGameDevice())->GetWindowTitle() 
+				+ "  FPS:" + 
+				std::to_string(fps);
+			SDL_SetWindowTitle(window, title.c_str());
+			title.clear();
+		}
 	}
 }
+

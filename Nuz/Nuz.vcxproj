@@ -175,6 +175,8 @@
     <ClInclude Include="..\src\Nuz\Engine.h" />
     <ClInclude Include="..\src\Nuz\FileSystem\FileSystem.h" />
     <ClInclude Include="..\src\Nuz\FileSystem\LocalFile.h" />
+    <ClInclude Include="..\src\Nuz\SceneManager\GameObject.h" />
+    <ClInclude Include="..\src\Nuz\SceneManager\GameObjectFloder.h" />
     <ClInclude Include="..\src\Nuz\SceneManager\Scene.h" />
     <ClInclude Include="..\src\Nuz\SceneManager\SceneManager.h" />
   </ItemGroup>
@@ -187,6 +189,9 @@
     <ClCompile Include="..\src\Nuz\FileSystem\FileSystem.cpp" />
     <ClCompile Include="..\src\Nuz\FileSystem\LocalFile.cpp" />
     <ClCompile Include="..\src\Nuz\Logs.cpp" />
+    <ClCompile Include="..\src\Nuz\SceneManager\Component.cpp" />
+    <ClCompile Include="..\src\Nuz\SceneManager\GameObject.cpp" />
+    <ClCompile Include="..\src\Nuz\SceneManager\GameObjectFloder.cpp" />
     <ClCompile Include="..\src\Nuz\SceneManager\Scene.cpp" />
     <ClCompile Include="..\src\Nuz\SceneManager\SceneManager.cpp" />
     <ClCompile Include="..\test\Nuz\Engine\main.cpp" />

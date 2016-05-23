@@ -201,6 +201,12 @@
     <ClInclude Include="..\src\Nuz\SceneManager\Scene.h">
       <Filter>头文件\Realize\Nuz_\SceneManager</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Nuz\SceneManager\GameObject.h">
+      <Filter>头文件\Realize\Nuz_\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Nuz\SceneManager\GameObjectFloder.h">
+      <Filter>头文件\Realize\Nuz_\SceneManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Nuz\FileSystem\FileSystem.cpp">
@@ -234,6 +240,15 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="..\src\Nuz\SceneManager\Scene.cpp">
+      <Filter>源文件\Nuz\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Nuz\SceneManager\GameObjectFloder.cpp">
+      <Filter>源文件\Nuz\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Nuz\SceneManager\GameObject.cpp">
+      <Filter>源文件\Nuz\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Nuz\SceneManager\Component.cpp">
       <Filter>源文件\Nuz\SceneManager</Filter>
     </ClCompile>
   </ItemGroup>
