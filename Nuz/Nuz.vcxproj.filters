@@ -64,6 +64,18 @@
     <Filter Include="头文件\Realize\Nuz_\SceneManager">
       <UniqueIdentifier>{92cc71eb-42ed-451f-a2e9-83898a2450c7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\Nuz\Renderer">
+      <UniqueIdentifier>{9dc423a4-dded-4a39-bf12-67ccbd18c079}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Nuz\Renderer\OpenGL">
+      <UniqueIdentifier>{58eb9cdd-e953-4fa7-8fba-efafeadd47dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Realize\Nuz_\Renderer">
+      <UniqueIdentifier>{c4704172-2d83-406c-bbac-3d9118249656}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Realize\Nuz_\Renderer\OpenGL">
+      <UniqueIdentifier>{62bd95ba-9b0f-4fb9-abf1-8a3b89d617df}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\NuzUtils\ACNReader.h">
@@ -207,6 +219,21 @@
     <ClInclude Include="..\src\Nuz\SceneManager\GameObjectFloder.h">
       <Filter>头文件\Realize\Nuz_\SceneManager</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Nuz\Renderer\OpenGL\FrameBuffer.h">
+      <Filter>头文件\Realize\Nuz_\Renderer\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Nuz\Renderer\OpenGL\glew.h">
+      <Filter>头文件\Realize\Nuz_\Renderer\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Nuz\Renderer\OpenGL\glxew.h">
+      <Filter>头文件\Realize\Nuz_\Renderer\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Nuz\Renderer\OpenGL\wglew.h">
+      <Filter>头文件\Realize\Nuz_\Renderer\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Nuz\Renderer\OpenGL\Texture.h">
+      <Filter>头文件\Realize\Nuz_\Renderer\OpenGL</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Nuz\FileSystem\FileSystem.cpp">
@@ -250,6 +277,15 @@
     </ClCompile>
     <ClCompile Include="..\src\Nuz\SceneManager\Component.cpp">
       <Filter>源文件\Nuz\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Nuz\Renderer\OpenGL\FrameBuffer.cpp">
+      <Filter>源文件\Nuz\Renderer\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Nuz\Renderer\OpenGL\Texture.cpp">
+      <Filter>源文件\Nuz\Renderer\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Nuz\Renderer\OpenGL\glew.cpp">
+      <Filter>源文件\Nuz\Renderer\OpenGL</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,7 +1,7 @@
 #include "../../../include/Nuz.h"
 #include <iostream>
 #include <memory>
-#include <SDL_opengl.h>
+#include "../../../src/Nuz/Renderer/OpenGL/glew.h"
 using namespace std;
 using namespace Nuz;
 
@@ -28,10 +28,11 @@ public:
 
 int main() {
 	auto& e = IEngine::GetGameDevice();
+	AddStdLogWhiteFliter("Nuz::Renderer");
 	e.SetWindowTitle("Nuz zuN");
 	e.SetFPSShowEnable(true);
 	e.InitWindow(800, 600, false);
-	e.SetSkipFrame(1);
+	e.SetSkipFrame(0);
 	auto sA = Nuz::IScene::CreateScene();
 	auto sB = Nuz::IScene::CreateScene();
 
