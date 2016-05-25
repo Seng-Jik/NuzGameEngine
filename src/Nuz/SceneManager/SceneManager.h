@@ -3,7 +3,7 @@
 #include <memory>
 
 namespace Nuz_ {
-	class SceneManager : public Nuz::ISceneManager
+	class SceneManager final: public Nuz::ISceneManager
 	{
 	private:
 		bool m_mainLoop;

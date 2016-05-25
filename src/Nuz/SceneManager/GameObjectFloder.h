@@ -7,7 +7,7 @@
 #include "../../../include/Nuz/SceneManager/GameObject.h"
 
 namespace Nuz_ {
-	class GameObjectFloder {
+	class GameObjectFloder final {
 	public:
 		enum ParentType { SCENE, GAMEOBJECT };
 	private:

@@ -7,7 +7,7 @@
 #include "../../../include/Nuz/SceneManager/Scene.h"
 #include "GameObjectFloder.h"
 namespace Nuz_ {
-	class Scene :public Nuz::IScene {
+	class Scene final :public Nuz::IScene {
 	private:
 		GameObjectFloder m_gof;
 		std::map<std::string, std::shared_ptr<Nuz::IScene> > m_name2scene;

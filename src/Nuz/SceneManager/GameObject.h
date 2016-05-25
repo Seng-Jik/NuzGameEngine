@@ -5,7 +5,7 @@
 #include "GameObjectFloder.h"
 
 namespace Nuz_ {
-	class GameObject:public Nuz::IGameObject {
+	class GameObject final:public Nuz::IGameObject {
 	private:
 		GameObjectFloder m_gof;
 		GameObjectFloder* m_parent = nullptr;

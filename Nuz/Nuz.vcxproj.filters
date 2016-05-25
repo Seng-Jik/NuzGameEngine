@@ -96,9 +96,6 @@
     <ClInclude Include="..\src\Nuz\FileSystem\LocalFile.h">
       <Filter>头文件\Realize\Nuz_\FileSystem</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Nuz\Engine.h">
-      <Filter>头文件\Realize\Nuz_</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\Nuz\FileSystem\FileSource.h">
       <Filter>头文件\Interfaces\Nuz\FileSystem</Filter>
     </ClInclude>
@@ -234,6 +231,18 @@
     <ClInclude Include="..\src\Nuz\Renderer\OpenGL\Texture.h">
       <Filter>头文件\Realize\Nuz_\Renderer\OpenGL</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Nuz\Renderer\OpenGL\CtxReader.h">
+      <Filter>头文件\Realize\Nuz_\Renderer\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Nuz\Renderer\OpenGL\CallList.h">
+      <Filter>头文件\Realize\Nuz_\Renderer\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Nuz\Renderer\ImageCacheManager.h">
+      <Filter>头文件\Realize\Nuz_\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Nuz\Engine.h">
+      <Filter>头文件\Realize</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Nuz\FileSystem\FileSystem.cpp">
@@ -286,6 +295,15 @@
     </ClCompile>
     <ClCompile Include="..\src\Nuz\Renderer\OpenGL\glew.cpp">
       <Filter>源文件\Nuz\Renderer\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Nuz\Renderer\OpenGL\CtxReader.cpp">
+      <Filter>源文件\Nuz\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Nuz\Renderer\OpenGL\CallList.cpp">
+      <Filter>源文件\Nuz\Renderer\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Nuz\Renderer\ImageCacheManager.cpp">
+      <Filter>源文件\Nuz\Renderer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

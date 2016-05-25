@@ -175,6 +175,9 @@
     <ClInclude Include="..\src\Nuz\Engine.h" />
     <ClInclude Include="..\src\Nuz\FileSystem\FileSystem.h" />
     <ClInclude Include="..\src\Nuz\FileSystem\LocalFile.h" />
+    <ClInclude Include="..\src\Nuz\Renderer\ImageCacheManager.h" />
+    <ClInclude Include="..\src\Nuz\Renderer\OpenGL\CallList.h" />
+    <ClInclude Include="..\src\Nuz\Renderer\OpenGL\CtxReader.h" />
     <ClInclude Include="..\src\Nuz\Renderer\OpenGL\FrameBuffer.h" />
     <ClInclude Include="..\src\Nuz\Renderer\OpenGL\glew.h" />
     <ClInclude Include="..\src\Nuz\Renderer\OpenGL\glxew.h" />
@@ -202,6 +205,9 @@
     <ClCompile Include="..\src\Nuz\FileSystem\FileSystem.cpp" />
     <ClCompile Include="..\src\Nuz\FileSystem\LocalFile.cpp" />
     <ClCompile Include="..\src\Nuz\Logs.cpp" />
+    <ClCompile Include="..\src\Nuz\Renderer\ImageCacheManager.cpp" />
+    <ClCompile Include="..\src\Nuz\Renderer\OpenGL\CallList.cpp" />
+    <ClCompile Include="..\src\Nuz\Renderer\OpenGL\CtxReader.cpp" />
     <ClCompile Include="..\src\Nuz\Renderer\OpenGL\FrameBuffer.cpp" />
     <ClCompile Include="..\src\Nuz\Renderer\OpenGL\glew.cpp" />
     <ClCompile Include="..\src\Nuz\Renderer\OpenGL\Texture.cpp" />
