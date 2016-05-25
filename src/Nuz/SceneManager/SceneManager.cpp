@@ -64,8 +64,34 @@ void Nuz_::SceneManager::Start(std::shared_ptr<Nuz::IScene> p)
 	SDL_Event e;
 	while (m_mainLoop) {
 		while (SDL_PollEvent(&e)) {
-			//TODO:这里是消息的源头，在这里分发输入和消息
-		};
+			switch (e.type) {
+				//作为广播消息派发
+			case SDL_QUIT:
+				sendMessage(Nuz::IEngine::Message::Quit);
+				break;
+
+			case SDL_WINDOWEVENT: {
+				switch (e.window.event) {
+				case SDL_WINDOWEVENT_CLOSE:
+					sendMessage(Nuz::IEngine::Message::CloseWindow);
+					break;
+				case SDL_WINDOWEVENT_MAXIMIZED:
+					sendMessage(Nuz::IEngine::Message::WindowMaximized);
+					break;
+				case SDL_WINDOWEVENT_MINIMIZED:
+					sendMessage(Nuz::IEngine::Message::WindowMinimized);
+					break;
+				case SDL_WINDOWEVENT_RESTORED:
+					sendMessage(Nuz::IEngine::Message::WindowRestored);
+					break;
+				};
+				break;
+			}
+			default:
+				//作为输入派发
+				break;
+			};
+		}
 
 
 		//初始化GL状态机

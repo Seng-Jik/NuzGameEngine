@@ -55,10 +55,17 @@ int main() {
 	auto& e = IEngine::GetGameDevice();
 	e.GetFileSystem().Mount(e.GetLocalFile());
 	//AddStdLogWhiteFliter("Nuz::Renderer");
+	AddStdLogWhiteFliter("NuzTest");
 	e.SetWindowTitle("Nuz zuN");
 	e.SetFPSShowEnable(true);
 
 	e.InitWindow(800, 600, false);
+
+	e.BindMessageProcessor(Nuz::IEngine::Message::Quit, []() {
+		IEngine::GetGameDevice().GetSceneManager().Exit();
+	});
+	//e.UnbindMessageProcessor(Nuz::IEngine::Message::Quit);
+
 	e.SetSkipFrame(0); 
 	auto sA = Nuz::IScene::CreateScene();
 	{
