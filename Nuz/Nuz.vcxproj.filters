@@ -243,6 +243,9 @@
     <ClInclude Include="..\src\Nuz\Engine.h">
       <Filter>头文件\Realize</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Nuz\SceneManager\Camera2D.h">
+      <Filter>头文件\Realize\Nuz_\SceneManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Nuz\FileSystem\FileSystem.cpp">
@@ -304,6 +307,9 @@
     </ClCompile>
     <ClCompile Include="..\src\Nuz\Renderer\ImageCacheManager.cpp">
       <Filter>源文件\Nuz\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Nuz\SceneManager\Camera2D.cpp">
+      <Filter>源文件\Nuz\SceneManager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

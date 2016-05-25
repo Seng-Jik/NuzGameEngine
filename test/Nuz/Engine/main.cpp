@@ -8,6 +8,8 @@
 using namespace std;
 using namespace Nuz;
 
+shared_ptr<ICamera2D> pCamera2D;
+
 class Prim :public Nuz::IComponent {
 private:
 	shared_ptr<Nuz_::Renderer::Texture> m_texture;
@@ -35,6 +37,9 @@ public:
 		m_texture->Bind();
 		m_cl();
 		m_texture->Unbind();
+	}
+	void OnUpdate() override {
+		pCamera2D->Move(0.0f,-0.02f);
 	}
 	void Unmount() { UnmountSelf(); }
 };
@@ -76,8 +81,12 @@ int main() {
 		auto pPrim = shared_ptr<IComponent>(new Prim);
 		auto pKiller = shared_ptr<IComponent>(new Killer);
 
+		pCamera2D = Nuz::ICamera2D::CreateCamera2D();
+		pCamera2D->SetCamera(-1, 1, -1, 1, 0, 100);
+		sA->SetCamera2D(pCamera2D);
+
 		gB->MountComponent(pPrim, "Hello");
-		gB->MountComponent(pKiller);
+		//gB->MountComponent(pKiller);
 		gA->MountGameObject(gB);
 
 		sB->MountGameObject(gA);

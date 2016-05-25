@@ -1,6 +1,7 @@
 #include "Scene.h"
 #include <stdexcept>
-#include <SDL_opengl.h>
+#include "../Renderer/OpenGL/glew.h"
+#include "Camera2D.h"
 using namespace std;
 
 std::shared_ptr<Nuz::IScene> Nuz::IScene::CreateScene() {
@@ -91,9 +92,16 @@ void Nuz_::Scene::OnDraw3D() {
 }
 
 void Nuz_::Scene::OnDraw2D() {
+	if (m_camera2D != nullptr) {
+		glMatrixPushEXT(GL_PROJECTION);
+		((Camera2D*)m_camera2D.get())->UseMe();
+	}
 	m_gof.OnDraw2D();
 	for (auto& p : m_allscene)
 		((Scene*)p.get())->OnDraw2D();
+	if (m_camera2D != nullptr) {
+		glMatrixPopEXT(GL_PROJECTION);
+	}
 }
 
 void Nuz_::Scene::OnDrawScreenReady() {

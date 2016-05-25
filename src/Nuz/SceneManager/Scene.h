@@ -17,6 +17,8 @@ namespace Nuz_ {
 		std::queue<Nuz::IScene*> m_unmountSceneTask;
 		void unmountScene_Really(Nuz::IScene*);
 
+		std::shared_ptr<const Nuz::ICamera2D> m_camera2D;
+
 	public:
 		void UnmountSelf() override;
 
@@ -28,14 +30,16 @@ namespace Nuz_ {
 		std::shared_ptr<Nuz::IGameObject> GetMountedGameObject(const std::string& mountName) const override;
 
 		void MountScene(const std::shared_ptr<IScene>&,const std::string& mountName = "") override;
-		void UnmountScene(const std::string& name) override;
+		void UnmountScene(const std::string& mountName) override;
 		inline void UnmountScene(Nuz_::Scene* const p){
 			m_unmountSceneTask.push(p);
 		}
 
 		inline GameObjectFloder& GetGameObjectFloder() { return m_gof; }
 
-		void SetCamera2D(const std::shared_ptr<const Nuz::ICamera2D>& camera) override {};
+		inline void SetCamera2D(const std::shared_ptr<const Nuz::ICamera2D>& camera) override {
+			m_camera2D = camera;
+		}
 		void SetCamera3D(const std::shared_ptr<const Nuz::ICamera3D>& camera) override {};
 
 
