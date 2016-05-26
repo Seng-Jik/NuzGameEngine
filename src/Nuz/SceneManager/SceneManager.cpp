@@ -5,6 +5,7 @@
 #include "DrawTask.h"
 #include "GameObjectFloder.h"
 #include "Camera2D.h"
+//#include "Camera3D.h"
 #include <SDL.h>
 #include "../Renderer/OpenGL/glew.h"
 
@@ -63,13 +64,16 @@ SceneManager::~SceneManager()
 void Nuz_::SceneManager::Start(std::shared_ptr<Nuz::IScene> p)
 {
 	m_mainLoop = true;
-	static multiset<DrawTask> drawTask;
+	static multiset<DrawTask2D> drawTask2D;
+	static multiset<DrawTask3D> drawTask3D;
 	Nuz_::Scene* now = (Nuz_::Scene*)p.get();
 	Nuz_::Engine* engine = (Nuz_::Engine*)&Nuz::IEngine::GetGameDevice();
 	Nuz_::InputDeviceManager* input = (Nuz_::InputDeviceManager*)&(engine->GetInputDeviceManager());
 	auto window = ((Nuz_::Engine*)&Nuz::IEngine::GetGameDevice()) -> GetWindow();
 	SDL_Event e;
 	input->FrameUpdate();
+	Camera2D* camera2DNow = nullptr;
+	//Camera3D* camera3DNow = nullptr;
 	while (m_mainLoop) {
 		while (SDL_PollEvent(&e)) {
 			switch (e.type) {
@@ -108,23 +112,37 @@ void Nuz_::SceneManager::Start(std::shared_ptr<Nuz::IScene> p)
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		//准备收集要绘制的物体
-		drawTask.clear();
+		drawTask2D.clear();
+		drawTask3D.clear();
 		
 		
 
 		//场景生命周期，在这里处理场景的生命周期
-		now->OnUpdate(drawTask,nullptr,nullptr);
+		now->OnUpdate(drawTask2D,drawTask3D,nullptr,nullptr);
 
 		//绘制在计划中的物体
 		glMatrixPushEXT(GL_PROJECTION);
-		for (auto& p : drawTask) {
-			//p.camera3D->UseMe();
-			//now->OnDraw3D();
-			p.camera2D->UseMe();
+		/*glEnable(GL_DEPTH_TEST);
+		for (auto& p : drawTask3D) {
+			p.camera->UseMe();
+			p.gof->OnDraw3D();
+		}
+		glDisable(GL_DEPTH_TEST);*/
+
+		for (auto& p : drawTask2D) {
+			if (camera2DNow != p.camera) {
+				camera2DNow = p.camera;
+				if (camera2DNow != nullptr)
+					camera2DNow->UseMe();
+				else
+					glMatrixLoadIdentityEXT(GL_PROJECTION);
+			}
 			p.gof->OnDraw2D();
 		}
 
 		glMatrixPopEXT(GL_PROJECTION);
+		camera2DNow = nullptr;
+		//camera3DNow = nullptr;
 
 		SDL_GL_SwapWindow(window);
 		float fps = waitFps(60/engine->GetSkipFrame());

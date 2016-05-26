@@ -7,7 +7,8 @@
 #include "../../../include/Nuz/SceneManager/GameObject.h"
 
 namespace Nuz_ {
-	struct DrawTask;
+	struct DrawTask2D;
+	struct DrawTask3D;
 	class Camera2D;
 	class Camera3D;
 	class GameObjectFloder final {
@@ -76,7 +77,7 @@ namespace Nuz_ {
 		inline void SetDrawLevel(int i) { m_drawLevel = i; }
 		inline int GetDrawLevel() { return m_drawLevel; }
 
-		void OnUpdate(std::multiset<DrawTask>& drawTask, Camera2D*, Camera3D*);
+		void OnUpdate(std::multiset<DrawTask2D>& drawTask2D, std::multiset<DrawTask3D>& drawTask3D, Camera2D* c2d, Camera3D* c3d);
 		void OnDraw3D();
 		void OnDraw2D();
 		//void OnDrawScreenReady();

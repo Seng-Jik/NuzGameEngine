@@ -38,20 +38,20 @@ public:
 		m_cl();
 		m_texture->Unbind();
 	}
-	bool OnUpdate() override {
+	void OnUpdate(bool& draw2D,bool& draw3D) override {
 		if (IEngine::GetGameDevice().GetInputDeviceManager().GetKeyboard().KeyPressed(KeyCode::Up)) {
-			pCamera2D->Move(0, 0.01);
+			pCamera2D->Move(0, 0.01f);
 		}
 		if (IEngine::GetGameDevice().GetInputDeviceManager().GetKeyboard().KeyPressed(KeyCode::Down)) {
-			pCamera2D->Move(0, -0.01);
+			pCamera2D->Move(0, -0.01f);
 		}
 		if (IEngine::GetGameDevice().GetInputDeviceManager().GetKeyboard().KeyPressed(KeyCode::Left)) {
-			pCamera2D->Move(-0.01, 0);
+			pCamera2D->Move(-0.01f, 0);
 		}
 		if (IEngine::GetGameDevice().GetInputDeviceManager().GetKeyboard().KeyPressed(KeyCode::Right)) {
-			pCamera2D->Move(0.01, 0);
+			pCamera2D->Move(0.01f, 0);
 		}
-		return true;
+		draw2D = true;
 	}
 	void Unmount() { UnmountSelf(); }
 };

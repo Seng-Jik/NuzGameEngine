@@ -78,11 +78,14 @@ std::shared_ptr<Nuz::IGameObject> Nuz_::GameObjectFloder::GetMountedGameObject(c
 	else return m_mountName2go.at(mountName);
 }
 
-void Nuz_::GameObjectFloder::OnUpdate(std::multiset<DrawTask>& drawTask, Camera2D* c2d, Camera3D* c3d)
+void Nuz_::GameObjectFloder::OnUpdate(std::multiset<DrawTask2D>& drawTask2D, std::multiset<DrawTask3D>& drawTask3D, Camera2D* c2d, Camera3D* c3d)
 {
-	bool needDraw = false;
+	bool needDraw2D = false,needDraw3D = false;
 	for (auto& p : m_allcomponent) {
-		needDraw = needDraw || p->OnUpdate();
+		bool draw2d = false, draw3d = false;
+		p->OnUpdate(draw2d, draw3d);
+		needDraw2D = draw2d || needDraw2D;
+		needDraw3D = draw3d || needDraw3D;
 	}
 
 	while (!m_unmountCompoTask.empty()) {
@@ -94,16 +97,22 @@ void Nuz_::GameObjectFloder::OnUpdate(std::multiset<DrawTask>& drawTask, Camera2
 		m_unmountCompoTask.pop();
 	}
 
-	static DrawTask dt;
-	if (needDraw) {
-		dt.camera2D = c2d;
-		dt.camera3D = c3d;
-		dt.gof = this;
-		drawTask.insert(dt);
+	static DrawTask2D dt2d;
+	if (needDraw2D) {
+		dt2d.camera = c2d;
+		dt2d.gof = this;
+		drawTask2D.insert(dt2d);
+	}
+
+	static DrawTask3D dt3d;
+	if (needDraw3D) {
+		dt3d.camera = c3d;
+		dt3d.gof = this;
+		drawTask3D.insert(dt3d);
 	}
 
 	for (auto& p : m_allgo)
-		(((Nuz_::GameObject*)p.get())->GetGameObjectFloader()).OnUpdate(drawTask, c2d, c3d);
+		(((Nuz_::GameObject*)p.get())->GetGameObjectFloader()).OnUpdate(drawTask2D,drawTask3D, c2d, c3d);
 }
 
 void Nuz_::GameObjectFloder::OnDraw3D()

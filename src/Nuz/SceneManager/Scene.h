@@ -44,7 +44,7 @@ namespace Nuz_ {
 		void SetCamera3D(const std::shared_ptr<const Nuz::ICamera3D>& camera) override {};
 
 
-		void OnUpdate(std::multiset<DrawTask>& drawTask,Camera2D*,Camera3D*);
+		void OnUpdate(std::multiset<DrawTask2D>& drawTask2D, std::multiset<DrawTask3D>& drawTask3D, Camera2D* c2d, Camera3D* c3d);
 		//void OnDraw3D();
 		//void OnDraw2D();
 		void OnFadeSwitchOut(int timeLimited);

@@ -3,11 +3,17 @@
 namespace Nuz_ {
 	class Camera2D;
 	class Camera3D;
-	struct DrawTask{
+	struct DrawTask2D {
 		GameObjectFloder* gof;
-		Camera2D* camera2D;
-		Camera3D* camera3D;
-		inline bool operator < (const DrawTask& d) const {
+		Camera2D* camera;
+		inline bool operator < (const DrawTask2D& d) const {
+			return gof->GetDrawLevel() < d.gof->GetDrawLevel();
+		}
+	};
+	struct DrawTask3D {
+		GameObjectFloder* gof;
+		Camera3D* camera;
+		inline bool operator < (const DrawTask3D& d) const {
 			return gof->GetDrawLevel() < d.gof->GetDrawLevel();
 		}
 	};
