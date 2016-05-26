@@ -9,10 +9,10 @@ Camera2D::Camera2D()
 	LoadIdentity();
 }
 
-void Nuz_::Camera2D::SetCamera(float left, float right, float top, float bottom, float near, float far)
+void Nuz_::Camera2D::SetCamera(float left, float right, float top, float bottom)
 {
 	glMatrixPushEXT(GL_PROJECTION);
-	glMatrixOrthoEXT(GL_PROJECTION, left, right, top, bottom, near, far);
+	glMatrixOrthoEXT(GL_PROJECTION, left, right, top, bottom, 0, 10000);
 	glGetFloatv(GL_PROJECTION_MATRIX, m_matrix);
 	glMatrixPopEXT(GL_PROJECTION);
 	m_w = fabs(left - right);

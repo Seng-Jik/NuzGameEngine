@@ -95,7 +95,7 @@ int main() {
 		auto pKiller = shared_ptr<IComponent>(new Killer);
 
 		pCamera2D = Nuz::ICamera2D::CreateCamera2D();
-		pCamera2D->SetCamera(-1, 1, -1, 1, 0, 100);
+		pCamera2D->SetCamera(-1, 1, -1, 1);
 		sA->SetCamera2D(pCamera2D);
 
 		gB->MountComponent(pPrim, "Hello");

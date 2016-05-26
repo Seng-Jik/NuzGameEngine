@@ -10,7 +10,7 @@ namespace Nuz_ {
 		float m_w, m_h;
 	public:
 		Camera2D();
-		void SetCamera(float left, float right, float top, float bottom, float near, float far) override;
+		void SetCamera(float left, float right, float top, float bottom) override;
 		void Zoom(float w, float h) override;
 		void Rotate(float angle) override;
 		void Move(float x, float y) override;
