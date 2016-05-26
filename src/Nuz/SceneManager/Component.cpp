@@ -26,7 +26,7 @@ std::shared_ptr<IComponent> Nuz::IComponent::GetOtherComponent(const std::string
 * @param ¹ÒÔØÃû
 */
 
-std::shared_ptr<IGameObject> Nuz::IComponent::GetGameObject(const std::string & mountName) {
+std::shared_ptr<IGameObject> Nuz::IComponent::GetGameObject(const std::string & mountName) const {
 	return m_parent->GetMountedGameObject(mountName);
 }
 

@@ -1,5 +1,6 @@
 #include "GameObjectFloder.h"
 #include "GameObject.h"
+#include "DrawTask.h"
 
 void Nuz_::GameObjectFloder::MountComponent(const std::shared_ptr<Nuz::IComponent>& p, const std::string& mountName)
 {
@@ -77,8 +78,13 @@ std::shared_ptr<Nuz::IGameObject> Nuz_::GameObjectFloder::GetMountedGameObject(c
 	else return m_mountName2go.at(mountName);
 }
 
-void Nuz_::GameObjectFloder::OnUpdate()
+void Nuz_::GameObjectFloder::OnUpdate(std::multiset<DrawTask>& drawTask, Camera2D* c2d, Camera3D* c3d)
 {
+	bool needDraw = false;
+	for (auto& p : m_allcomponent) {
+		needDraw = needDraw || p->OnUpdate();
+	}
+
 	while (!m_unmountCompoTask.empty()) {
 		unmountComponent_Really(m_unmountCompoTask.front());
 		m_unmountCompoTask.pop();
@@ -87,10 +93,17 @@ void Nuz_::GameObjectFloder::OnUpdate()
 		unmountGameObject_Really(m_unmountGOTask.front());
 		m_unmountCompoTask.pop();
 	}
-	for (auto& p : m_allcomponent)
-		p->OnUpdate();
-	for (auto& p : m_allgo) 
-		(((Nuz_::GameObject*)p.get())->GetGameObjectFloader()).OnUpdate();
+
+	static DrawTask dt;
+	if (needDraw) {
+		dt.camera2D = c2d;
+		dt.camera3D = c3d;
+		dt.gof = this;
+		drawTask.insert(dt);
+	}
+
+	for (auto& p : m_allgo)
+		(((Nuz_::GameObject*)p.get())->GetGameObjectFloader()).OnUpdate(drawTask, c2d, c3d);
 }
 
 void Nuz_::GameObjectFloder::OnDraw3D()
@@ -123,7 +136,7 @@ void Nuz_::GameObjectFloder::OnDraw2D()
 		(((Nuz_::GameObject*)p.get())->GetGameObjectFloader()).OnDraw2D();
 	}
 }
-
+/*
 void Nuz_::GameObjectFloder::OnDrawScreenReady()
 {
 	for (auto& p : m_allcomponent)
@@ -131,7 +144,7 @@ void Nuz_::GameObjectFloder::OnDrawScreenReady()
 	for (auto& p : m_allgo) {
 		(((Nuz_::GameObject*)p.get())->GetGameObjectFloader()).OnDrawScreenReady();
 	}
-}
+}*/
 
 void Nuz_::GameObjectFloder::OnFadeSwitchOutUpdate(float finished)
 {
@@ -173,7 +186,7 @@ void Nuz_::GameObjectFloder::OnFadeSwitchOut(int timeLimited)
 	}
 }
 
-
+/*
 void Nuz_::GameObjectFloder::OnDrawScreenFinished()
 {
 	for (auto& p : m_allcomponent)
@@ -181,4 +194,4 @@ void Nuz_::GameObjectFloder::OnDrawScreenFinished()
 	for (auto& p : m_allgo) {
 		(((Nuz_::GameObject*)p.get())->GetGameObjectFloader()).OnDrawScreenFinished();
 	}
-}
+}*/

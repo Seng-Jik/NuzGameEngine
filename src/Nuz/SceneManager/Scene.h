@@ -2,6 +2,7 @@
 #include <string>
 #include <map>
 #include <set>
+#include "DrawTask.h"
 #include <queue>
 #include <memory>
 #include "../../../include/Nuz/SceneManager/Scene.h"
@@ -43,11 +44,9 @@ namespace Nuz_ {
 		void SetCamera3D(const std::shared_ptr<const Nuz::ICamera3D>& camera) override {};
 
 
-		void OnUpdate();
-		void OnDraw3D();
-		void OnDraw2D();
-		void OnDrawScreenReady();
-		void OnDrawScreenFinished();
+		void OnUpdate(std::multiset<DrawTask>& drawTask,Camera2D*,Camera3D*);
+		//void OnDraw3D();
+		//void OnDraw2D();
 		void OnFadeSwitchOut(int timeLimited);
 		void OnFadeSwitchOutUpdate(float finished);
 		void OnFadeSwitchIn(int timeLimited);

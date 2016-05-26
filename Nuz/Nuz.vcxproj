@@ -186,6 +186,7 @@
     <ClInclude Include="..\src\Nuz\Renderer\OpenGL\Texture.h" />
     <ClInclude Include="..\src\Nuz\Renderer\OpenGL\wglew.h" />
     <ClInclude Include="..\src\Nuz\SceneManager\Camera2D.h" />
+    <ClInclude Include="..\src\Nuz\SceneManager\DrawTask.h" />
     <ClInclude Include="..\src\Nuz\SceneManager\GameObject.h" />
     <ClInclude Include="..\src\Nuz\SceneManager\GameObjectFloder.h" />
     <ClInclude Include="..\src\Nuz\SceneManager\Scene.h" />

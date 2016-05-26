@@ -33,6 +33,11 @@ std::shared_ptr<IGameObject> Nuz_::GameObject::GetMountedGameObject(const std::s
 
 GameObjectFloder & Nuz_::GameObject::GetGameObjectFloader() { return m_gof; }
 
+void Nuz_::GameObject::SetDrawLevel(int l)
+{
+	m_gof.SetDrawLevel(l);
+}
+
 std::shared_ptr<IGameObject> Nuz::IGameObject::CreateGameObject()
 {
 	auto p= std::shared_ptr<GameObject>(new GameObject);

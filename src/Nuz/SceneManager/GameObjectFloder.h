@@ -7,10 +7,15 @@
 #include "../../../include/Nuz/SceneManager/GameObject.h"
 
 namespace Nuz_ {
+	struct DrawTask;
+	class Camera2D;
+	class Camera3D;
 	class GameObjectFloder final {
 	public:
 		enum ParentType { SCENE, GAMEOBJECT };
 	private:
+		int m_drawLevel = 0;
+
 		std::map<std::string, std::shared_ptr<Nuz::IComponent>> m_mountName2component;
 		std::set<std::shared_ptr<Nuz::IComponent>> m_allcomponent;
 
@@ -68,11 +73,14 @@ namespace Nuz_ {
 		}
 		std::shared_ptr<Nuz::IGameObject> GetMountedGameObject(const std::string& mountName) const;
 
-		void OnUpdate();
+		inline void SetDrawLevel(int i) { m_drawLevel = i; }
+		inline int GetDrawLevel() { return m_drawLevel; }
+
+		void OnUpdate(std::multiset<DrawTask>& drawTask, Camera2D*, Camera3D*);
 		void OnDraw3D();
 		void OnDraw2D();
-		void OnDrawScreenReady();
-		void OnDrawScreenFinished();
+		//void OnDrawScreenReady();
+		//void OnDrawScreenFinished();
 		void OnFadeSwitchOut(int timeLimited);
 		void OnFadeSwitchOutUpdate(float finished);
 		void OnFadeSwitchIn(int timeLimited);

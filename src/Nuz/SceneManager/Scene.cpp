@@ -75,23 +75,27 @@ void Nuz_::Scene::UnmountScene(const std::string & name)
 	}
 }
 
-void Nuz_::Scene::OnUpdate() {
+void Nuz_::Scene::OnUpdate(std::multiset<DrawTask>& drawTask, Camera2D* c2d, Camera3D* c3d) {
 	while (!m_unmountSceneTask.empty()) {
 		unmountScene_Really(m_unmountSceneTask.front());
 		m_unmountSceneTask.pop();
 	}
-	for (auto& p : m_allscene)
-		((Scene*)p.get())->OnUpdate();
-	m_gof.OnUpdate();
+	for (auto& p : m_allscene) {
+		if (m_camera2D.get() != nullptr) c2d = (Camera2D*)m_camera2D.get();
+		//if (m_camera3D.get() != nullptr) c3d = (Camera3D*)m_camera3D.get();
+		((Scene*)p.get())->OnUpdate(drawTask,c2d,c3d);
+	}
+	m_gof.OnUpdate(drawTask,c2d,c3d);
 }
 
+/*
 void Nuz_::Scene::OnDraw3D() {
 	m_gof.OnDraw3D();
 	for (auto& p : m_allscene)
 		((Scene*)p.get())->OnDraw3D();
-}
+}*/
 
-void Nuz_::Scene::OnDraw2D() {
+/*void Nuz_::Scene::OnDraw2D() {
 	if (m_camera2D != nullptr) {
 		glMatrixPushEXT(GL_PROJECTION);
 		((Camera2D*)m_camera2D.get())->UseMe();
@@ -102,19 +106,7 @@ void Nuz_::Scene::OnDraw2D() {
 	if (m_camera2D != nullptr) {
 		glMatrixPopEXT(GL_PROJECTION);
 	}
-}
-
-void Nuz_::Scene::OnDrawScreenReady() {
-	m_gof.OnDrawScreenReady(); 
-	for (auto& p : m_allscene)
-		((Scene*)p.get())->OnDrawScreenReady();
-}
-
-void Nuz_::Scene::OnDrawScreenFinished() {
-	m_gof.OnDrawScreenFinished();
-	for (auto& p : m_allscene)
-		((Scene*)p.get())->OnDrawScreenFinished();
-}
+}*/
 
 void Nuz_::Scene::OnFadeSwitchOut(int timeLimited) {
 	m_gof.OnFadeSwitchOut(timeLimited); 

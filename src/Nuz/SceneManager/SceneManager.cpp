@@ -1,10 +1,15 @@
 #include "SceneManager.h"
 #include "Scene.h"
 #include "../Engine.h"
+#include <set>
+#include "DrawTask.h"
+#include "GameObjectFloder.h"
+#include "Camera2D.h"
 #include <SDL.h>
 #include "../Renderer/OpenGL/glew.h"
 
 using namespace Nuz_;
+using namespace std;
 
 /* 精准FPS控制，返回值为FPS值 */
 static float waitFps(int FPS) {
@@ -58,6 +63,7 @@ SceneManager::~SceneManager()
 void Nuz_::SceneManager::Start(std::shared_ptr<Nuz::IScene> p)
 {
 	m_mainLoop = true;
+	static multiset<DrawTask> drawTask;
 	Nuz_::Scene* now = (Nuz_::Scene*)p.get();
 	Nuz_::Engine* engine = (Nuz_::Engine*)&Nuz::IEngine::GetGameDevice();
 	Nuz_::InputDeviceManager* input = (Nuz_::InputDeviceManager*)&(engine->GetInputDeviceManager());
@@ -101,12 +107,24 @@ void Nuz_::SceneManager::Start(std::shared_ptr<Nuz::IScene> p)
 		glClearColor(0, 0, 0, 1);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+		//准备收集要绘制的物体
+		drawTask.clear();
+		
+		
+
 		//场景生命周期，在这里处理场景的生命周期
-		now->OnUpdate();
-		now->OnDrawScreenReady();
-		now->OnDraw3D();
-		now->OnDraw2D();
-		now->OnDrawScreenFinished();
+		now->OnUpdate(drawTask,nullptr,nullptr);
+
+		//绘制在计划中的物体
+		glMatrixPushEXT(GL_PROJECTION);
+		for (auto& p : drawTask) {
+			//p.camera3D->UseMe();
+			//now->OnDraw3D();
+			p.camera2D->UseMe();
+			p.gof->OnDraw2D();
+		}
+
+		glMatrixPopEXT(GL_PROJECTION);
 
 		SDL_GL_SwapWindow(window);
 		float fps = waitFps(60/engine->GetSkipFrame());

@@ -24,5 +24,7 @@ namespace Nuz_ {
 		inline GameObjectFloder* GetParent() {
 			return m_parent;
 		}
+		void SetDrawLevel(int) override;
+		inline int GetDrawLevel() { return m_gof.GetDrawLevel(); }
 	};
 }

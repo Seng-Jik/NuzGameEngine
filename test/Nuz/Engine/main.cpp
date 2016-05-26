@@ -32,13 +32,13 @@ public:
 		glEnd();
 		m_cl.DefineEnd();
 	}
-	void OnDraw2D() override {
+	void OnDraw2D() const override {
 		//glEnable(GL_TEXTURE_2D);
 		m_texture->Bind();
 		m_cl();
 		m_texture->Unbind();
 	}
-	void OnUpdate() override {
+	bool OnUpdate() override {
 		if (IEngine::GetGameDevice().GetInputDeviceManager().GetKeyboard().KeyPressed(KeyCode::Up)) {
 			pCamera2D->Move(0, 0.01);
 		}
@@ -51,19 +51,21 @@ public:
 		if (IEngine::GetGameDevice().GetInputDeviceManager().GetKeyboard().KeyPressed(KeyCode::Right)) {
 			pCamera2D->Move(0.01, 0);
 		}
+		return true;
 	}
 	void Unmount() { UnmountSelf(); }
 };
 
-class Killer :public Nuz::IComponent {
+class Killer :public Nuz::ILogic {
 private:
 	int i = 120;
 public:
-	void OnUpdate() {
+	bool OnUpdate() {
 		--i;
 		if (!i) {
 			((Prim*)GetOtherComponent("Hello").get())->Unmount();
 		}
+		return false;
 	}
 };
 
