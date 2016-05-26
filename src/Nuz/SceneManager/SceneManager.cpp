@@ -2,7 +2,7 @@
 #include "Scene.h"
 #include "../Engine.h"
 #include <SDL.h>
-#include <SDL_opengl.h>
+#include "../Renderer/OpenGL/glew.h"
 
 using namespace Nuz_;
 
