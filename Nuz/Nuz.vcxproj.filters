@@ -76,6 +76,9 @@
     <Filter Include="头文件\Realize\Nuz_\Renderer\OpenGL">
       <UniqueIdentifier>{62bd95ba-9b0f-4fb9-abf1-8a3b89d617df}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\Nuz\Input">
+      <UniqueIdentifier>{798cef71-409e-40f2-a71e-ac304c0fa52a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\NuzUtils\ACNReader.h">
@@ -246,8 +249,11 @@
     <ClInclude Include="..\src\Nuz\Renderer\CtxReader.h">
       <Filter>头文件\Realize\Nuz_\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Nuz\SceneManager\DrawTask2D.h">
-      <Filter>头文件\Realize\Nuz_\SceneManager</Filter>
+    <ClInclude Include="..\src\Nuz\Input\InputDevice.h">
+      <Filter>源文件\Nuz\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Nuz\Input\Keyboard.h">
+      <Filter>源文件\Nuz\Input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -313,6 +319,12 @@
     </ClCompile>
     <ClCompile Include="..\src\Nuz\Renderer\CtxReader.cpp">
       <Filter>源文件\Nuz\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Nuz\Input\Keyboard.cpp">
+      <Filter>源文件\Nuz\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Nuz\Input\InputDevice.cpp">
+      <Filter>源文件\Nuz\Input</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -39,7 +39,18 @@ public:
 		m_texture->Unbind();
 	}
 	void OnUpdate() override {
-		pCamera2D->Move(0.0f,-0.02f);
+		if (IEngine::GetGameDevice().GetInputDeviceManager().GetKeyboard().KeyPressed(KeyCode::Up)) {
+			pCamera2D->Move(0, 0.01);
+		}
+		if (IEngine::GetGameDevice().GetInputDeviceManager().GetKeyboard().KeyPressed(KeyCode::Down)) {
+			pCamera2D->Move(0, -0.01);
+		}
+		if (IEngine::GetGameDevice().GetInputDeviceManager().GetKeyboard().KeyPressed(KeyCode::Left)) {
+			pCamera2D->Move(-0.01, 0);
+		}
+		if (IEngine::GetGameDevice().GetInputDeviceManager().GetKeyboard().KeyPressed(KeyCode::Right)) {
+			pCamera2D->Move(0.01, 0);
+		}
 	}
 	void Unmount() { UnmountSelf(); }
 };

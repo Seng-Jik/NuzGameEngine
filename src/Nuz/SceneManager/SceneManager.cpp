@@ -60,8 +60,10 @@ void Nuz_::SceneManager::Start(std::shared_ptr<Nuz::IScene> p)
 	m_mainLoop = true;
 	Nuz_::Scene* now = (Nuz_::Scene*)p.get();
 	Nuz_::Engine* engine = (Nuz_::Engine*)&Nuz::IEngine::GetGameDevice();
+	Nuz_::InputDeviceManager* input = (Nuz_::InputDeviceManager*)&(engine->GetInputDeviceManager());
 	auto window = ((Nuz_::Engine*)&Nuz::IEngine::GetGameDevice()) -> GetWindow();
 	SDL_Event e;
+	input->FrameUpdate();
 	while (m_mainLoop) {
 		while (SDL_PollEvent(&e)) {
 			switch (e.type) {
@@ -89,6 +91,7 @@ void Nuz_::SceneManager::Start(std::shared_ptr<Nuz::IScene> p)
 			}
 			default:
 				//作为输入派发
+				input->DispatchEvent(e);
 				break;
 			};
 		}
