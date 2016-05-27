@@ -261,6 +261,9 @@
     <ClInclude Include="..\src\Nuz\Input\Keyboard.h">
       <Filter>头文件\Realize\Nuz_\Input</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\Nuz\Font.h">
+      <Filter>头文件\Interfaces\Nuz</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Nuz\FileSystem\FileSystem.cpp">
