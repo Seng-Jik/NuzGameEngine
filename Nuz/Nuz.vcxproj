@@ -95,7 +95,7 @@
       <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>lua.lib;opengl32.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -175,18 +175,52 @@
     <ClInclude Include="..\src\Nuz\Engine.h" />
     <ClInclude Include="..\src\Nuz\FileSystem\FileSystem.h" />
     <ClInclude Include="..\src\Nuz\FileSystem\LocalFile.h" />
+    <ClInclude Include="..\src\Nuz\Input\InputDevice.h" />
+    <ClInclude Include="..\src\Nuz\Input\Keyboard.h" />
+    <ClInclude Include="..\src\Nuz\Renderer\CtxReader.h" />
+    <ClInclude Include="..\src\Nuz\Renderer\ImageCacheManager.h" />
+    <ClInclude Include="..\src\Nuz\Renderer\OpenGL\CallList.h" />
+    <ClInclude Include="..\src\Nuz\Renderer\OpenGL\FrameBuffer.h" />
+    <ClInclude Include="..\src\Nuz\Renderer\OpenGL\glew.h" />
+    <ClInclude Include="..\src\Nuz\Renderer\OpenGL\glxew.h" />
+    <ClInclude Include="..\src\Nuz\Renderer\OpenGL\Texture.h" />
+    <ClInclude Include="..\src\Nuz\Renderer\OpenGL\wglew.h" />
+    <ClInclude Include="..\src\Nuz\SceneManager\Camera2D.h" />
+    <ClInclude Include="..\src\Nuz\SceneManager\DrawTask.h" />
+    <ClInclude Include="..\src\Nuz\SceneManager\GameObject.h" />
+    <ClInclude Include="..\src\Nuz\SceneManager\GameObjectFloder.h" />
     <ClInclude Include="..\src\Nuz\SceneManager\Scene.h" />
     <ClInclude Include="..\src\Nuz\SceneManager\SceneManager.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\NuzUtils\ACNReader.cpp" />
-    <ClCompile Include="..\src\NuzUtils\CSVReader.cpp" />
-    <ClCompile Include="..\src\NuzUtils\LuaVM.cpp" />
-    <ClCompile Include="..\src\NuzUtils\SnowRVReader.cpp" />
+    <ClCompile Include="..\src\NuzUtils\ACNReader.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\src\NuzUtils\CSVReader.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\src\NuzUtils\LuaVM.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\src\NuzUtils\SnowRVReader.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\src\Nuz\Engine.cpp" />
     <ClCompile Include="..\src\Nuz\FileSystem\FileSystem.cpp" />
     <ClCompile Include="..\src\Nuz\FileSystem\LocalFile.cpp" />
+    <ClCompile Include="..\src\Nuz\Input\InputDevice.cpp" />
+    <ClCompile Include="..\src\Nuz\Input\Keyboard.cpp" />
     <ClCompile Include="..\src\Nuz\Logs.cpp" />
+    <ClCompile Include="..\src\Nuz\Renderer\CtxReader.cpp" />
+    <ClCompile Include="..\src\Nuz\Renderer\ImageCacheManager.cpp" />
+    <ClCompile Include="..\src\Nuz\Renderer\OpenGL\CallList.cpp" />
+    <ClCompile Include="..\src\Nuz\Renderer\OpenGL\FrameBuffer.cpp" />
+    <ClCompile Include="..\src\Nuz\Renderer\OpenGL\glew.cpp" />
+    <ClCompile Include="..\src\Nuz\Renderer\OpenGL\Texture.cpp" />
+    <ClCompile Include="..\src\Nuz\SceneManager\Camera2D.cpp" />
+    <ClCompile Include="..\src\Nuz\SceneManager\Component.cpp" />
+    <ClCompile Include="..\src\Nuz\SceneManager\GameObject.cpp" />
+    <ClCompile Include="..\src\Nuz\SceneManager\GameObjectFloder.cpp" />
     <ClCompile Include="..\src\Nuz\SceneManager\Scene.cpp" />
     <ClCompile Include="..\src\Nuz\SceneManager\SceneManager.cpp" />
     <ClCompile Include="..\test\Nuz\Engine\main.cpp" />

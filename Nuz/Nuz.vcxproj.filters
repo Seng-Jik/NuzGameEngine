@@ -64,6 +64,24 @@
     <Filter Include="头文件\Realize\Nuz_\SceneManager">
       <UniqueIdentifier>{92cc71eb-42ed-451f-a2e9-83898a2450c7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\Nuz\Renderer">
+      <UniqueIdentifier>{9dc423a4-dded-4a39-bf12-67ccbd18c079}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Nuz\Renderer\OpenGL">
+      <UniqueIdentifier>{58eb9cdd-e953-4fa7-8fba-efafeadd47dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Realize\Nuz_\Renderer">
+      <UniqueIdentifier>{c4704172-2d83-406c-bbac-3d9118249656}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Realize\Nuz_\Renderer\OpenGL">
+      <UniqueIdentifier>{62bd95ba-9b0f-4fb9-abf1-8a3b89d617df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Nuz\Input">
+      <UniqueIdentifier>{798cef71-409e-40f2-a71e-ac304c0fa52a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Realize\Nuz_\Input">
+      <UniqueIdentifier>{11593bb3-2309-4d09-9230-bbabae2ed297}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\NuzUtils\ACNReader.h">
@@ -83,9 +101,6 @@
     </ClInclude>
     <ClInclude Include="..\src\Nuz\FileSystem\LocalFile.h">
       <Filter>头文件\Realize\Nuz_\FileSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Nuz\Engine.h">
-      <Filter>头文件\Realize\Nuz_</Filter>
     </ClInclude>
     <ClInclude Include="..\include\Nuz\FileSystem\FileSource.h">
       <Filter>头文件\Interfaces\Nuz\FileSystem</Filter>
@@ -201,6 +216,51 @@
     <ClInclude Include="..\src\Nuz\SceneManager\Scene.h">
       <Filter>头文件\Realize\Nuz_\SceneManager</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Nuz\SceneManager\GameObject.h">
+      <Filter>头文件\Realize\Nuz_\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Nuz\SceneManager\GameObjectFloder.h">
+      <Filter>头文件\Realize\Nuz_\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Nuz\Renderer\OpenGL\FrameBuffer.h">
+      <Filter>头文件\Realize\Nuz_\Renderer\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Nuz\Renderer\OpenGL\glew.h">
+      <Filter>头文件\Realize\Nuz_\Renderer\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Nuz\Renderer\OpenGL\glxew.h">
+      <Filter>头文件\Realize\Nuz_\Renderer\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Nuz\Renderer\OpenGL\wglew.h">
+      <Filter>头文件\Realize\Nuz_\Renderer\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Nuz\Renderer\OpenGL\Texture.h">
+      <Filter>头文件\Realize\Nuz_\Renderer\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Nuz\Renderer\OpenGL\CallList.h">
+      <Filter>头文件\Realize\Nuz_\Renderer\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Nuz\Renderer\ImageCacheManager.h">
+      <Filter>头文件\Realize\Nuz_\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Nuz\Engine.h">
+      <Filter>头文件\Realize</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Nuz\SceneManager\Camera2D.h">
+      <Filter>头文件\Realize\Nuz_\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Nuz\Renderer\CtxReader.h">
+      <Filter>头文件\Realize\Nuz_\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Nuz\SceneManager\DrawTask.h">
+      <Filter>头文件\Realize\Nuz_\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Nuz\Input\InputDevice.h">
+      <Filter>头文件\Realize\Nuz_\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Nuz\Input\Keyboard.h">
+      <Filter>头文件\Realize\Nuz_\Input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Nuz\FileSystem\FileSystem.cpp">
@@ -235,6 +295,42 @@
     </ClCompile>
     <ClCompile Include="..\src\Nuz\SceneManager\Scene.cpp">
       <Filter>源文件\Nuz\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Nuz\SceneManager\GameObjectFloder.cpp">
+      <Filter>源文件\Nuz\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Nuz\SceneManager\GameObject.cpp">
+      <Filter>源文件\Nuz\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Nuz\SceneManager\Component.cpp">
+      <Filter>源文件\Nuz\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Nuz\Renderer\OpenGL\FrameBuffer.cpp">
+      <Filter>源文件\Nuz\Renderer\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Nuz\Renderer\OpenGL\Texture.cpp">
+      <Filter>源文件\Nuz\Renderer\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Nuz\Renderer\OpenGL\glew.cpp">
+      <Filter>源文件\Nuz\Renderer\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Nuz\Renderer\OpenGL\CallList.cpp">
+      <Filter>源文件\Nuz\Renderer\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Nuz\Renderer\ImageCacheManager.cpp">
+      <Filter>源文件\Nuz\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Nuz\SceneManager\Camera2D.cpp">
+      <Filter>源文件\Nuz\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Nuz\Renderer\CtxReader.cpp">
+      <Filter>源文件\Nuz\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Nuz\Input\Keyboard.cpp">
+      <Filter>源文件\Nuz\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Nuz\Input\InputDevice.cpp">
+      <Filter>源文件\Nuz\Input</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
