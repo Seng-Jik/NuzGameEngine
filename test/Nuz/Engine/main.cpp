@@ -12,50 +12,30 @@ shared_ptr<ICamera2D> pCamera2D;
 
 class Prim :public Nuz::IComponent {
 private:
-	shared_ptr<Nuz_::Renderer::Texture> m_texture;
-	Nuz_::Renderer::ImageCacheManager m_imc;
-	Nuz_::Renderer::CallList m_cl;
+	float x=-2, y=2, w=100, h=60;
+	float scl_w = 0.5f, scl_h = 1.0f;
+	float angle = 0.0f;
 public:
 	Prim() {
-		m_texture = m_imc.LoadImage("/demo.ctx");
-		m_cl.DefineBegin();
-		glBegin(GL_QUADS); {
-			glTexCoord2f(0.0, 1.0); glVertex2f(-1.0, -1.0);
-
-			glTexCoord2f(1.0, 1.0); glVertex2f(1.0, -1.0);
-
-			glTexCoord2f(1.0, 0.0); glVertex2f(1.0, 1.0);
-
-			glTexCoord2f(0.0, 0.0); glVertex2f(-1.0, 1.0);
-
-		}
-		glEnd();
-		m_cl.DefineEnd();
-	}
-	void OnDraw2D() const override {
-		//glEnable(GL_TEXTURE_2D);
-		m_texture->Bind();
-		m_cl();
-		m_texture->Unbind();
 	}
 	void OnUpdate(bool& draw2D,bool& draw3D) override {
-		if (IEngine::GetGameDevice().GetInputDeviceManager().GetKeyboard().KeyPressed(KeyCode::Up)) {
-			pCamera2D->Move(0, 0.01f);
-		}
-		if (IEngine::GetGameDevice().GetInputDeviceManager().GetKeyboard().KeyPressed(KeyCode::Down)) {
-			pCamera2D->Move(0, -0.01f);
-		}
-		if (IEngine::GetGameDevice().GetInputDeviceManager().GetKeyboard().KeyPressed(KeyCode::Left)) {
-			pCamera2D->Move(-0.01f, 0);
-		}
-		if (IEngine::GetGameDevice().GetInputDeviceManager().GetKeyboard().KeyPressed(KeyCode::Right)) {
-			pCamera2D->Move(0.01f, 0);
-		}
-		draw2D = true;
+		shared_ptr<IComponent> m_hello = GetOtherComponent("Hello");
+		((ISprite2D*)m_hello.get())->SetPos(x, y);
+		((ISprite2D*)m_hello.get())->SetRotate(true, 1, 1, angle, true, false);
+		((ISprite2D*)m_hello.get())->SetScale(scl_w, scl_h);
+		auto& key = Nuz::IEngine::GetGameDevice().GetInputDeviceManager().GetKeyboard();
+		if (key.KeyPressed(KeyCode::Down)) y -= 0.003f;
+		if (key.KeyPressed(KeyCode::Up)) y += 0.003f;
+		if (key.KeyPressed(KeyCode::Left)) x -= 0.003f;
+		if (key.KeyPressed(KeyCode::Right)) x += 0.003f;
+		if (key.KeyPressed(KeyCode::Z)) angle += 1.0f; 
+		if (key.KeyPressed(KeyCode::LShift)) scl_w += 0.01f;
+		if (key.KeyPressed(KeyCode::X)) scl_h += 0.01f;
+
 	}
 	void Unmount() { UnmountSelf(); }
 };
-
+/*
 class Killer :public Nuz::ILogic {
 private:
 	int i = 120;
@@ -68,7 +48,7 @@ public:
 		return false;
 	}
 };
-
+*/
 int main() {
 	auto& e = IEngine::GetGameDevice();
 	e.GetFileSystem().Mount(e.GetLocalFile());
@@ -86,7 +66,17 @@ int main() {
 
 	e.SetSkipFrame(0); 
 	auto sA = Nuz::IScene::CreateScene();
-	{
+	pCamera2D = Nuz::ICamera2D::CreateCamera2D();
+	pCamera2D->SetCamera(-4, 4, -4, 4);
+	sA->SetCamera2D(pCamera2D);
+
+	auto sprite = Nuz::ISprite2D::CreateSprite2D();
+	sA->MountComponent(sprite,"Hello");
+	auto pPrim = shared_ptr<IComponent>(new Prim);
+	sA->MountComponent(pPrim);
+	sprite->UseImage("/demo.ctx", 0);
+
+	/*{
 		auto sB = Nuz::IScene::CreateScene();
 
 		auto gA = Nuz::IGameObject::CreateGameObject();
@@ -94,7 +84,7 @@ int main() {
 		auto pPrim = shared_ptr<IComponent>(new Prim);
 		auto pKiller = shared_ptr<IComponent>(new Killer);
 
-		pCamera2D = Nuz::ICamera2D::CreateCamera2D();
+		
 		pCamera2D->SetCamera(-1, 1, -1, 1);
 		sA->SetCamera2D(pCamera2D);
 
@@ -104,7 +94,7 @@ int main() {
 
 		sB->MountGameObject(gA);
 		sA->MountScene(sB);
-	}
+	}*/
 
 	e.GetSceneManager().Start(sA);
 

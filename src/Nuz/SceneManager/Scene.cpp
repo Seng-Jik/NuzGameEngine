@@ -80,9 +80,9 @@ void Nuz_::Scene::OnUpdate(std::multiset<DrawTask2D>& drawTask2D, std::multiset<
 		unmountScene_Really(m_unmountSceneTask.front());
 		m_unmountSceneTask.pop();
 	}
+	if (m_camera2D.get() != nullptr) c2d = (Camera2D*)m_camera2D.get();
+	//if (m_camera3D.get() != nullptr) c3d = (Camera3D*)m_camera3D.get();
 	for (auto& p : m_allscene) {
-		if (m_camera2D.get() != nullptr) c2d = (Camera2D*)m_camera2D.get();
-		//if (m_camera3D.get() != nullptr) c3d = (Camera3D*)m_camera3D.get();
 		((Scene*)p.get())->OnUpdate(drawTask2D,drawTask3D,c2d,c3d);
 	}
 	m_gof.OnUpdate(drawTask2D,drawTask3D,c2d,c3d);

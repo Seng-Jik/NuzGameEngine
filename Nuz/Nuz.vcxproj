@@ -188,8 +188,10 @@
     <ClInclude Include="..\src\Nuz\Renderer\OpenGL\glew.h" />
     <ClInclude Include="..\src\Nuz\Renderer\OpenGL\glxew.h" />
     <ClInclude Include="..\src\Nuz\Renderer\OpenGL\Texture.h" />
+    <ClInclude Include="..\src\Nuz\Renderer\OpenGL\Utils.h" />
     <ClInclude Include="..\src\Nuz\Renderer\OpenGL\wglew.h" />
     <ClInclude Include="..\src\Nuz\SceneManager\Camera2D.h" />
+    <ClInclude Include="..\src\Nuz\SceneManager\Components\Sprite2D.h" />
     <ClInclude Include="..\src\Nuz\SceneManager\DrawTask.h" />
     <ClInclude Include="..\src\Nuz\SceneManager\GameObject.h" />
     <ClInclude Include="..\src\Nuz\SceneManager\GameObjectFloder.h" />
@@ -221,8 +223,10 @@
     <ClCompile Include="..\src\Nuz\Renderer\OpenGL\FrameBuffer.cpp" />
     <ClCompile Include="..\src\Nuz\Renderer\OpenGL\glew.cpp" />
     <ClCompile Include="..\src\Nuz\Renderer\OpenGL\Texture.cpp" />
+    <ClCompile Include="..\src\Nuz\Renderer\OpenGL\Utils.cpp" />
     <ClCompile Include="..\src\Nuz\SceneManager\Camera2D.cpp" />
     <ClCompile Include="..\src\Nuz\SceneManager\Component.cpp" />
+    <ClCompile Include="..\src\Nuz\SceneManager\Components\Sprite2D.cpp" />
     <ClCompile Include="..\src\Nuz\SceneManager\GameObject.cpp" />
     <ClCompile Include="..\src\Nuz\SceneManager\GameObjectFloder.cpp" />
     <ClCompile Include="..\src\Nuz\SceneManager\Scene.cpp" />

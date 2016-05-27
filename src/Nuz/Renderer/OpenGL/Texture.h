@@ -24,6 +24,7 @@ namespace Nuz_ {
 			inline operator GLuint () { return m_texture; }
 			void LoadImage(const std::string& path);
 			inline UVRect GetUVRect(uint8_t num) const { return m_rects.at(num); }
+			inline void GetSize(int& w, int& h) { w = m_w; h = m_h; }
 			void Clear();
 			inline void Bind() { glBindTexture(GL_TEXTURE_2D, m_texture); }
 			inline static void Unbind() { glBindTexture(GL_TEXTURE_2D, 0); }

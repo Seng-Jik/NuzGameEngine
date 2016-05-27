@@ -26,7 +26,7 @@ void Nuz_::Renderer::Texture::LoadImage(const std::string & path)
 	for (int i = 0; i < reader.GetRectNum(); ++i) {
 		int x, y, w, h;
 		reader.GetRect(i, x, y, w, h);
-		y = m_h - y;	//UV坐标转换
+		//y = m_h - y;	//UV坐标转换
 		m_rects.push_back({ float(x) / m_w, float(y) / m_h, float(w) / m_w, float(h) / m_h });
 	}
 	/*glBindTexture(GL_TEXTURE_2D,m_texture);

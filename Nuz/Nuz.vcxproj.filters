@@ -82,6 +82,12 @@
     <Filter Include="头文件\Realize\Nuz_\Input">
       <UniqueIdentifier>{11593bb3-2309-4d09-9230-bbabae2ed297}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\Nuz\SceneManager\Components">
+      <UniqueIdentifier>{0ff88d8e-e175-4a32-b040-c536f5fc3329}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Realize\Nuz_\SceneManager\Components">
+      <UniqueIdentifier>{f015c5c6-1e06-488f-852a-0f9d45286bbc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\NuzUtils\ACNReader.h">
@@ -264,6 +270,12 @@
     <ClInclude Include="..\include\Nuz\Font.h">
       <Filter>头文件\Interfaces\Nuz</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Nuz\SceneManager\Components\Sprite2D.h">
+      <Filter>头文件\Realize\Nuz_\SceneManager\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Nuz\Renderer\OpenGL\Utils.h">
+      <Filter>头文件\Realize\Nuz_\Renderer\OpenGL</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Nuz\FileSystem\FileSystem.cpp">
@@ -305,9 +317,6 @@
     <ClCompile Include="..\src\Nuz\SceneManager\GameObject.cpp">
       <Filter>源文件\Nuz\SceneManager</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Nuz\SceneManager\Component.cpp">
-      <Filter>源文件\Nuz\SceneManager</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\Nuz\Renderer\OpenGL\FrameBuffer.cpp">
       <Filter>源文件\Nuz\Renderer\OpenGL</Filter>
     </ClCompile>
@@ -334,6 +343,15 @@
     </ClCompile>
     <ClCompile Include="..\src\Nuz\Input\InputDevice.cpp">
       <Filter>源文件\Nuz\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Nuz\SceneManager\Components\Sprite2D.cpp">
+      <Filter>源文件\Nuz\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Nuz\SceneManager\Component.cpp">
+      <Filter>源文件\Nuz\SceneManager\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Nuz\Renderer\OpenGL\Utils.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
