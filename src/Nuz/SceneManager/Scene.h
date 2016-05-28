@@ -36,11 +36,13 @@ namespace Nuz_ {
 			m_unmountSceneTask.push(p);
 		}
 
+		inline std::shared_ptr<const Nuz::ICamera2D> GetCamera2D() {
+			return m_camera2D;
+		}
+
 		inline GameObjectFloder& GetGameObjectFloder() { return m_gof; }
 
-		inline void SetCamera2D(const std::shared_ptr<const Nuz::ICamera2D>& camera) override {
-			m_camera2D = camera;
-		}
+		void SetCamera2D(const std::shared_ptr<const Nuz::ICamera2D>& camera) override;
 		void SetCamera3D(const std::shared_ptr<const Nuz::ICamera3D>& camera) override {};
 
 

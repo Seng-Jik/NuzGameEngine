@@ -31,6 +31,7 @@ public:
 		if (key.KeyPressed(KeyCode::Z)) angle += 1.0f; 
 		if (key.KeyPressed(KeyCode::LShift)) scl_w += 0.01f;
 		if (key.KeyPressed(KeyCode::X)) scl_h += 0.01f;
+		if (key.KeyPressed(KeyCode::Esc)) ((ISprite2D*)m_hello.get())->SetDstSizeAsDefault();
 
 	}
 	void Unmount() { UnmountSelf(); }
@@ -67,7 +68,7 @@ int main() {
 	e.SetSkipFrame(0); 
 	auto sA = Nuz::IScene::CreateScene();
 	pCamera2D = Nuz::ICamera2D::CreateCamera2D();
-	pCamera2D->SetCamera(-4, 4, -4, 4);
+	pCamera2D->SetCamera(-8, 8, -8, 8);
 	sA->SetCamera2D(pCamera2D);
 
 	auto sprite = Nuz::ISprite2D::CreateSprite2D();

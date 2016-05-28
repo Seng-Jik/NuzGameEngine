@@ -1,6 +1,7 @@
 #include "GameObjectFloder.h"
 #include "GameObject.h"
 #include "DrawTask.h"
+#include "Scene.h"
 
 void Nuz_::GameObjectFloder::MountComponent(const std::shared_ptr<Nuz::IComponent>& p, const std::string& mountName)
 {
@@ -37,6 +38,18 @@ void Nuz_::GameObjectFloder::unmountComponent_Really(Nuz::IComponent* pIn)
 			break;
 		}
 	}
+}
+
+void Nuz_::GameObjectFloder::SetParent(const std::shared_ptr<Nuz::IScene>& p) {
+	m_scParent = p;
+	m_parentType = ParentType::SCENE;
+	m_camera2D = ((Nuz_::Scene*)p.get())->GetCamera2D();
+}
+
+void Nuz_::GameObjectFloder::SetParent(const std::shared_ptr<Nuz::IGameObject>& p) {
+	m_goParent = p;
+	m_parentType = ParentType::GAMEOBJECT;
+	m_camera2D = ((Nuz_::GameObject*)(p.get()))->GetGameObjectFloader().GetCamera2D();
 }
 
 void Nuz_::GameObjectFloder::unmountGameObject_Really(Nuz::IGameObject* pIn)

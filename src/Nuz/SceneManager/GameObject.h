@@ -1,8 +1,8 @@
 #pragma once
 #include <memory>
+#include "GameObjectFloder.h"
 #include "../../../include/Nuz/SceneManager/GameObject.h"
 #include "../../../include/Nuz/SceneManager/Component.h"
-#include "GameObjectFloder.h"
 
 namespace Nuz_ {
 	class GameObject final:public Nuz::IGameObject {

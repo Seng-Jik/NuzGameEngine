@@ -75,6 +75,11 @@ void Nuz_::Scene::UnmountScene(const std::string & name)
 	}
 }
 
+void Nuz_::Scene::SetCamera2D(const std::shared_ptr<const Nuz::ICamera2D>& camera) {
+	m_camera2D = camera;
+	m_gof.SetCamera2D(m_camera2D);
+}
+
 void Nuz_::Scene::OnUpdate(std::multiset<DrawTask2D>& drawTask2D, std::multiset<DrawTask3D>& drawTask3D, Camera2D* c2d, Camera3D* c3d) {
 	while (!m_unmountSceneTask.empty()) {
 		unmountScene_Really(m_unmountSceneTask.front());

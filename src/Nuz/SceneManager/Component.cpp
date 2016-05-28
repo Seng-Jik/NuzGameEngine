@@ -30,6 +30,14 @@ std::shared_ptr<IGameObject> Nuz::IComponent::GetGameObject(const std::string & 
 	return m_parent->GetMountedGameObject(mountName);
 }
 
+std::shared_ptr<const ICamera2D> Nuz::IComponent::GetCamera2D() const
+{
+	if (m_parentType != ParentType::None) {
+		return m_parent->GetCamera2D().lock();
+	}
+	else return std::shared_ptr<ICamera2D>(nullptr);
+}
+
 /* 从父节点上卸载自身
 */
 

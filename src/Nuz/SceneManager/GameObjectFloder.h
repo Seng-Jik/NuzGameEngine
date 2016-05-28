@@ -4,7 +4,6 @@
 #include <set>
 #include <queue>
 #include "../../../include/Nuz/SceneManager/Component.h"
-#include "../../../include/Nuz/SceneManager/GameObject.h"
 
 namespace Nuz_ {
 	struct DrawTask2D;
@@ -26,20 +25,22 @@ namespace Nuz_ {
 		ParentType m_parentType;
 		std::weak_ptr<Nuz::IGameObject> m_goParent;
 		std::weak_ptr<Nuz::IScene> m_scParent;
+		std::weak_ptr<const Nuz::ICamera2D> m_camera2D;
 
 		std::queue<Nuz::IComponent*> m_unmountCompoTask;
 		std::queue<Nuz::IGameObject*> m_unmountGOTask;
 		void unmountGameObject_Really(Nuz::IGameObject*);
 		void unmountComponent_Really(Nuz::IComponent*);
 	public:
-		inline GameObjectFloder() {};
-		inline void SetParent(const std::shared_ptr<Nuz::IGameObject>& p) {
-			m_goParent = p;
-			m_parentType = ParentType::GAMEOBJECT;
+		void SetParent(const std::shared_ptr<Nuz::IGameObject>& p);
+		void SetParent(const std::shared_ptr<Nuz::IScene>& p);
+
+		inline void SetCamera2D(const std::shared_ptr<const Nuz::ICamera2D>& p) {
+			m_camera2D = p;
 		}
-		inline void SetParent(const std::shared_ptr<Nuz::IScene>& p) {
-			m_scParent = p;
-			m_parentType = ParentType::SCENE;
+
+		inline std::weak_ptr<const Nuz::ICamera2D> GetCamera2D() {
+			return m_camera2D;
 		}
 
 		inline ParentType GetParentType() { return m_parentType; }

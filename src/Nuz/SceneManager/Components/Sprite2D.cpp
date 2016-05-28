@@ -1,6 +1,7 @@
 #include "Sprite2D.h"
 #include "../../Renderer/OpenGL/Utils.h"
 #include "../../Engine.h"
+#include "../Camera2D.h"
 using namespace Nuz_;
 
 void Nuz_::Sprite2D::updateDrawCall(const FRect & src)
@@ -23,7 +24,7 @@ void Nuz_::Sprite2D::updateDrawCall(const FRect & src)
 
 Sprite2D::Sprite2D()
 {
-	Renderer::LoadIdentityModelView44(m_matrix);
+	//Renderer::LoadIdentityModelView44(m_matrix);
 }
 
 void Nuz_::Sprite2D::UseImage(const std::string & path, int num)
@@ -31,6 +32,7 @@ void Nuz_::Sprite2D::UseImage(const std::string & path, int num)
 	//Renderer::LoadIdentityModelView44(m_matrix);
 	m_texture = ((Nuz_::Engine*)&Nuz::IEngine::GetGameDevice())->LoadImage(path);
 	m_imageNum = num;
+	SetDstSizeAsDefault();
 	m_visible = true;
 
 	int iw = 0, ih = 0;
@@ -83,13 +85,31 @@ void Nuz_::Sprite2D::SetScale(float w, float h)
 	m_dst.h = h;
 }
 
-void Nuz_::Sprite2D::SetDstSizeAsDefault()
-{
+void Nuz_::Sprite2D::GetScale(float& w, float& h) {
+	w = m_dst.w;
+	h = m_dst.h;
 }
 
-void Nuz_::Sprite2D::SetDstSizeAsDefaultWithCamera2D()
+void Nuz_::Sprite2D::SetDstSizeAsDefault()
 {
+	float w = 1, h = 1;
+	if(GetCamera2D()) ((Camera2D*)GetCamera2D().get())->GetScreenSize(w, h);
+
+	int winSizeW, winSizeH, imgSizeW, imgSizeH,texW,texH;
+	((Nuz_::Engine*)(&Nuz::IEngine::GetGameDevice()))->GetWindowSize(winSizeW, winSizeH);
+	auto imageRect = m_texture->GetUVRect(m_imageNum);
+	m_texture->GetSize(texW, texH);
+
+	imgSizeW = int(imageRect.w * texW);	//图像像素大小
+	imgSizeH = int(imageRect.h * texH);
+
+	m_dst.w = float(imgSizeW) / winSizeW / 2;	//图像占默认摄像机大小
+	m_dst.h = float(imgSizeH) / winSizeH / 2;
+
+	m_dst.w *= w;
+	m_dst.h *= h;
 }
+
 
 
 //Sprite2D::~Sprite2D()
@@ -131,7 +151,7 @@ void Nuz_::Sprite2D::OnUpdate(bool & draw2D, bool &) {
 
 void Nuz_::Sprite2D::OnDraw2D() const
 {
-	glMatrixLoadfEXT(GL_MODELVIEW, m_matrix);
+	glMatrixLoadIdentityEXT(GL_MODELVIEW);
 	glMatrixTranslatefEXT(GL_MODELVIEW, m_dst.x, m_dst.y, 0);
 	glMatrixScalefEXT(GL_MODELVIEW, m_dst.w, m_dst.h, 1);
 	if (m_rotate) {

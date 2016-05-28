@@ -12,7 +12,7 @@ namespace Nuz_ {
 			GLfloat x, y, w=1.0f, h=1.0f;
 		} m_dst;	//来源位置和目标位置
 
-		GLfloat m_matrix[16];	//模型矩阵
+		//GLfloat m_matrix[16];	//模型矩阵
 
 		bool m_rotate = false;	//是否旋转
 		float m_rotateAngle;	//旋转角度
@@ -34,9 +34,9 @@ namespace Nuz_ {
 		void SetPos(float x, float y) override;
 		void SetScale(float w, float h) override;
 		void SetDstSizeAsDefault() override;
-		void SetDstSizeAsDefaultWithCamera2D() override;
 		void SetRotate(bool enable, float x = 0, float y = 0, float angle = 180, bool yFlip = false, bool xFlip = false) override;
 		void SetVisible(bool) override;
+		void GetScale(float& w, float& h) override;
 		
 		void OnUpdate(bool& draw2D, bool&) override;
 		void OnDraw2D() const override;

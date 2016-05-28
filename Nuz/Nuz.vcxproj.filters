@@ -305,9 +305,6 @@
     <ClCompile Include="..\src\Nuz\SceneManager\SceneManager.cpp">
       <Filter>源文件\Nuz\SceneManager</Filter>
     </ClCompile>
-    <ClCompile Include="..\test\Nuz\Engine\main.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\Nuz\SceneManager\Scene.cpp">
       <Filter>源文件\Nuz\SceneManager</Filter>
     </ClCompile>
@@ -351,6 +348,9 @@
       <Filter>源文件\Nuz\SceneManager\Components</Filter>
     </ClCompile>
     <ClCompile Include="..\src\Nuz\Renderer\OpenGL\Utils.cpp">
+      <Filter>源文件\Nuz\Renderer\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\Nuz\SceneManager\Components\Sprite2D\main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

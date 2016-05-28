@@ -231,7 +231,7 @@
     <ClCompile Include="..\src\Nuz\SceneManager\GameObjectFloder.cpp" />
     <ClCompile Include="..\src\Nuz\SceneManager\Scene.cpp" />
     <ClCompile Include="..\src\Nuz\SceneManager\SceneManager.cpp" />
-    <ClCompile Include="..\test\Nuz\Engine\main.cpp" />
+    <ClCompile Include="..\test\Nuz\SceneManager\Components\Sprite2D\main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
