@@ -47,6 +47,7 @@ void Nuz_::Sprite2D::UseText(Nuz::IFont& font, const std::wstring & text, uint8_
 	//Load Font
 	SDL_Color fg = { r,g,b,255 };
 	auto textSurface = TTF_RenderUNICODE_Blended((Nuz_::Font&)font, (Uint16*)text.c_str(), fg);
+	if (!textSurface) throw std::runtime_error("Cannot render text to sprite.");
 
 	m_texture = ((Nuz_::Engine&)Nuz::IEngine::GetGameDevice()).GetTextureLoader().RenderSurface(textSurface);
 	SDL_FreeSurface(textSurface);

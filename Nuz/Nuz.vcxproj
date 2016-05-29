@@ -95,7 +95,7 @@
       <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>SDL2main.lib;SDL2.lib;SDL2_ttf.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2main.lib;SDL2.lib;SDL2_ttf.lib;SDL2_mixer.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -170,7 +170,7 @@
     <ClInclude Include="..\include\Nuz\SceneManager\Scene.h" />
     <ClInclude Include="..\include\Nuz\SceneManager\SceneManager.h" />
     <ClInclude Include="..\include\Nuz\Sound\BgmPlayer.h" />
-    <ClInclude Include="..\include\Nuz\Sound\SePlayer.h" />
+    <ClInclude Include="..\include\Nuz\Sound\Se.h" />
     <ClInclude Include="..\include\Nuz\Timer.h" />
     <ClInclude Include="..\src\NuzUtils\ACNReader.h" />
     <ClInclude Include="..\src\NuzUtils\CSVReader.h" />
@@ -198,6 +198,7 @@
     <ClInclude Include="..\src\Nuz\SceneManager\GameObjectFloder.h" />
     <ClInclude Include="..\src\Nuz\SceneManager\Scene.h" />
     <ClInclude Include="..\src\Nuz\SceneManager\SceneManager.h" />
+    <ClInclude Include="..\src\Nuz\Sound\Se.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\NuzUtils\ACNReader.cpp">
@@ -233,7 +234,8 @@
     <ClCompile Include="..\src\Nuz\SceneManager\GameObjectFloder.cpp" />
     <ClCompile Include="..\src\Nuz\SceneManager\Scene.cpp" />
     <ClCompile Include="..\src\Nuz\SceneManager\SceneManager.cpp" />
-    <ClCompile Include="..\test\Nuz\SceneManager\Components\Sprite2D\main.cpp" />
+    <ClCompile Include="..\src\Nuz\Sound\Se.cpp" />
+    <ClCompile Include="..\test\Nuz\Sound\Se\main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

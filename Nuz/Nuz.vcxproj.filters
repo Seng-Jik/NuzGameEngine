@@ -88,6 +88,12 @@
     <Filter Include="头文件\Realize\Nuz_\SceneManager\Components">
       <UniqueIdentifier>{f015c5c6-1e06-488f-852a-0f9d45286bbc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\Realize\Nuz_\Sound">
+      <UniqueIdentifier>{e605dcd5-9684-4d22-85ac-d73435a04e7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Nuz\Sound">
+      <UniqueIdentifier>{b642c7cc-1b3a-4fe6-878d-1e18fc6f9baf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\NuzUtils\ACNReader.h">
@@ -178,9 +184,6 @@
       <Filter>头文件\Interfaces\Nuz\SceneManager</Filter>
     </ClInclude>
     <ClInclude Include="..\include\Nuz\Sound\BgmPlayer.h">
-      <Filter>头文件\Interfaces\Nuz\Sound</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\Nuz\Sound\SePlayer.h">
       <Filter>头文件\Interfaces\Nuz\Sound</Filter>
     </ClInclude>
     <ClInclude Include="..\include\NuzUtils\ACNReader.h">
@@ -279,6 +282,12 @@
     <ClInclude Include="..\src\Nuz\Font.h">
       <Filter>头文件\Realize\Nuz_</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\Nuz\Sound\Se.h">
+      <Filter>头文件\Interfaces\Nuz\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Nuz\Sound\Se.h">
+      <Filter>头文件\Realize\Nuz_\Sound</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Nuz\FileSystem\FileSystem.cpp">
@@ -350,13 +359,16 @@
     <ClCompile Include="..\src\Nuz\Renderer\OpenGL\Utils.cpp">
       <Filter>源文件\Nuz\Renderer\OpenGL</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Nuz\Font.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\Nuz\SceneManager\Components\Sprite2D.cpp">
       <Filter>源文件\Nuz\SceneManager\Components</Filter>
     </ClCompile>
-    <ClCompile Include="..\test\Nuz\SceneManager\Components\Sprite2D\main.cpp">
+    <ClCompile Include="..\src\Nuz\Font.cpp">
+      <Filter>源文件\Nuz</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Nuz\Sound\Se.cpp">
+      <Filter>源文件\Nuz\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\Nuz\Sound\Se\main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

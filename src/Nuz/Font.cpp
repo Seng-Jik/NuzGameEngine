@@ -14,7 +14,7 @@ Nuz_::Font::Font(const std::string & file, int size)
 Nuz_::Font::~Font()
 {
 	TTF_CloseFont(m_font);
-	//SDL_RWclose(m_rwops);
+	SDL_FreeRW(m_rwops);
 }
 
 std::shared_ptr<Nuz::IFont> Nuz::IFont::CreateFont(const std::string & file, int size)
