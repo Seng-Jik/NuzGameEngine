@@ -277,7 +277,7 @@
       <Filter>头文件\Realize\Nuz_\Renderer\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="..\src\Nuz\Font.h">
-      <Filter>头文件</Filter>
+      <Filter>头文件\Realize\Nuz_</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

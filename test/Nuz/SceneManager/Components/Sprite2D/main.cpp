@@ -50,7 +50,7 @@ public:
 	}
 };
 */
-int main(int argc,char** argv) {
+int wmain(){
 	auto& e = IEngine::GetGameDevice();
 	e.GetFileSystem().Mount(e.GetLocalFile());
 	//AddStdLogWhiteFliter("Nuz::Renderer");
@@ -75,7 +75,9 @@ int main(int argc,char** argv) {
 	sA->MountComponent(sprite,"Hello");
 	auto pPrim = shared_ptr<IComponent>(new Prim);
 	sA->MountComponent(pPrim);
-	sprite->UseImage("/demo.ctx", 0);
+	//sprite->UseImage("/demo.ctx", 0);
+	auto font = IFont::CreateFont("/test.ttf",192);
+	sprite->UseText(*font,L"HelloWorld");
 	//sprite->UseText()
 
 	/*{

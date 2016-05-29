@@ -42,13 +42,14 @@ void Nuz_::Sprite2D::UseImage(const std::string & path, int num)
 	SetSrc(0, 0, (int)(uvRect.w*iw), (int)(uvRect.h*ih));
 }
 
-void Nuz_::Sprite2D::UseText(Nuz::IFont& font, const std::wstring & text, int size,uint8_t r,uint8_t g,uint8_t b)
+void Nuz_::Sprite2D::UseText(Nuz::IFont& font, const std::wstring & text, uint8_t r,uint8_t g,uint8_t b)
 {
 	//Load Font
-	SDL_Color fg = { r,g,b };
+	SDL_Color fg = { r,g,b,255 };
 	auto textSurface = TTF_RenderUNICODE_Blended((Nuz_::Font&)font, (Uint16*)text.c_str(), fg);
 
 	m_texture = ((Nuz_::Engine&)Nuz::IEngine::GetGameDevice()).GetTextureLoader().RenderSurface(textSurface);
+	SDL_FreeSurface(textSurface);
 	m_imageNum = 0;
 	SetDstSizeAsDefault();
 	m_visible = true;
