@@ -20,9 +20,9 @@ public:
 	}
 	void OnUpdate(bool& draw2D,bool& draw3D) override {
 		shared_ptr<IComponent> m_hello = GetOtherComponent("Hello");
-		((ISprite2D*)m_hello.get())->SetPos(x, y);
-		((ISprite2D*)m_hello.get())->SetRotate(true, 1, 1, angle, true, false);
-		((ISprite2D*)m_hello.get())->SetScale(scl_w, scl_h);
+		//((ISprite2D*)m_hello.get())->SetPos(x, y);
+		//((ISprite2D*)m_hello.get())->SetRotate(true, 1, 1, angle, true, false);
+		//((ISprite2D*)m_hello.get())->SetScale(scl_w, scl_h);
 		auto& key = Nuz::IEngine::GetGameDevice().GetInputDeviceManager().GetKeyboard();
 		if (key.KeyPressed(KeyCode::Down)) y -= 0.003f;
 		if (key.KeyPressed(KeyCode::Up)) y += 0.003f;
@@ -75,10 +75,14 @@ int wmain(){
 	sA->MountComponent(sprite,"Hello");
 	auto pPrim = shared_ptr<IComponent>(new Prim);
 	sA->MountComponent(pPrim);
-	//sprite->UseImage("/demo.ctx", 0);
-	auto font = IFont::CreateFont("/test.ttf",192);
-	sprite->UseText(*font,L"HelloWorld");
-	//sprite->UseText()
+	sprite->UseImage("/demo.ctx", 0);
+	//sprite->SetAlpha(0.5);
+	sprite->SetColorFliter(0.5, 0.5, 1.0);
+	/*{
+		auto font = IFont::CreateFont("/test.ttf", 32);
+		sprite->UseText(*font, L"HelloWorld",255,0,0);
+	}
+	//sprite->UseText()*/
 
 	/*{
 		auto sB = Nuz::IScene::CreateScene();

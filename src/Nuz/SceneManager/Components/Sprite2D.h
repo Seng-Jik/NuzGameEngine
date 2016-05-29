@@ -18,6 +18,8 @@ namespace Nuz_ {
 		float m_rotateAngle;	//旋转角度
 		float m_rotateX, m_rotateY;	//旋转中心
 		bool m_flipX, m_flipY;	//翻转
+		
+		float m_r =1, m_g = 1, m_b = 1, m_a = 1;
 
 		bool m_visible = false;
 
@@ -37,6 +39,8 @@ namespace Nuz_ {
 		void SetRotate(bool enable, float x = 0, float y = 0, float angle = 180, bool yFlip = false, bool xFlip = false) override;
 		void SetVisible(bool) override;
 		void GetScale(float& w, float& h) override;
+		void SetAlpha(float) override;
+		void SetColorFliter(float r, float g, float b) override;
 		
 		void OnUpdate(bool& draw2D, bool&) override;
 		void OnDraw2D() const override;

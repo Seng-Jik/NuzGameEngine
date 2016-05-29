@@ -105,6 +105,18 @@ void Nuz_::Sprite2D::GetScale(float& w, float& h) {
 	h = m_dst.h;
 }
 
+void Nuz_::Sprite2D::SetAlpha(float a)
+{
+	m_a = a;
+}
+
+void Nuz_::Sprite2D::SetColorFliter(float r, float g, float b)
+{
+	m_r = r;
+	m_g = g;
+	m_b = b;
+}
+
 void Nuz_::Sprite2D::SetDstSizeAsDefault()
 {
 	float w = 1, h = 1;
@@ -183,6 +195,7 @@ void Nuz_::Sprite2D::OnDraw2D() const
 		glMatrixTranslatefEXT(GL_MODELVIEW, -m_rotateX, -m_rotateY, 0);
 	}
 	m_texture->Bind();
+	glColor4f(m_r, m_g, m_b,m_a);
 	draw();
 	//auto imageRect = m_texture->GetUVRect(0);
 

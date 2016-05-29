@@ -13,7 +13,7 @@ std::shared_ptr<Texture> Nuz_::Renderer::ImageCacheManager::LoadImage(const std:
 	return ret;
 }
 
-std::shared_ptr<Texture> Nuz_::Renderer::ImageCacheManager::RenderSurface(const SDL_Surface * sur)
+std::shared_ptr<Texture> Nuz_::Renderer::ImageCacheManager::RenderSurface(SDL_Surface * sur)
 {
 	std::shared_ptr<Texture> ret(new Texture);
 	ret->LoadSurface(sur);
