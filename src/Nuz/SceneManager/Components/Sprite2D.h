@@ -27,7 +27,7 @@ namespace Nuz_ {
 	public:
 		Sprite2D();
 		void UseImage(const std::string& path, int num = 0) override;
-		void UseText(const std::string& fontPath, const std::wstring& text, int size) override;
+		void UseText(Nuz::IFont& font, const std::wstring& text, int size = 32, uint8_t r = 255, uint8_t g = 255, uint8_t b = 255) override;
 		void FreeImage() override;
 		void SetSrc(int x, int y, int w, int h) override;
 		void GetSize(int& w, int& h) const override;

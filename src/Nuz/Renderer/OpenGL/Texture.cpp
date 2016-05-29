@@ -39,6 +39,15 @@ void Nuz_::Renderer::Texture::LoadImage(const std::string & path)
 	glTextureParameterfEXT(m_texture, GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 }
 
+void Nuz_::Renderer::Texture::LoadSurface(const SDL_Surface * sur)
+{
+	Clear();
+	m_rects.push_back({ 0,0,1,1 });
+	glTextureImage2DEXT(m_texture, GL_TEXTURE_2D, 0, 4, sur->w, sur->h, 0, GL_ABGR_EXT, GL_UNSIGNED_BYTE,sur->pixels);
+	glTextureParameterfEXT(m_texture, GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTextureParameterfEXT(m_texture, GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+}
+
 void Nuz_::Renderer::Texture::Clear()
 {
 	m_w = m_h = 0;

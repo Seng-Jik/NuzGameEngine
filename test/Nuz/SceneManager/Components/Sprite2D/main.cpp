@@ -50,7 +50,7 @@ public:
 	}
 };
 */
-int main() {
+int main(int argc,char** argv) {
 	auto& e = IEngine::GetGameDevice();
 	e.GetFileSystem().Mount(e.GetLocalFile());
 	//AddStdLogWhiteFliter("Nuz::Renderer");
@@ -59,7 +59,7 @@ int main() {
 	e.SetFPSShowEnable(true);
 
 	e.InitWindow(800, 600, false);
-
+	
 	e.BindMessageProcessor(Nuz::IEngine::Message::Quit, []() {
 		IEngine::GetGameDevice().GetSceneManager().Exit();
 	});
@@ -76,6 +76,7 @@ int main() {
 	auto pPrim = shared_ptr<IComponent>(new Prim);
 	sA->MountComponent(pPrim);
 	sprite->UseImage("/demo.ctx", 0);
+	//sprite->UseText()
 
 	/*{
 		auto sB = Nuz::IScene::CreateScene();

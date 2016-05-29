@@ -2,6 +2,7 @@
 #include "../../Renderer/OpenGL/Utils.h"
 #include "../../Engine.h"
 #include "../Camera2D.h"
+#include "../../Font.h"
 using namespace Nuz_;
 
 void Nuz_::Sprite2D::updateDrawCall(const FRect & src)
@@ -30,7 +31,7 @@ Sprite2D::Sprite2D()
 void Nuz_::Sprite2D::UseImage(const std::string & path, int num)
 {
 	//Renderer::LoadIdentityModelView44(m_matrix);
-	m_texture = ((Nuz_::Engine*)&Nuz::IEngine::GetGameDevice())->LoadImage(path);
+	m_texture = ((Nuz_::Engine&)Nuz::IEngine::GetGameDevice()).GetTextureLoader().LoadImage(path);
 	m_imageNum = num;
 	SetDstSizeAsDefault();
 	m_visible = true;
@@ -41,8 +42,21 @@ void Nuz_::Sprite2D::UseImage(const std::string & path, int num)
 	SetSrc(0, 0, (int)(uvRect.w*iw), (int)(uvRect.h*ih));
 }
 
-void Nuz_::Sprite2D::UseText(const std::string & fontPath, const std::wstring & text, int size)
+void Nuz_::Sprite2D::UseText(Nuz::IFont& font, const std::wstring & text, int size,uint8_t r,uint8_t g,uint8_t b)
 {
+	//Load Font
+	SDL_Color fg = { r,g,b };
+	auto textSurface = TTF_RenderUNICODE_Blended((Nuz_::Font&)font, (Uint16*)text.c_str(), fg);
+
+	m_texture = ((Nuz_::Engine&)Nuz::IEngine::GetGameDevice()).GetTextureLoader().RenderSurface(textSurface);
+	m_imageNum = 0;
+	SetDstSizeAsDefault();
+	m_visible = true;
+
+	int iw = 0, ih = 0;
+	m_texture->GetSize(iw, ih);
+	auto uvRect = m_texture->GetUVRect(m_imageNum);
+	SetSrc(0, 0, (int)(uvRect.w*iw), (int)(uvRect.h*ih));
 }
 
 void Nuz_::Sprite2D::FreeImage()

@@ -276,6 +276,9 @@
     <ClInclude Include="..\src\Nuz\Renderer\OpenGL\Utils.h">
       <Filter>头文件\Realize\Nuz_\Renderer\OpenGL</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Nuz\Font.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Nuz\FileSystem\FileSystem.cpp">
@@ -341,14 +344,17 @@
     <ClCompile Include="..\src\Nuz\Input\InputDevice.cpp">
       <Filter>源文件\Nuz\Input</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Nuz\SceneManager\Components\Sprite2D.cpp">
-      <Filter>源文件\Nuz\SceneManager</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\Nuz\SceneManager\Component.cpp">
       <Filter>源文件\Nuz\SceneManager\Components</Filter>
     </ClCompile>
     <ClCompile Include="..\src\Nuz\Renderer\OpenGL\Utils.cpp">
       <Filter>源文件\Nuz\Renderer\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Nuz\Font.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Nuz\SceneManager\Components\Sprite2D.cpp">
+      <Filter>源文件\Nuz\SceneManager\Components</Filter>
     </ClCompile>
     <ClCompile Include="..\test\Nuz\SceneManager\Components\Sprite2D\main.cpp">
       <Filter>源文件</Filter>

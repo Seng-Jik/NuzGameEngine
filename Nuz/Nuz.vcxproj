@@ -95,7 +95,7 @@
       <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2main.lib;SDL2.lib;SDL2_ttf.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -179,6 +179,7 @@
     <ClInclude Include="..\src\Nuz\Engine.h" />
     <ClInclude Include="..\src\Nuz\FileSystem\FileSystem.h" />
     <ClInclude Include="..\src\Nuz\FileSystem\LocalFile.h" />
+    <ClInclude Include="..\src\Nuz\Font.h" />
     <ClInclude Include="..\src\Nuz\Input\InputDevice.h" />
     <ClInclude Include="..\src\Nuz\Input\Keyboard.h" />
     <ClInclude Include="..\src\Nuz\Renderer\CtxReader.h" />
@@ -214,6 +215,7 @@
     <ClCompile Include="..\src\Nuz\Engine.cpp" />
     <ClCompile Include="..\src\Nuz\FileSystem\FileSystem.cpp" />
     <ClCompile Include="..\src\Nuz\FileSystem\LocalFile.cpp" />
+    <ClCompile Include="..\src\Nuz\Font.cpp" />
     <ClCompile Include="..\src\Nuz\Input\InputDevice.cpp" />
     <ClCompile Include="..\src\Nuz\Input\Keyboard.cpp" />
     <ClCompile Include="..\src\Nuz\Logs.cpp" />
