@@ -58,7 +58,7 @@ int wmain(){
 	e.SetWindowTitle("Nuz zuN");
 	e.SetFPSShowEnable(true);
 
-	e.InitWindow(800, 600, false);
+	e.InitWindow(400, 300, false);
 	
 	e.BindMessageProcessor(Nuz::IEngine::Message::Quit, []() {
 		IEngine::GetGameDevice().GetSceneManager().Exit();
@@ -75,14 +75,14 @@ int wmain(){
 	sA->MountComponent(sprite,"Hello");
 	auto pPrim = shared_ptr<IComponent>(new Prim);
 	sA->MountComponent(pPrim);
-	sprite->UseImage("/demo.ctx", 0);
-	//sprite->SetAlpha(0.5);
-	sprite->SetColorFliter(0.5, 0.5, 1.0);
-	/*{
+	//sprite->UseImage("/demo.ctx", 0);
+	sprite->SetAlpha(0.5);
+	//sprite->SetColorFliter(0.5, 0.5, 1.0);
+	{
 		auto font = IFont::CreateFont("/test.ttf", 32);
-		sprite->UseText(*font, L"HelloWorld",255,0,0);
+		sprite->UseText(*font, L"HelloWorld",0,255,0);
 	}
-	//sprite->UseText()*/
+	//sprite->UseText()
 
 	/*{
 		auto sB = Nuz::IScene::CreateScene();

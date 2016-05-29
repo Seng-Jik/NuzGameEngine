@@ -368,8 +368,8 @@
     <ClCompile Include="..\src\Nuz\Sound\Se.cpp">
       <Filter>源文件\Nuz\Sound</Filter>
     </ClCompile>
-    <ClCompile Include="..\test\Nuz\Sound\Se\main.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="..\test\Nuz\SceneManager\Components\Sprite2D\main.cpp">
+      <Filter>源文件\Nuz</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
