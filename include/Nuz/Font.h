@@ -12,6 +12,7 @@ namespace Nuz {
 		/* 创建字体
 		 * @param file 字体文件
 		 * @param size 字体大小
+		 * @throw std::runtime_error
 		 */
 		static std::shared_ptr<IFont> CreateFont(const std::string& file, int size = 32);
 	};
