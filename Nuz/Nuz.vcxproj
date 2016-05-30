@@ -192,6 +192,7 @@
     <ClInclude Include="..\src\Nuz\Renderer\OpenGL\Utils.h" />
     <ClInclude Include="..\src\Nuz\Renderer\OpenGL\wglew.h" />
     <ClInclude Include="..\src\Nuz\SceneManager\Camera2D.h" />
+    <ClInclude Include="..\src\Nuz\SceneManager\Components\Particle2D.h" />
     <ClInclude Include="..\src\Nuz\SceneManager\Components\Sprite2D.h" />
     <ClInclude Include="..\src\Nuz\SceneManager\DrawTask.h" />
     <ClInclude Include="..\src\Nuz\SceneManager\GameObject.h" />
@@ -230,6 +231,7 @@
     <ClCompile Include="..\src\Nuz\Renderer\OpenGL\Utils.cpp" />
     <ClCompile Include="..\src\Nuz\SceneManager\Camera2D.cpp" />
     <ClCompile Include="..\src\Nuz\SceneManager\Component.cpp" />
+    <ClCompile Include="..\src\Nuz\SceneManager\Components\Particle2D.cpp" />
     <ClCompile Include="..\src\Nuz\SceneManager\Components\Sprite2D.cpp" />
     <ClCompile Include="..\src\Nuz\SceneManager\GameObject.cpp" />
     <ClCompile Include="..\src\Nuz\SceneManager\GameObjectFloder.cpp" />
@@ -237,7 +239,7 @@
     <ClCompile Include="..\src\Nuz\SceneManager\SceneManager.cpp" />
     <ClCompile Include="..\src\Nuz\Sound\BgmPlayer.cpp" />
     <ClCompile Include="..\src\Nuz\Sound\Sound.cpp" />
-    <ClCompile Include="..\test\Nuz\Sound\Se\main.cpp" />
+    <ClCompile Include="..\test\Nuz\SceneManager\Components\Particle2D\main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

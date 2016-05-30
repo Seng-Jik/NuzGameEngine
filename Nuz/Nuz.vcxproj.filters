@@ -291,6 +291,9 @@
     <ClInclude Include="..\src\Nuz\Sound\BgmPlayer.h">
       <Filter>头文件\Realize\Nuz_\Sound</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Nuz\SceneManager\Components\Particle2D.h">
+      <Filter>头文件\Realize\Nuz_\SceneManager\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Nuz\FileSystem\FileSystem.cpp">
@@ -368,14 +371,17 @@
     <ClCompile Include="..\src\Nuz\Font.cpp">
       <Filter>源文件\Nuz</Filter>
     </ClCompile>
-    <ClCompile Include="..\test\Nuz\Sound\Se\main.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\Nuz\Sound\Sound.cpp">
       <Filter>源文件\Nuz\Sound</Filter>
     </ClCompile>
     <ClCompile Include="..\src\Nuz\Sound\BgmPlayer.cpp">
       <Filter>源文件\Nuz\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Nuz\SceneManager\Components\Particle2D.cpp">
+      <Filter>源文件\Nuz\SceneManager\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\Nuz\SceneManager\Components\Particle2D\main.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
