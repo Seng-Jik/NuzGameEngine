@@ -1,7 +1,7 @@
 #include "Font.h"
 #include "../../include/Nuz/Engine.h"
 #include "../../include/Nuz/FileSystem/FileSystem.h"
-
+using namespace Nuz_;
 Nuz_::Font::Font(const std::string & file, int size)
 {
 	m_buffer = Nuz::IEngine::GetGameDevice().GetFileSystem().LoadFile(file);
@@ -19,5 +19,16 @@ Nuz_::Font::~Font()
 
 std::shared_ptr<Nuz::IFont> Nuz::IFont::CreateFont(const std::string & file, int size)
 {
-	return std::shared_ptr<IFont>(new Nuz_::Font(file,size));
+	std::pair<std::string, int> s;
+	s.first = file;
+	s.second = size;
+	if (Font::m_cache.count(s)) {
+		if (!Font::m_cache.at(s).expired()) {
+			return Font::m_cache.at(s).lock();
+		}
+	}
+	auto p = std::shared_ptr<IFont>(new Nuz_::Font(file,size));
+	Font::m_cache[s] = p;
+	return p;
 }
+std::map<std::pair<std::string, int>, std::weak_ptr<Nuz::IFont>> Font::m_cache;

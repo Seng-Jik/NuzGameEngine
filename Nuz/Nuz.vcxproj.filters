@@ -282,10 +282,10 @@
     <ClInclude Include="..\src\Nuz\Font.h">
       <Filter>头文件\Realize\Nuz_</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\Nuz\Sound\Se.h">
+    <ClInclude Include="..\include\Nuz\Sound\Sound.h">
       <Filter>头文件\Interfaces\Nuz\Sound</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Nuz\Sound\Se.h">
+    <ClInclude Include="..\src\Nuz\Sound\Sound.h">
       <Filter>头文件\Realize\Nuz_\Sound</Filter>
     </ClInclude>
   </ItemGroup>
@@ -365,11 +365,11 @@
     <ClCompile Include="..\src\Nuz\Font.cpp">
       <Filter>源文件\Nuz</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Nuz\Sound\Se.cpp">
-      <Filter>源文件\Nuz\Sound</Filter>
+    <ClCompile Include="..\test\Nuz\Sound\Se\main.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\test\Nuz\SceneManager\Components\Sprite2D\main.cpp">
-      <Filter>源文件\Nuz</Filter>
+    <ClCompile Include="..\src\Nuz\Sound\Sound.cpp">
+      <Filter>源文件\Nuz\Sound</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

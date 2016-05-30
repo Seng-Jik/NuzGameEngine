@@ -20,7 +20,9 @@ int wmain() {
 
 	e.SetSkipFrame(0);
 	auto sA = Nuz::IScene::CreateScene();
-	auto se = ISe::CreateSe("/bgm04.ogg");
+	auto se = ISound::CreateSound("/th06_04.wav");
+	auto se2 = ISound::CreateSound("/th06_04.wav");
+	auto se3 = ISound::CreateSound("/th06_04.wav");
 	se->Play();
 	e.GetSceneManager().Start(sA);
 	return 0;

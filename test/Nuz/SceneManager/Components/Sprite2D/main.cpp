@@ -78,10 +78,12 @@ int wmain(){
 	sprite->UseImage("/demo.ctx", 0);
 	sprite->SetAlpha(0.5);
 	sprite->SetColorFliter(0.5, 0.5, 1.0);
-	/*{
-		auto font = IFont::CreateFont("/test.ttf", 32);
-		sprite->UseText(*font, L"HelloWorld",0,255,0);
-	}*/
+	
+	auto font = IFont::CreateFont("/test.ttf", 32);
+	auto font2 = IFont::CreateFont("/test.ttf", 32);
+	auto font3 = IFont::CreateFont("/test.ttf", 64);
+	sprite->UseText(*font, L"HelloWorld",0,255,0);
+	
 	//sprite->UseText()
 
 	/*{
