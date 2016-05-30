@@ -1,6 +1,7 @@
 #include "../../../include/Nuz.h"
 #include <iostream>
 #include <memory>
+#include <SDL.h>
 using namespace std;
 using namespace Nuz;
 
@@ -24,6 +25,12 @@ int wmain() {
 	auto se2 = ISound::CreateSound("/th06_04.wav");
 	auto se3 = ISound::CreateSound("/th06_04.wav");
 	se->Play();
+	SDL_Delay(4000);
+	se->PauseAllSound();
+	SDL_Delay(4000);
+	se->ResumeAllSound();
+	SDL_Delay(4000);
+	se->SetVolumeAllSound(0.5);
 	e.GetSceneManager().Start(sA);
 	return 0;
 }

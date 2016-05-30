@@ -7,6 +7,9 @@ using namespace std;
 using namespace Nuz_;
 
 std::map<std::string, std::weak_ptr<ISound>> Sound::m_cache;
+std::set<int> Sound::m_channels;
+int Sound::m_volume = 128;
+
 
 std::shared_ptr<ISound> Nuz::ISound::CreateSound(const std::string & s)
 {
@@ -18,6 +21,45 @@ std::shared_ptr<ISound> Nuz::ISound::CreateSound(const std::string & s)
 	auto p = std::shared_ptr<ISound>(new Nuz_::Sound(s));
 	Sound::m_cache[s] = p;
 	return p;
+}
+
+void Nuz::ISound::PauseAllSound()
+{
+	for (int i : Sound::m_channels)
+		if (Mix_Playing(i))
+			Mix_Pause(i);
+}
+
+void Nuz::ISound::ResumeAllSound()
+{
+	for (int i : Sound::m_channels)
+		if (Mix_Paused(i))
+			Mix_Resume(i);
+}
+
+void Nuz::ISound::StopAllSound()
+{
+	for (int i : Sound::m_channels)
+		Mix_HaltChannel(i);
+	Sound::m_channels.clear();
+}
+
+void Nuz::ISound::SetVolumeAllSound(float v)
+{
+	Sound::m_volume = int(v * 128);
+	for (int i : Sound::m_channels) {
+		Mix_Volume(i, Sound::m_volume);
+	}
+}
+
+int Nuz_::Sound::findEmptyChannel()
+{
+	for (int i = 0; i < 500; ++i) {
+		if (!Mix_Playing(i) && !Mix_Paused(i)) {
+			return i;
+		}
+	}
+	return -1;
 }
 
 Nuz_::Sound::Sound(const std::string & path)
@@ -37,5 +79,14 @@ Nuz_::Sound::~Sound()
 
 void Nuz_::Sound::Play(int fadein)
 {
-	Mix_FadeInChannel(-1, m_chunk, 0,fadein);
+	auto channel = findEmptyChannel();
+	if (channel == -1) throw std::runtime_error("Cannot play sound,now is playing too much.");
+	m_channels.insert(channel);
+	Mix_Volume(channel, m_volume);
+	Mix_FadeInChannel(channel, m_chunk, 0,fadein);
+}
+
+void Nuz_::channelFinishedHook(int channel)
+{
+	if (Sound::m_channels.count(channel)) Sound::m_channels.erase(channel);
 }

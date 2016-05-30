@@ -156,5 +156,6 @@ void Nuz_::SceneManager::Start(std::shared_ptr<Nuz::IScene> p)
 			title.clear();
 		}
 	}
+	//跳出主循环后应当停止所有声音
 }
 
