@@ -60,9 +60,6 @@ namespace Nuz_ {
 		float GetSize() const override;
 		void AddSize(float) override;
 		uint32_t GetLife() const override;
-		inline bool operator < (const Dot2D& b) const {
-			return m_x < b.m_x;
-		}
 	};
 }
 
