@@ -198,6 +198,7 @@
     <ClInclude Include="..\src\Nuz\SceneManager\GameObjectFloder.h" />
     <ClInclude Include="..\src\Nuz\SceneManager\Scene.h" />
     <ClInclude Include="..\src\Nuz\SceneManager\SceneManager.h" />
+    <ClInclude Include="..\src\Nuz\Sound\BgmPlayer.h" />
     <ClInclude Include="..\src\Nuz\Sound\Sound.h" />
   </ItemGroup>
   <ItemGroup>
@@ -234,6 +235,7 @@
     <ClCompile Include="..\src\Nuz\SceneManager\GameObjectFloder.cpp" />
     <ClCompile Include="..\src\Nuz\SceneManager\Scene.cpp" />
     <ClCompile Include="..\src\Nuz\SceneManager\SceneManager.cpp" />
+    <ClCompile Include="..\src\Nuz\Sound\BgmPlayer.cpp" />
     <ClCompile Include="..\src\Nuz\Sound\Sound.cpp" />
     <ClCompile Include="..\test\Nuz\Sound\Se\main.cpp" />
   </ItemGroup>

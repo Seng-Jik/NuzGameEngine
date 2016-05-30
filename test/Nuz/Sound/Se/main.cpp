@@ -21,16 +21,28 @@ int wmain() {
 
 	e.SetSkipFrame(0);
 	auto sA = Nuz::IScene::CreateScene();
+	auto bgmPlayer = IBgmPlayer::CreateBgmPlayer();
 	auto se = ISound::CreateSound("/th06_04.wav");
-	auto se2 = ISound::CreateSound("/th06_04.wav");
-	auto se3 = ISound::CreateSound("/th06_04.wav");
-	se->Play();
+	{
+		auto se2 = ISound::CreateSound("/th06_05.wav");
+		auto se3 = ISound::CreateSound("/th06_04.wav");
+		bgmPlayer->SetVolume(0.01);
+		bgmPlayer->LoadHeader(se);
+		bgmPlayer->LoadLoop(se2);
+	}
+	
+	//se->Play();
+	//SDL_Delay(1000);
+	bgmPlayer->Play();
 	SDL_Delay(4000);
-	se->PauseAllSound();
+	bgmPlayer->Pause();
+	//se->PauseAllSound();
 	SDL_Delay(4000);
-	se->ResumeAllSound();
+	bgmPlayer->Resume();
+	//se->ResumeAllSound();
 	SDL_Delay(4000);
-	se->SetVolumeAllSound(0.5);
+	bgmPlayer->SetVolume(1.0);
+	//se->SetVolumeAllSound(0.5);
 	e.GetSceneManager().Start(sA);
 	return 0;
 }

@@ -288,6 +288,9 @@
     <ClInclude Include="..\src\Nuz\Sound\Sound.h">
       <Filter>头文件\Realize\Nuz_\Sound</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Nuz\Sound\BgmPlayer.h">
+      <Filter>头文件\Realize\Nuz_\Sound</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Nuz\FileSystem\FileSystem.cpp">
@@ -369,6 +372,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="..\src\Nuz\Sound\Sound.cpp">
+      <Filter>源文件\Nuz\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Nuz\Sound\BgmPlayer.cpp">
       <Filter>源文件\Nuz\Sound</Filter>
     </ClCompile>
   </ItemGroup>

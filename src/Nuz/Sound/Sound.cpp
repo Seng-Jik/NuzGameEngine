@@ -1,10 +1,12 @@
 #include "Sound.h"
 #include "../FileSystem/FileSystem.h"
 #include "../Engine.h"
+#include "BgmPlayer.h"
 #include <SDL_mixer.h>
 using namespace Nuz;
 using namespace std;
 using namespace Nuz_;
+std::mutex Sound::m_lock;
 
 std::map<std::string, std::weak_ptr<ISound>> Sound::m_cache;
 std::set<int> Sound::m_channels;
@@ -41,6 +43,7 @@ void Nuz::ISound::StopAllSound()
 {
 	for (int i : Sound::m_channels)
 		Mix_HaltChannel(i);
+	lock_guard<mutex> l(Sound::m_lock);
 	Sound::m_channels.clear();
 }
 
@@ -79,6 +82,7 @@ Nuz_::Sound::~Sound()
 
 void Nuz_::Sound::Play(int fadein)
 {
+	lock_guard<mutex> l(Sound::m_lock);
 	auto channel = findEmptyChannel();
 	if (channel == -1) throw std::runtime_error("Cannot play sound,now is playing too much.");
 	m_channels.insert(channel);
@@ -88,5 +92,15 @@ void Nuz_::Sound::Play(int fadein)
 
 void Nuz_::channelFinishedHook(int channel)
 {
-	if (Sound::m_channels.count(channel)) Sound::m_channels.erase(channel);
+	if (Sound::m_channels.count(channel)) {
+		lock_guard<mutex> l(Sound::m_lock);
+		Sound::m_channels.erase(channel);
+	}
+	else if (BgmPlayer::m_channel2loop.count(channel)) {
+		lock_guard<mutex> l2(BgmPlayer::m_lock);
+		auto pBgmPlayer = BgmPlayer::m_channel2loop.at(channel);
+		BgmPlayer::m_channel2loop.erase(channel);
+		pBgmPlayer->m_head.reset();
+		Mix_PlayChannel(pBgmPlayer->m_channel, ((Sound*)(pBgmPlayer->m_loop.get()))->m_chunk, -1);
+	}
 }
