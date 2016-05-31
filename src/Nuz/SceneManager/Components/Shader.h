@@ -1,5 +1,5 @@
 #pragma once
-#include "../../../../include/Nuz/SceneManager/Components/Shader.h"
+/*#include "../../../../include/Nuz/SceneManager/Components/Shader.h"
 #include <map>
 #include "../../Renderer/OpenGL/glew.h"
 namespace Nuz_ {
@@ -20,4 +20,4 @@ namespace Nuz_ {
 		Nuz::IShader::ShaderHandle GetHandle() override;
 	};
 
-}
+}*/
