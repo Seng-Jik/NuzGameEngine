@@ -297,6 +297,9 @@
     <ClInclude Include="..\src\Nuz\Renderer\OpenGL\GLSLProgram.h">
       <Filter>头文件\Realize\Nuz_\Renderer\OpenGL</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Nuz\SceneManager\Components\Shader.h">
+      <Filter>头文件\Realize\Nuz_\SceneManager\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Nuz\FileSystem\FileSystem.cpp">
@@ -386,7 +389,7 @@
     <ClCompile Include="..\src\Nuz\Renderer\OpenGL\GLSLProgram.cpp">
       <Filter>源文件\Nuz\Renderer\OpenGL</Filter>
     </ClCompile>
-    <ClCompile Include="..\test\Nuz\SceneManager\Components\Particle2D\main.cpp">
+    <ClCompile Include="..\test\Nuz\SceneManager\Components\Shader\main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
