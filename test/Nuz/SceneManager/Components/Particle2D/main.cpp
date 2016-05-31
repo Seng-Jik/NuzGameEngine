@@ -25,7 +25,7 @@ int wmain(){
 	});
 	auto sA = Nuz::IScene::CreateScene();
 	pCamera2D = Nuz::ICamera2D::CreateCamera2D();
-	pCamera2D->SetCamera(-16, 8, -16, 8);
+	pCamera2D->SetCamera(-32, 16, -32, 16);
 	sA->SetCamera2D(pCamera2D);
 
 	auto particle2D = Nuz::IParticle2D::CreateParticle2D();
@@ -41,10 +41,10 @@ int wmain(){
 	});
 
 	particle2D->BindIniter([](Nuz::IParticle2D& p, Nuz::IParticle2D::Dot2D& d) {
-		d.speed = float(rand()) / RAND_MAX * 0.5;
+		d.speed = float(rand()) / RAND_MAX * 2;
 		d.angle = float(rand()) / RAND_MAX * 2 * M_PI;
 	});
-	particle2D->AddDot(0, 0,10);
+	particle2D->AddDot(0, 0,2000);
 
 	sA->MountComponent(particle2D);
 

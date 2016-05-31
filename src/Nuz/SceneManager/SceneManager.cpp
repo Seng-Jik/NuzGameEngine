@@ -64,8 +64,8 @@ SceneManager::~SceneManager()
 void Nuz_::SceneManager::Start(std::shared_ptr<Nuz::IScene> p)
 {
 	m_mainLoop = true;
-	static multiset<DrawTask2D> drawTask2D;
-	static multiset<DrawTask3D> drawTask3D;
+	static vector<DrawTask2D> drawTask2D;
+	static vector<DrawTask3D> drawTask3D;
 	Nuz_::Scene* now = (Nuz_::Scene*)p.get();
 	Nuz_::Engine* engine = (Nuz_::Engine*)&Nuz::IEngine::GetGameDevice();
 	Nuz_::InputDeviceManager* input = (Nuz_::InputDeviceManager*)&(engine->GetInputDeviceManager());
@@ -119,6 +119,9 @@ void Nuz_::SceneManager::Start(std::shared_ptr<Nuz::IScene> p)
 
 		//场景生命周期，在这里处理场景的生命周期
 		now->OnUpdate(drawTask2D,drawTask3D,nullptr,nullptr);
+
+		sort(drawTask2D.begin(), drawTask2D.end());
+		sort(drawTask3D.begin(), drawTask3D.end());
 
 		//绘制在计划中的物体
 		glMatrixPushEXT(GL_PROJECTION);

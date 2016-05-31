@@ -1,6 +1,7 @@
 #pragma once
 #include <map>
 #include <memory>
+#include <vector>
 #include <set>
 #include <queue>
 #include "../../../include/Nuz/SceneManager/Component.h"
@@ -17,10 +18,10 @@ namespace Nuz_ {
 		int m_drawLevel = 0;
 
 		std::map<std::string, std::shared_ptr<Nuz::IComponent>> m_mountName2component;
-		std::set<std::shared_ptr<Nuz::IComponent>> m_allcomponent;
+		std::vector<std::shared_ptr<Nuz::IComponent>> m_allcomponent;
 
 		std::map<std::string, std::shared_ptr<Nuz::IGameObject>> m_mountName2go;
-		std::set<std::shared_ptr<Nuz::IGameObject>> m_allgo;
+		std::vector<std::shared_ptr<Nuz::IGameObject>> m_allgo;
 
 		ParentType m_parentType;
 		std::weak_ptr<Nuz::IGameObject> m_goParent;
@@ -78,7 +79,7 @@ namespace Nuz_ {
 		inline void SetDrawLevel(int i) { m_drawLevel = i; }
 		inline int GetDrawLevel() { return m_drawLevel; }
 
-		void OnUpdate(std::multiset<DrawTask2D>& drawTask2D, std::multiset<DrawTask3D>& drawTask3D, Camera2D* c2d, Camera3D* c3d);
+		void OnUpdate(std::vector<DrawTask2D>& drawTask2D, std::vector<DrawTask3D>& drawTask3D, Camera2D* c2d, Camera3D* c3d);
 		void OnDraw3D();
 		void OnDraw2D();
 		//void OnDrawScreenReady();

@@ -18,13 +18,17 @@ void Nuz_::Scene::unmountScene_Really(Nuz::IScene * pD)
 			break;
 		}
 	}
-	for (auto& p : m_allscene) {
+	/*for (auto& p : m_allscene) {
 		if (p.get() == pD) {
 			m_allscene.erase(p);
 			((Scene*)pD)->m_parent = nullptr;
 			break;
 		}
-	}
+	}*/
+	auto ers = find_if(m_allscene.begin(), m_allscene.end(), [pD](const shared_ptr<Nuz::IScene>& p) {
+		return p.get() == pD;
+	});
+	m_allscene.erase(ers);
 }
 
 void Nuz_::Scene::UnmountSelf()
@@ -59,7 +63,7 @@ std::shared_ptr<Nuz::IGameObject> Nuz_::Scene::GetMountedGameObject(const std::s
 void Nuz_::Scene::MountScene(const std::shared_ptr<IScene>& p, const std::string & mountName)
 {
 	((Scene*)p.get())->m_parent = this;
-	m_allscene.insert(p);
+	m_allscene.push_back(p);
 	if (!mountName.empty()) {
 		if (m_name2scene.count(mountName) == 0) {
 			m_name2scene[mountName] = p;
@@ -80,7 +84,7 @@ void Nuz_::Scene::SetCamera2D(const std::shared_ptr<const Nuz::ICamera2D>& camer
 	m_gof.SetCamera2D(m_camera2D);
 }
 
-void Nuz_::Scene::OnUpdate(std::multiset<DrawTask2D>& drawTask2D, std::multiset<DrawTask3D>& drawTask3D, Camera2D* c2d, Camera3D* c3d) {
+void Nuz_::Scene::OnUpdate(std::vector<DrawTask2D>& drawTask2D, std::vector<DrawTask3D>& drawTask3D, Camera2D* c2d, Camera3D* c3d) {
 	while (!m_unmountSceneTask.empty()) {
 		unmountScene_Really(m_unmountSceneTask.front());
 		m_unmountSceneTask.pop();

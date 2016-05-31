@@ -39,20 +39,20 @@ public:
 	}
 	void Unmount() { UnmountSelf(); }
 };
-/*
+
 class Killer :public Nuz::ILogic {
 private:
 	int i = 120;
 public:
-	bool OnUpdate() {
+	void OnUpdate(bool& draw2D, bool& draw3D) {
 		--i;
 		if (!i) {
 			((Prim*)GetOtherComponent("Hello").get())->Unmount();
+			((Prim*)GetOtherComponent("Hello2").get())->Unmount();
 		}
-		return false;
 	}
 };
-*/
+
 int wmain(){
 	auto& e = IEngine::GetGameDevice();
 	e.GetFileSystem().Mount(e.GetLocalFile());
@@ -77,7 +77,9 @@ int wmain(){
 	auto sprite = Nuz::ISprite2D::CreateSprite2D();
 	sA->MountComponent(sprite,"Hello");
 	auto pPrim = shared_ptr<IComponent>(new Prim);
-	sA->MountComponent(pPrim);
+	sA->MountComponent(pPrim,"Hello2");
+	auto pKill = shared_ptr<IComponent>(new Killer);
+	sA->MountComponent(pKill);
 	sprite->UseImage("/demo.ctx", 1);
 	sprite->SetAlpha(0.5);
 	sprite->SetColorFliter(1.0, 1.0, 0.0);

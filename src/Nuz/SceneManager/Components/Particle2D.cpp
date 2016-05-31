@@ -88,15 +88,15 @@ void Nuz_::Particle2D::OnDraw2D() const
 void Nuz_::Particle2D::OnUpdate(bool & draw2D, bool & draw3D)
 {
 	draw2D = true;
-	//auto end = m_dots.end();
-	for (auto& i:m_dots) {
-		single(*this, i);
-		i.x += i.speed*sin(i.angle);
-		i.y += i.speed*cos(i.angle);
-		if (i.size <= 0 || i.alpha <= 0) {
-			m_dots.erase(i);
-		}
+	for (auto i = m_dots.begin(); i != m_dots.end();++i) {
+		single(*this, *i);
+		i->x += i->speed*sin(i->angle);
+		i->y += i->speed*cos(i->angle);
 	}
+	auto nend = remove_if(m_dots.begin(), m_dots.end(), [](const auto& i) {
+		return i.alpha <= 0 || i.size <= 0;
+	});
+	m_dots.erase(nend, m_dots.end());
 }
 
 std::shared_ptr<IParticle2D> Nuz::IParticle2D::CreateParticle2D()

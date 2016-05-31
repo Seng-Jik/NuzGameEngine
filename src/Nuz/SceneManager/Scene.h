@@ -12,7 +12,7 @@ namespace Nuz_ {
 	private:
 		GameObjectFloder m_gof;
 		std::map<std::string, std::shared_ptr<Nuz::IScene> > m_name2scene;
-		std::set< std::shared_ptr<Nuz::IScene> > m_allscene;
+		std::vector< std::shared_ptr<Nuz::IScene> > m_allscene;
 		Scene* m_parent = nullptr;
 
 		std::queue<Nuz::IScene*> m_unmountSceneTask;
@@ -46,7 +46,7 @@ namespace Nuz_ {
 		void SetCamera3D(const std::shared_ptr<const Nuz::ICamera3D>& camera) override {};
 
 
-		void OnUpdate(std::multiset<DrawTask2D>& drawTask2D, std::multiset<DrawTask3D>& drawTask3D, Camera2D* c2d, Camera3D* c3d);
+		void OnUpdate(std::vector<DrawTask2D>& drawTask2D, std::vector<DrawTask3D>& drawTask3D, Camera2D* c2d, Camera3D* c3d);
 		//void OnDraw3D();
 		//void OnDraw2D();
 		void OnFadeSwitchOut(int timeLimited);

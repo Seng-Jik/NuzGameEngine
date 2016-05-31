@@ -72,21 +72,29 @@
     <IncludePath>$(SolutionDir)lib\include\SDL2;$(SolutionDir)lib\include\Lua;$(IncludePath)</IncludePath>
     <ReferencePath>$(SolutionDir)\lib\x86;$(ReferencePath)</ReferencePath>
     <LibraryPath>$(SolutionDir)\lib\x86;$(LibraryPath)</LibraryPath>
+    <OutDir>..\build.bin\$(Platform)$(Configuration)\</OutDir>
+    <IntDir>..\build.output\$(ProjectName)\$(Platform)$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(SolutionDir)lib\include\SDL2;$(SolutionDir)lib\include\Lua;$(IncludePath)</IncludePath>
     <ReferencePath>$(SolutionDir)\lib\x64</ReferencePath>
     <LibraryPath>$(SolutionDir)\lib\x64</LibraryPath>
+    <OutDir>..\build.bin\$(Platform)$(Configuration)\</OutDir>
+    <IntDir>..\build.output\$(ProjectName)\$(Platform)$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>$(SolutionDir)lib\include\SDL2;$(SolutionDir)lib\include\Lua;$(IncludePath)</IncludePath>
     <ReferencePath>$(SolutionDir)\lib\x86;$(ReferencePath)</ReferencePath>
     <LibraryPath>$(SolutionDir)\lib\x86;$(LibraryPath)</LibraryPath>
+    <OutDir>..\build.bin\$(Platform)$(Configuration)\</OutDir>
+    <IntDir>..\build.output\$(ProjectName)\$(Platform)$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>$(SolutionDir)lib\include\SDL2;$(SolutionDir)lib\include\Lua;$(IncludePath)</IncludePath>
     <ReferencePath>$(SolutionDir)\lib\x64;$(ReferencePath)</ReferencePath>
     <LibraryPath>$(SolutionDir)\lib\x64;$(LibraryPath)</LibraryPath>
+    <OutDir>..\build.bin\$(Platform)$(Configuration)\</OutDir>
+    <IntDir>..\build.output\$(ProjectName)\$(Platform)$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -97,16 +105,23 @@
     <Link>
       <AdditionalDependencies>SDL2main.lib;SDL2.lib;SDL2_ttf.lib;SDL2_mixer.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>copy ..\build.bin\$(Platform)$(Configuration)\$(ProjectName)$(TargetExt) ..\x86Debug_WorkDir</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>copy ..\build.bin\$(Platform)$(Configuration)\$(ProjectName)$(TargetExt) ..\x64Debug_WorkDir</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -115,12 +130,18 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>SDL2main.lib;SDL2.lib;opengl32.lib;SDL2_ttf.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>copy ..\build.bin\$(Platform)$(Configuration)\$(ProjectName)$(TargetExt) ..\x86Debug_WorkDir</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -129,12 +150,18 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>SDL2main.lib;SDL2.lib;opengl32.lib;SDL2_ttf.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>copy ..\build.bin\$(Platform)$(Configuration)\$(ProjectName)$(TargetExt) ..\x64Debug_WorkDir</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\include\Nuz.h" />
@@ -190,13 +217,12 @@
     <ClInclude Include="..\src\Nuz\Renderer\OpenGL\FrameBuffer.h" />
     <ClInclude Include="..\src\Nuz\Renderer\OpenGL\glew.h" />
     <ClInclude Include="..\src\Nuz\Renderer\OpenGL\glxew.h" />
-    <ClInclude Include="..\src\Nuz\Renderer\OpenGL\Shader.h" />
+    <ClInclude Include="..\src\Nuz\Renderer\OpenGL\GLSLProgram.h" />
     <ClInclude Include="..\src\Nuz\Renderer\OpenGL\Texture.h" />
     <ClInclude Include="..\src\Nuz\Renderer\OpenGL\Utils.h" />
     <ClInclude Include="..\src\Nuz\Renderer\OpenGL\wglew.h" />
     <ClInclude Include="..\src\Nuz\SceneManager\Camera2D.h" />
     <ClInclude Include="..\src\Nuz\SceneManager\Components\Particle2D.h" />
-    <ClInclude Include="..\src\Nuz\SceneManager\Components\Shader.h" />
     <ClInclude Include="..\src\Nuz\SceneManager\Components\Sprite2D.h" />
     <ClInclude Include="..\src\Nuz\SceneManager\DrawTask.h" />
     <ClInclude Include="..\src\Nuz\SceneManager\GameObject.h" />
@@ -239,13 +265,12 @@
     <ClCompile Include="..\src\Nuz\Renderer\OpenGL\CallList.cpp" />
     <ClCompile Include="..\src\Nuz\Renderer\OpenGL\FrameBuffer.cpp" />
     <ClCompile Include="..\src\Nuz\Renderer\OpenGL\glew.cpp" />
-    <ClCompile Include="..\src\Nuz\Renderer\OpenGL\Shader.cpp" />
+    <ClCompile Include="..\src\Nuz\Renderer\OpenGL\GLSLProgram.cpp" />
     <ClCompile Include="..\src\Nuz\Renderer\OpenGL\Texture.cpp" />
     <ClCompile Include="..\src\Nuz\Renderer\OpenGL\Utils.cpp" />
     <ClCompile Include="..\src\Nuz\SceneManager\Camera2D.cpp" />
     <ClCompile Include="..\src\Nuz\SceneManager\Component.cpp" />
     <ClCompile Include="..\src\Nuz\SceneManager\Components\Particle2D.cpp" />
-    <ClCompile Include="..\src\Nuz\SceneManager\Components\Shader.cpp" />
     <ClCompile Include="..\src\Nuz\SceneManager\Components\Sprite2D.cpp" />
     <ClCompile Include="..\src\Nuz\SceneManager\GameObject.cpp" />
     <ClCompile Include="..\src\Nuz\SceneManager\GameObjectFloder.cpp" />
