@@ -223,6 +223,7 @@
     <ClInclude Include="..\src\Nuz\Renderer\OpenGL\wglew.h" />
     <ClInclude Include="..\src\Nuz\SceneManager\Camera2D.h" />
     <ClInclude Include="..\src\Nuz\SceneManager\Components\Particle2D.h" />
+    <ClInclude Include="..\src\Nuz\SceneManager\Components\Shader.h" />
     <ClInclude Include="..\src\Nuz\SceneManager\Components\Sprite2D.h" />
     <ClInclude Include="..\src\Nuz\SceneManager\DrawTask.h" />
     <ClInclude Include="..\src\Nuz\SceneManager\GameObject.h" />
@@ -278,7 +279,7 @@
     <ClCompile Include="..\src\Nuz\SceneManager\SceneManager.cpp" />
     <ClCompile Include="..\src\Nuz\Sound\BgmPlayer.cpp" />
     <ClCompile Include="..\src\Nuz\Sound\Sound.cpp" />
-    <ClCompile Include="..\test\Nuz\SceneManager\Components\Particle2D\main.cpp" />
+    <ClCompile Include="..\test\Nuz\SceneManager\Components\Shader\main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

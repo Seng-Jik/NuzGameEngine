@@ -1,6 +1,6 @@
 #pragma once
 #include "glew.h"
-
+#include "../../../../include/Nuz/SceneManager/Components/Shader.h"
 namespace Nuz_ {
 	namespace Renderer {
 		class GLSLProgram
@@ -10,10 +10,10 @@ namespace Nuz_ {
 		public:
 			GLSLProgram();
 			~GLSLProgram();
-			void LoadShader(const char* vert, const char* frag);
-			inline void Use() { glUseProgram(m_handle); };
+			void LoadShader(const Nuz::IShader::CreateConfig& c);
+			inline void Use() const { glUseProgram(m_handle); };
 			void Clear();
-			inline bool Empty() {return m_handle == 0;}
+			inline bool Empty() const {return m_handle == 0;}
 			inline operator GLuint () {return m_handle;}
 			inline static void Unuse() { glUseProgram(0); }
 		};
