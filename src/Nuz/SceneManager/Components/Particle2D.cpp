@@ -2,6 +2,8 @@
 #include "../../Engine.h"
 #include <cmath>
 #include <queue>
+#include <algorithm>
+
 using namespace Nuz_;
 using namespace Nuz;
 using namespace std;
@@ -90,13 +92,14 @@ void Nuz_::Particle2D::OnDraw2D() const
 void Nuz_::Particle2D::OnUpdate(bool & draw2D, bool & draw3D)
 {
 	draw2D = true;
-	//auto end = m_dots.end();
-	for (auto& i:m_dots) {
-		single(*this, *i);
-		i->x += i->speed*sin(i->angle);
-		i->y += i->speed*cos(i->angle);
-		if (i->size <= 0 || i->alpha <= 0) {
-			m_dots.erase(i);
+	for (auto i = m_dots.begin(); i != m_dots.end();) {
+		single(*this, **i);
+		(*i)->x += (*i)->speed*sin((*i)->angle);
+		(*i)->y += (*i)->speed*cos((*i)->angle);
+		if ((*i)->size <= 0 || (*i)->alpha <= 0) {
+			m_dots.erase(i++);
+		} else {
+			++i;
 		}
 	}
 }

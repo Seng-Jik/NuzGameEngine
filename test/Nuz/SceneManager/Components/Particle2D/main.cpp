@@ -44,7 +44,7 @@ int wmain(){
 		d.speed = float(rand()) / RAND_MAX * 0.5;
 		d.angle = float(rand()) / RAND_MAX * 2 * M_PI;
 	});
-	particle2D->AddDot(0, 0,5000);
+	particle2D->AddDot(0, 0, 80000);
 
 	sA->MountComponent(particle2D);
 
