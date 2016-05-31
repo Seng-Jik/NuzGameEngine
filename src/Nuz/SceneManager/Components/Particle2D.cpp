@@ -46,13 +46,11 @@ void Nuz_::Particle2D::BindIniter(std::function<void(Nuz::IParticle2D&, Nuz::IPa
 void Nuz_::Particle2D::AddDot(float x, float y,int num)
 {
 	for (int i = 0; i < num; ++i) {
-		shared_ptr<Dot2D> p(new Dot2D);
-		
-		p->x = x;
-		p->y = y;
-		//m_dots.insert(p);
-		if (initer) initer(*this,*p);
-		m_dots.insert(p);
+		Dot2D p;
+		p.x = x;
+		p.y = y;
+		if (initer) initer(*this,p);
+		m_dots.push_back(p);
 	}
 }
 
@@ -78,9 +76,9 @@ void Nuz_::Particle2D::OnDraw2D() const
 	m_dotTexture->Bind();
 	for (auto& i : m_dots) {
 		glMatrixLoadIdentityEXT(GL_MODELVIEW);
-		glColor4f(i->r, i->g, i->b, i->alpha);
-		glMatrixTranslatefEXT(GL_MODELVIEW, i->x, i->y, 0);
-		glMatrixScalefEXT(GL_MODELVIEW, i->size, i->size, 1);
+		glColor4f(i.r, i.g, i.b, i.alpha);
+		glMatrixTranslatefEXT(GL_MODELVIEW, i.x, i.y, 0);
+		glMatrixScalefEXT(GL_MODELVIEW, i.size, i.size, 1);
 		drawDot();
 	}
 	m_dotTexture->Unbind();
@@ -92,10 +90,10 @@ void Nuz_::Particle2D::OnUpdate(bool & draw2D, bool & draw3D)
 	draw2D = true;
 	//auto end = m_dots.end();
 	for (auto& i:m_dots) {
-		single(*this, *i);
-		i->x += i->speed*sin(i->angle);
-		i->y += i->speed*cos(i->angle);
-		if (i->size <= 0 || i->alpha <= 0) {
+		single(*this, i);
+		i.x += i.speed*sin(i.angle);
+		i.y += i.speed*cos(i.angle);
+		if (i.size <= 0 || i.alpha <= 0) {
 			m_dots.erase(i);
 		}
 	}

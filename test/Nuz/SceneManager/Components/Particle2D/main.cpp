@@ -18,24 +18,24 @@ int wmain(){
 	e.SetWindowTitle("Nuz zuN");
 	e.SetFPSShowEnable(true);
 
-	e.InitWindow(400, 300, false);
+	e.InitWindow(800, 600, false);
 	
 	e.BindMessageProcessor(Nuz::IEngine::Message::Quit, []() {
 		IEngine::GetGameDevice().GetSceneManager().Exit();
 	});
 	auto sA = Nuz::IScene::CreateScene();
 	pCamera2D = Nuz::ICamera2D::CreateCamera2D();
-	pCamera2D->SetCamera(-8, 4, -8, 4);
+	pCamera2D->SetCamera(-16, 8, -16, 8);
 	sA->SetCamera2D(pCamera2D);
 
 	auto particle2D = Nuz::IParticle2D::CreateParticle2D();
 	particle2D->UseImage("/demo.ctx", 0);
 	particle2D->BindSingle([](Nuz::IParticle2D& p, Nuz::IParticle2D::Dot2D& d) {
 		//d.speed += 0.0001f;
-		//d.alpha -= 0.001f;
+		d.alpha -= 0.001f;
 		//d.angle += 0.01f;
-		//d.r -= 0.01f;
-		//d.g -= 0.001f;
+		d.r -= 0.01f;
+		d.g -= 0.001f;
 		if(d.speed>=0.01) d.speed -= 0.001f;
 		d.size -= (0.005f);
 	});
@@ -44,7 +44,7 @@ int wmain(){
 		d.speed = float(rand()) / RAND_MAX * 0.5;
 		d.angle = float(rand()) / RAND_MAX * 2 * M_PI;
 	});
-	particle2D->AddDot(0, 0,5000);
+	particle2D->AddDot(0, 0,10);
 
 	sA->MountComponent(particle2D);
 

@@ -297,6 +297,9 @@
     <ClInclude Include="..\src\Nuz\SceneManager\Components\Shader.h">
       <Filter>头文件\Realize\Nuz_\SceneManager\Components</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Nuz\Renderer\OpenGL\Shader.h">
+      <Filter>头文件\Realize\Nuz_\SceneManager\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Nuz\FileSystem\FileSystem.cpp">
@@ -384,6 +387,9 @@
       <Filter>源文件\Nuz\SceneManager\Components</Filter>
     </ClCompile>
     <ClCompile Include="..\src\Nuz\SceneManager\Components\Shader.cpp">
+      <Filter>源文件\Nuz\SceneManager\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Nuz\Renderer\OpenGL\Shader.cpp">
       <Filter>源文件\Nuz\SceneManager\Components</Filter>
     </ClCompile>
     <ClCompile Include="..\test\Nuz\SceneManager\Components\Particle2D\main.cpp">

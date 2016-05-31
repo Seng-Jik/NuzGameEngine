@@ -3,8 +3,7 @@
 #include "../../Renderer/OpenGL/Texture.h"
 #include "../../Renderer/OpenGL/CallList.h"
 #include <memory>
-#include <set>
-#include <list>
+#include <vector>
 #include <cstdint>
 namespace Nuz_ {
 	struct Dot2D;
@@ -12,8 +11,7 @@ namespace Nuz_ {
 	{
 	friend struct Dot2D;
 	private:
-		std::multiset<std::shared_ptr<Dot2D>> m_dots;
-		//std::list<Dot2D> m_dots;
+		std::vector<Dot2D> m_dots;
 		std::shared_ptr<Renderer::Texture> m_dotTexture;	//Á£×ÓÎÆÀí
 		std::function<void(Nuz::IParticle2D&, Nuz::IParticle2D::Dot2D&)> single,initer;
 
