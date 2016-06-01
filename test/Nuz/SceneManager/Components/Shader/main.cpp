@@ -61,7 +61,12 @@ int wmain(){
 	e.SetWindowTitle("Nuz zuN");
 	e.SetFPSShowEnable(true);
 
-	e.InitWindow(400, 300, false);
+	try {
+		e.InitWindow(400, 300, false);
+	}
+	catch (Nuz::IShader::ShaderCompileError& e) {
+		LogErr(e.what(), "");
+	}
 	
 	e.BindMessageProcessor(Nuz::IEngine::Message::Quit, []() {
 		IEngine::GetGameDevice().GetSceneManager().Exit();
