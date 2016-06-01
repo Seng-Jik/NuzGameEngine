@@ -75,50 +75,51 @@ void Nuz_::SceneManager::Start(std::shared_ptr<Nuz::IScene> p)
 	Camera2D* camera2DNow = nullptr;
 	//Camera3D* camera3DNow = nullptr;
 	while (m_mainLoop) {
-		while (SDL_PollEvent(&e)) {
-			switch (e.type) {
-				//作为广播消息派发
-			case SDL_QUIT:
-				sendMessage(Nuz::IEngine::Message::Quit);
-				break;
+		for (int i = 0; i < engine->GetSkipFrame(); ++i) {
+			while (SDL_PollEvent(&e)) {
+				switch (e.type) {
+					//作为广播消息派发
+				case SDL_QUIT:
+					sendMessage(Nuz::IEngine::Message::Quit);
+					break;
 
-			case SDL_WINDOWEVENT: {
-				switch (e.window.event) {
-				case SDL_WINDOWEVENT_CLOSE:
-					sendMessage(Nuz::IEngine::Message::CloseWindow);
+				case SDL_WINDOWEVENT: {
+					switch (e.window.event) {
+					case SDL_WINDOWEVENT_CLOSE:
+						sendMessage(Nuz::IEngine::Message::CloseWindow);
+						break;
+					case SDL_WINDOWEVENT_MAXIMIZED:
+						sendMessage(Nuz::IEngine::Message::WindowMaximized);
+						break;
+					case SDL_WINDOWEVENT_MINIMIZED:
+						sendMessage(Nuz::IEngine::Message::WindowMinimized);
+						break;
+					case SDL_WINDOWEVENT_RESTORED:
+						sendMessage(Nuz::IEngine::Message::WindowRestored);
+						break;
+					};
 					break;
-				case SDL_WINDOWEVENT_MAXIMIZED:
-					sendMessage(Nuz::IEngine::Message::WindowMaximized);
-					break;
-				case SDL_WINDOWEVENT_MINIMIZED:
-					sendMessage(Nuz::IEngine::Message::WindowMinimized);
-					break;
-				case SDL_WINDOWEVENT_RESTORED:
-					sendMessage(Nuz::IEngine::Message::WindowRestored);
+				}
+				default:
+					//作为输入派发
+					input->DispatchEvent(e);
 					break;
 				};
-				break;
 			}
-			default:
-				//作为输入派发
-				input->DispatchEvent(e);
-				break;
-			};
-		}
 
+
+
+			//准备收集要绘制的物体
+			drawTask2D.clear();
+			drawTask3D.clear();
+
+			//场景生命周期，在这里处理场景的生命周期
+			now->OnUpdate(drawTask2D, drawTask3D, nullptr, nullptr);
+		}
 
 		//初始化GL状态机
 		glClearColor(0, 0, 0, 1);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-		//准备收集要绘制的物体
-		drawTask2D.clear();
-		drawTask3D.clear();
-		
-		
-
-		//场景生命周期，在这里处理场景的生命周期
-		now->OnUpdate(drawTask2D,drawTask3D,nullptr,nullptr);
 
 		sort(drawTask2D.begin(), drawTask2D.end());
 		sort(drawTask3D.begin(), drawTask3D.end());

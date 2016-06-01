@@ -19,6 +19,7 @@ int wmain(){
 	e.SetFPSShowEnable(true);
 
 	e.InitWindow(800, 600, false);
+	e.SetSkipFrame(0);
 	
 	e.BindMessageProcessor(Nuz::IEngine::Message::Quit, []() {
 		IEngine::GetGameDevice().GetSceneManager().Exit();
@@ -44,7 +45,7 @@ int wmain(){
 		d.speed = float(rand()) / RAND_MAX * 2;
 		d.angle = float(rand()) / RAND_MAX * 2 * M_PI;
 	});
-	particle2D->AddDot(0, 0,2000);
+	particle2D->AddDot(0, 0,100);
 
 	sA->MountComponent(particle2D);
 
