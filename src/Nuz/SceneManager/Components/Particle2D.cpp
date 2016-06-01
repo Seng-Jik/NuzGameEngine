@@ -23,10 +23,10 @@ void Nuz_::Particle2D::UseImage(const std::string & f, int num)
 
 	drawDot.DefineBegin();
 	glBegin(GL_QUADS); {
-		glTexCoord2f(rect.x, rect.y + rect.h); glVertex2f(-1.0, -1.0);
-		glTexCoord2f(rect.x + rect.w, rect.y + rect.h); glVertex2f(1.0, -1.0);
-		glTexCoord2f(rect.x + rect.w, rect.y); glVertex2f(1.0, 1.0);
-		glTexCoord2f(rect.x, rect.y); glVertex2f(-1.0, 1.0);
+		glMultiTexCoord2f(GL_TEXTURE0,rect.x, rect.y + rect.h); glVertex2f(-1.0, -1.0);
+		glMultiTexCoord2f(GL_TEXTURE0, rect.x + rect.w, rect.y + rect.h); glVertex2f(1.0, -1.0);
+		glMultiTexCoord2f(GL_TEXTURE0, rect.x + rect.w, rect.y); glVertex2f(1.0, 1.0);
+		glMultiTexCoord2f(GL_TEXTURE0, rect.x, rect.y); glVertex2f(-1.0, 1.0);
 	}
 	glEnd();
 	drawDot.DefineEnd();

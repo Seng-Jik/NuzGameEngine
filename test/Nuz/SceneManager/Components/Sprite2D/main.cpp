@@ -16,6 +16,7 @@ private:
 	float scl_w = 0.5f, scl_h = 1.0f;
 	float green = 0.0;
 	float angle = 0.0f;
+	float alpha = 1.0f;
 public:
 	Prim() {
 	}
@@ -25,6 +26,7 @@ public:
 		((ISprite2D*)m_hello.get())->SetRotate(true, 1, 1, angle, true, false);
 		((ISprite2D*)m_hello.get())->SetScale(scl_w, scl_h);
 		((ISprite2D*)m_hello.get())->SetColorFliter(1.0f, green, 1.0f);
+		((ISprite2D*)m_hello.get())->SetAlpha(alpha);
 		auto& key = Nuz::IEngine::GetGameDevice().GetInputDeviceManager().GetKeyboard();
 		if (key.KeyPressed(KeyCode::Down)) y -= 0.03f;
 		if (key.KeyPressed(KeyCode::Up)) y += 0.03f;
@@ -35,7 +37,7 @@ public:
 		if (key.KeyPressed(KeyCode::X)) scl_h += 0.01f;
 		if (key.KeyPressed(KeyCode::Esc)) ((ISprite2D*)m_hello.get())->SetDstSizeAsDefault();
 		if (key.KeyPressed(KeyCode::F1)) green += 0.01;
-
+		if (key.KeyPressed(KeyCode::F2)) alpha -= 0.01;
 	}
 	void Unmount() { UnmountSelf(); }
 };

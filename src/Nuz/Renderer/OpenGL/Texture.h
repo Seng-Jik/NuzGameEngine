@@ -29,8 +29,14 @@ namespace Nuz_ {
 			inline void GetSize(int& w, int& h) { w = m_w; h = m_h; }
 			void Clear();
 			inline bool Empty() { return m_texture == 0; }
-			inline void Bind() { glBindTexture(GL_TEXTURE_2D, m_texture); }
-			inline static void Unbind() { glBindTexture(GL_TEXTURE_2D, 0); }
+			inline void Bind() { 
+				glActiveTexture(GL_TEXTURE0);
+				glBindTexture(GL_TEXTURE_2D, m_texture); 
+			}
+			inline static void Unbind() { 
+				glActiveTexture(GL_TEXTURE0);
+				glBindTexture(GL_TEXTURE_2D, 0);
+			}
 		};
 	}
 }

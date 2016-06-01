@@ -20,19 +20,20 @@ namespace Nuz_ {
 			};
 
 			static GLSLShader m_normalVertShader, m_normalFragShader;
+			static GLuint m_normalShaderProgram;	//πÃ∂®π‹œﬂ£®Œ±
 
 			GLuint m_program = 0;
-			std::vector<std::shared_ptr<GLSLShader>> m_usedShader;
 		public:
 			GLSLProgram();
 			~GLSLProgram();
 			static void CompileNormalShaders();
+			static void DestroyNormalShaders();
 			void LoadShader(const Nuz::IShader::CreateConfig& c);
 			inline void Use() const { glUseProgram(m_program); };
 			void Clear();
 			inline bool Empty() const {return m_program == 0;}
 			inline operator GLuint () {return m_program;}
-			inline static void Unuse() { glUseProgram(0); }
+			inline static void Unuse() { glUseProgram(m_normalShaderProgram); }
 		};
 	}
 }

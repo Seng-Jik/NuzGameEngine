@@ -14,10 +14,10 @@ void Nuz_::Sprite2D::updateDrawCall(const FRect & src)
 	imageRect.h *= src.h;
 	draw.DefineBegin();
 	glBegin(GL_QUADS); {
-		glTexCoord2f(imageRect.x, imageRect.y + imageRect.h); glVertex2f(-1.0, -1.0);
-		glTexCoord2f(imageRect.x + imageRect.w, imageRect.y + imageRect.h); glVertex2f(1.0, -1.0);
-		glTexCoord2f(imageRect.x + imageRect.w, imageRect.y); glVertex2f(1.0, 1.0);
-		glTexCoord2f(imageRect.x, imageRect.y); glVertex2f(-1.0, 1.0);
+		glMultiTexCoord2f(GL_TEXTURE0,imageRect.x, imageRect.y + imageRect.h); glVertex2f(-1.0, -1.0);
+		glMultiTexCoord2f(GL_TEXTURE0,imageRect.x + imageRect.w, imageRect.y + imageRect.h); glVertex2f(1.0, -1.0);
+		glMultiTexCoord2f(GL_TEXTURE0,imageRect.x + imageRect.w, imageRect.y); glVertex2f(1.0, 1.0);
+		glMultiTexCoord2f(GL_TEXTURE0,imageRect.x, imageRect.y); glVertex2f(-1.0, 1.0);
 	}
 	glEnd();
 	draw.DefineEnd();

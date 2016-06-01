@@ -5,6 +5,7 @@ using namespace Nuz_;
 using namespace Nuz_::Renderer;
 
 GLSLProgram::GLSLShader GLSLProgram::m_normalVertShader, GLSLProgram::m_normalFragShader;
+GLuint GLSLProgram::m_normalShaderProgram = 0;
 
 
 GLSLProgram::GLSLProgram()
@@ -14,30 +15,49 @@ GLSLProgram::GLSLProgram()
 
 GLSLProgram::~GLSLProgram()
 {
+	Clear();
 }
 
 void Nuz_::Renderer::GLSLProgram::CompileNormalShaders()
 {
+	m_normalShaderProgram = glCreateProgram();
 	const char* vert =
 		"#version 110\n"
-		"uniform mat4 gl_ModelViewProjectionMatrix;\n"
-		"attribute vec4 gl_Vertex;\n"
-		"attribute vec4 gl_MultiTexCoord0;\n"
-		"uniform mat4 gl_TextureMatrix[1];\n"
-		"varying vec4 Nuz_texCoord;\n"
-		"void main(){\n"
-		"	gl_Position = gl_Vertex*gl_ModelViewProjectionMatrix;\n"
-		"	Nuz_texCoord = gl_MultiTexCoord0 * gl_TextureMatrix[0];\n"
-		"}\n";
+		"attribute vec4 gl_MultiTexCoord0;"
+		"uniform mat4 gl_TextureMatrix[1];"
+		"varying vec4 Nuz_texCoord;"
+		"attribute vec4 gl_Color;"
+		"varying vec4 Nuz_Color;"
+		"void main(){"
+		"	Nuz_texCoord = gl_MultiTexCoord0 * gl_TextureMatrix[0];"
+		"	Nuz_Color = gl_Color;"
+		"	gl_Position = ftransform();"
+		"}";
 	const char* frag =
 		"#version 110\n"
-		"varying vec4 Nuz_texCoord;\n"
-		"uniform sampler2D Nuz_texture;\n"
+		"varying vec4 Nuz_Color;"
+		"varying vec4 Nuz_texCoord;"
+		"uniform sampler2D Nuz_texture;"
 		"void main(){\n"
-		"	gl_FragColor = texture2D(Nuz_texture,Nuz_texCoord.st);\n"
-		"}\n";
+		"	gl_FragColor = texture2D(Nuz_texture,Nuz_texCoord.st);"
+		"	gl_FragColor = gl_FragColor * Nuz_Color;"
+		"	gl_FragColor[3] = Nuz_Color[3];"
+		"}";
 	m_normalFragShader.CompileShader(frag, GL_FRAGMENT_SHADER);
 	m_normalVertShader.CompileShader(vert, GL_VERTEX_SHADER);
+
+	glAttachShader(m_normalShaderProgram, m_normalFragShader);
+	glAttachShader(m_normalShaderProgram, m_normalVertShader);
+	glLinkProgram(m_normalShaderProgram);
+	glUseProgram(m_normalShaderProgram);
+
+	auto pTex = glGetUniformLocation(m_normalShaderProgram, "Nuz_texture");
+	glProgramUniform1iEXT(m_normalShaderProgram, pTex, 0);
+}
+
+void Nuz_::Renderer::GLSLProgram::DestroyNormalShaders()
+{
+	if(m_normalShaderProgram) glDeleteProgram(m_normalShaderProgram);
 }
 
 
@@ -73,6 +93,7 @@ void Nuz_::Renderer::GLSLProgram::LoadShader(const Nuz::IShader::CreateConfig & 
 void Nuz_::Renderer::GLSLProgram::Clear()
 {
 	if(m_program) glDeleteProgram(m_program);
+	m_program = 0;
 }
 
 void Nuz_::Renderer::GLSLProgram::GLSLShader::CompileShader(const char * source, GLenum type)
@@ -96,7 +117,7 @@ void Nuz_::Renderer::GLSLProgram::GLSLShader::CompileShader(const char * source,
 			glGetShaderInfoLog(m_shader, logLen, &written, log);
 			string s(log);
 			free(log);
-			throw Nuz::IShader::ShaderCompileError("Vertex Shader:" + s);
+			throw Nuz::IShader::ShaderCompileError("Shader Compile Failed:\n" + s);
 		}
 	}
 }
