@@ -64,16 +64,15 @@ void Nuz_::Sprite2D::SetSrc(int x, int y, int w, int h)
 	fr.w = float(w) / fw;
 	fr.h = float(h) / fh;
 	//updateDrawCall(fr);
-	auto imageRect = m_texture->GetUVRect(m_imageNum);
-	imageRect.x += fr.x;
-	imageRect.y += fr.y;
-	imageRect.w *= fr.w;
-	imageRect.h *= fr.h;
+	uvRect.x += fr.x;
+	uvRect.y += fr.y;
+	uvRect.w *= fr.w;
+	uvRect.h *= fr.h;
 
-	m_texCoord[0] = imageRect.x, m_texCoord[1] = imageRect.y + imageRect.h;
-	m_texCoord[2] = imageRect.x + imageRect.w, m_texCoord[3] = imageRect.y + imageRect.h;
-	m_texCoord[4] = imageRect.x + imageRect.w, m_texCoord[5] = imageRect.y;
-	m_texCoord[6] = imageRect.x, m_texCoord[7] = imageRect.y;
+	m_texCoord[0] = uvRect.x, m_texCoord[1] = uvRect.y + uvRect.h;
+	m_texCoord[2] = uvRect.x + uvRect.w, m_texCoord[3] = uvRect.y + uvRect.h;
+	m_texCoord[4] = uvRect.x + uvRect.w, m_texCoord[5] = uvRect.y;
+	m_texCoord[6] = uvRect.x, m_texCoord[7] = uvRect.y;
 }
 
 void Nuz_::Sprite2D::GetSize(int & w, int & h) const
