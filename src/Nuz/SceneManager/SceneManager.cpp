@@ -5,6 +5,7 @@
 #include "DrawTask.h"
 #include "GameObjectFloder.h"
 #include "Camera2D.h"
+#include <SDL_mixer.h>
 //#include "Camera3D.h"
 #include <SDL.h>
 #include "../Renderer/OpenGL/glew.h"
@@ -107,14 +108,42 @@ void Nuz_::SceneManager::Start(std::shared_ptr<Nuz::IScene> p)
 				};
 			}
 
-
-
 			//准备收集要绘制的物体
 			drawTask2D.clear();
 			drawTask3D.clear();
 
+			//场景切换
+			if (m_fadeTask.type != FadeSceneTask::NONE) {
+				//如果当前要求切换场景
+				if (m_fadeTask.type == FadeSceneTask::FADE_MODE_START) {
+					if (m_fadeTask.time > 0) {
+						now->OnFadeSwitchOut(m_fadeTask.time);
+						m_fadeTask.to->OnFadeSwitchIn(m_fadeTask.time);
+						m_fadeTask.type = FadeSceneTask::FADE_MODE;
+						m_fadeTask.timePassed = 0;
+					}
+					else if (m_fadeTask.time == 0) {
+						now = m_fadeTask.to;
+						m_fadeTask.type = FadeSceneTask::NONE;
+					}
+				}
+
+				//如果正在切换场景
+				if (m_fadeTask.type == FadeSceneTask::FADE_MODE) {
+					float progress = float(m_fadeTask.timePassed++) / m_fadeTask.time;
+					m_fadeTask.to->OnFadeSwitchInUpdate(progress);
+					now->OnFadeSwitchOutUpdate(progress);
+					if (m_fadeTask.timePassed >= m_fadeTask.time) {
+						//如果切换结束
+						now = m_fadeTask.to;
+						m_fadeTask.type = FadeSceneTask::NONE;
+					}
+				}
+			}
+
 			//场景生命周期，在这里处理场景的生命周期
 			now->OnUpdate(drawTask2D, drawTask3D, nullptr, nullptr);
+			if(m_fadeTask.type == FadeSceneTask::FADE_MODE) m_fadeTask.to->OnUpdate(drawTask2D, drawTask3D, nullptr, nullptr);
 		}
 
 		//初始化GL状态机
@@ -161,5 +190,15 @@ void Nuz_::SceneManager::Start(std::shared_ptr<Nuz::IScene> p)
 		}
 	}
 	//跳出主循环后应当停止所有声音
+	Mix_HaltChannel(-1);
+}
+
+//Main Loop
+
+void Nuz_::SceneManager::FadeTo(std::shared_ptr<Nuz::IScene> s, int time) {
+	if (m_fadeTask.type != FadeSceneTask::NONE) throw runtime_error("Scene manager is busy.");
+	m_fadeTask.type = FadeSceneTask::FADE_MODE_START;
+	m_fadeTask.to = (Nuz_::Scene*)s.get();
+	m_fadeTask.time = time;
 }
 

@@ -123,7 +123,7 @@ void Nuz_::Scene::OnFadeSwitchOut(int timeLimited) {
 		((Scene*)p.get())->OnFadeSwitchOut(timeLimited);
 }
 
-inline void Nuz_::Scene::OnFadeSwitchOutUpdate(float finished) { 
+void Nuz_::Scene::OnFadeSwitchOutUpdate(float finished) { 
 	m_gof.OnFadeSwitchOutUpdate(finished); 
 	for (auto& p : m_allscene)
 		((Scene*)p.get())->OnFadeSwitchOutUpdate(finished);
