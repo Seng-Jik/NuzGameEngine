@@ -5,24 +5,6 @@
 #include "../../Font.h"
 using namespace Nuz_;
 
-void Nuz_::Sprite2D::updateDrawCall(const FRect & src)
-{
-	auto imageRect = m_texture->GetUVRect(m_imageNum);
-	imageRect.x += src.x;
-	imageRect.y += src.y;
-	imageRect.w *= src.w;
-	imageRect.h *= src.h;
-	draw.DefineBegin();
-	glBegin(GL_QUADS); {
-		glMultiTexCoord2f(GL_TEXTURE0,imageRect.x, imageRect.y + imageRect.h); glVertex2f(-1.0, -1.0);
-		glMultiTexCoord2f(GL_TEXTURE0,imageRect.x + imageRect.w, imageRect.y + imageRect.h); glVertex2f(1.0, -1.0);
-		glMultiTexCoord2f(GL_TEXTURE0,imageRect.x + imageRect.w, imageRect.y); glVertex2f(1.0, 1.0);
-		glMultiTexCoord2f(GL_TEXTURE0,imageRect.x, imageRect.y); glVertex2f(-1.0, 1.0);
-	}
-	glEnd();
-	draw.DefineEnd();
-}
-
 Sprite2D::Sprite2D()
 {
 	//Renderer::LoadIdentityModelView44(m_matrix);
@@ -81,7 +63,17 @@ void Nuz_::Sprite2D::SetSrc(int x, int y, int w, int h)
 	fr.y = float(y) / fh;
 	fr.w = float(w) / fw;
 	fr.h = float(h) / fh;
-	updateDrawCall(fr);
+	//updateDrawCall(fr);
+	auto imageRect = m_texture->GetUVRect(m_imageNum);
+	imageRect.x += fr.x;
+	imageRect.y += fr.y;
+	imageRect.w *= fr.w;
+	imageRect.h *= fr.h;
+
+	m_texCoord[0] = imageRect.x, m_texCoord[1] = imageRect.y + imageRect.h;
+	m_texCoord[2] = imageRect.x + imageRect.w, m_texCoord[3] = imageRect.y + imageRect.h;
+	m_texCoord[4] = imageRect.x + imageRect.w, m_texCoord[5] = imageRect.y;
+	m_texCoord[6] = imageRect.x, m_texCoord[7] = imageRect.y;
 }
 
 void Nuz_::Sprite2D::GetSize(int & w, int & h) const
@@ -197,7 +189,14 @@ void Nuz_::Sprite2D::OnDraw2D() const
 	}
 	m_texture->Bind();
 	glColor4f(m_r, m_g, m_b,m_a);
-	draw();
+
+	glBegin(GL_QUADS); {
+		glMultiTexCoord2f(GL_TEXTURE0, m_texCoord[0], m_texCoord[1]); glVertex2f(-1.0, -1.0);
+		glMultiTexCoord2f(GL_TEXTURE0, m_texCoord[2], m_texCoord[3]); glVertex2f(1.0, -1.0);
+		glMultiTexCoord2f(GL_TEXTURE0, m_texCoord[4], m_texCoord[5]); glVertex2f(1.0, 1.0);
+		glMultiTexCoord2f(GL_TEXTURE0, m_texCoord[6], m_texCoord[7]); glVertex2f(-1.0, 1.0);
+	}
+	glEnd();
 	//auto imageRect = m_texture->GetUVRect(0);
 
 	m_texture->Unbind();

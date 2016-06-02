@@ -49,8 +49,8 @@ public:
 	void OnUpdate(bool& draw2D, bool& draw3D) {
 		--i;
 		if (!i) {
-			((Prim*)GetOtherComponent("Hello").get())->Unmount();
-			((Prim*)GetOtherComponent("Hello2").get())->Unmount();
+			//((Prim*)GetOtherComponent("Hello").get())->Unmount();
+			//((Prim*)GetOtherComponent("Hello2").get())->Unmount();
 		}
 	}
 };

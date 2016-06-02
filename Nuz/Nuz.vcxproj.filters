@@ -398,8 +398,5 @@
     <ClCompile Include="..\src\Nuz\Renderer\OpenGL\BufferObject.cpp">
       <Filter>源文件\Nuz\Renderer\OpenGL</Filter>
     </ClCompile>
-    <ClCompile Include="..\test\Nuz\SceneManager\SceneManager\SceneFadeTest.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

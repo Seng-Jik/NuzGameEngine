@@ -24,7 +24,9 @@ namespace Nuz_ {
 		bool m_visible = false;
 
 		Renderer::CallList draw;	//绘制图像
-		void updateDrawCall(const FRect& src);	//更新drawScreen函数,src部分编入显卡
+		//void updateDrawCall(const FRect& src);	//更新drawScreen函数,src部分编入显卡
+
+		float m_texCoord[8];	//贴图坐标
 
 	public:
 		Sprite2D();
