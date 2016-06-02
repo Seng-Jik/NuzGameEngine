@@ -33,19 +33,22 @@ int wmain(){
 	particle2D->UseImage("/demo.ctx", 0);
 	particle2D->BindSingle([](Nuz::IParticle2D& p, Nuz::IParticle2D::Dot2D& d) {
 		//d.speed += 0.0001f;
-		d.alpha -= 0.001f;
+		//d.alpha -= 0.001f;
+		d.angle -= 0.1;
+		d.size += 0.01;
 		//d.angle += 0.01f;
-		d.r -= 0.01f;
-		d.g -= 0.001f;
-		if(d.speed>=0.01) d.speed -= 0.001f;
-		d.size -= (0.005f);
+		//d.r -= 0.01f;
+		//d.g -= 0.001f;
+		//if(d.speed>=0.01) d.speed -= 0.001f;
+		//d.size -= (0.005f);
 	});
 
 	particle2D->BindIniter([](Nuz::IParticle2D& p, Nuz::IParticle2D::Dot2D& d) {
-		d.speed = float(rand()) / RAND_MAX * 2;
+		d.speed = 1;//float(rand()) / RAND_MAX;
 		d.angle = float(rand()) / RAND_MAX * 2 * M_PI;
+		d.size = 0.5;
 	});
-	particle2D->AddDot(0, 0,100);
+	particle2D->AddDot(0, 0,1);
 
 	sA->MountComponent(particle2D);
 

@@ -73,7 +73,7 @@ void Nuz_::Renderer::GLSLProgram::LoadShader(const Nuz::IShader::CreateConfig & 
 {
 	Clear();
 	m_program = glCreateProgram();
-	if (m_program == 0) throw std::runtime_error("Can not create program object.");
+	if (m_program == 0) throw Nuz::IEngine::RendererError("Can not create program object.");
 
 	GLSLShader* vert = nullptr,*frag = nullptr;
 	if (!c.vertexShader.empty()) {
@@ -89,7 +89,7 @@ void Nuz_::Renderer::GLSLProgram::LoadShader(const Nuz::IShader::CreateConfig & 
 		frag = new GLSLShader;
 		frag->CompileShader((char*)&(*buf)[0], GL_FRAGMENT_SHADER);
 	}
-	else throw std::runtime_error("You must use a fragment shader.");
+	else throw Nuz::IEngine::RendererError("You must use a fragment shader.");
 
 	glAttachShader(m_program, *vert);
 	glAttachShader(m_program, *frag);
@@ -109,7 +109,7 @@ void Nuz_::Renderer::GLSLProgram::GLSLShader::CompileShader(const char * source,
 	Clear();
 	m_type = type;
 	m_shader = glCreateShader(type);
-	if (m_shader == 0) throw std::runtime_error("Can not create shader.");
+	if (m_shader == 0) throw Nuz::IEngine::RendererError("Can not create shader.");
 	glShaderSource(m_shader, 1, &source, 0);
 	glCompileShader(m_shader);
 

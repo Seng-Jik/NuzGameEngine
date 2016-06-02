@@ -213,6 +213,7 @@
     <ClInclude Include="..\src\Nuz\Input\Keyboard.h" />
     <ClInclude Include="..\src\Nuz\Renderer\CtxReader.h" />
     <ClInclude Include="..\src\Nuz\Renderer\ImageCacheManager.h" />
+    <ClInclude Include="..\src\Nuz\Renderer\OpenGL\BufferObject.h" />
     <ClInclude Include="..\src\Nuz\Renderer\OpenGL\CallList.h" />
     <ClInclude Include="..\src\Nuz\Renderer\OpenGL\FrameBuffer.h" />
     <ClInclude Include="..\src\Nuz\Renderer\OpenGL\glew.h" />
@@ -263,6 +264,7 @@
     <ClCompile Include="..\src\Nuz\Logs.cpp" />
     <ClCompile Include="..\src\Nuz\Renderer\CtxReader.cpp" />
     <ClCompile Include="..\src\Nuz\Renderer\ImageCacheManager.cpp" />
+    <ClCompile Include="..\src\Nuz\Renderer\OpenGL\BufferObject.cpp" />
     <ClCompile Include="..\src\Nuz\Renderer\OpenGL\CallList.cpp" />
     <ClCompile Include="..\src\Nuz\Renderer\OpenGL\FrameBuffer.cpp" />
     <ClCompile Include="..\src\Nuz\Renderer\OpenGL\glew.cpp" />

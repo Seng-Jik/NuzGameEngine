@@ -300,6 +300,9 @@
     <ClInclude Include="..\src\Nuz\SceneManager\Components\Shader.h">
       <Filter>头文件\Realize\Nuz_\SceneManager\Components</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Nuz\Renderer\OpenGL\BufferObject.h">
+      <Filter>头文件\Realize\Nuz_\Renderer\OpenGL</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Nuz\FileSystem\FileSystem.cpp">
@@ -391,6 +394,9 @@
     </ClCompile>
     <ClCompile Include="..\src\Nuz\SceneManager\Components\Shader.cpp">
       <Filter>源文件\Nuz\SceneManager\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Nuz\Renderer\OpenGL\BufferObject.cpp">
+      <Filter>源文件\Nuz\Renderer\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="..\test\Nuz\SceneManager\SceneManager\SceneFadeTest.cpp">
       <Filter>源文件</Filter>
