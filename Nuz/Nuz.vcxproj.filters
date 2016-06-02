@@ -389,7 +389,10 @@
     <ClCompile Include="..\src\Nuz\Renderer\OpenGL\GLSLProgram.cpp">
       <Filter>源文件\Nuz\Renderer\OpenGL</Filter>
     </ClCompile>
-    <ClCompile Include="..\test\Nuz\SceneManager\Components\Particle2D\main.cpp">
+    <ClCompile Include="..\src\Nuz\SceneManager\Components\Shader.cpp">
+      <Filter>源文件\Nuz\SceneManager\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\Nuz\SceneManager\Components\Shader\main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

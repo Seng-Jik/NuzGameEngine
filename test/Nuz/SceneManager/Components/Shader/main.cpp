@@ -89,6 +89,16 @@ int wmain(){
 	sprite->UseImage("/demo.ctx", 1);
 	sprite->SetAlpha(0.5);
 	sprite->SetColorFliter(1.0, 1.0, 0.0);
+
+	shared_ptr<Nuz::IShader> shader;
+	try {
+		shader = Nuz::IShader::CreateShaderFromFile({ "","/../test/Nuz/SceneManager/Components/Shader/frag.glsl" });
+	}
+	catch (IShader::ShaderCompileError& s) {
+		LogErr(s.what());
+	}
+	shader->SetUniformFloat("NuzTest_Color", 4, 0.0f, 1.0f, 0.0f, 1.0f);
+	sA->MountComponent(shader,"Shader");
 	
 	auto font = IFont::CreateFont("/test.ttf", 32);
 	auto font2 = IFont::CreateFont("/test.ttf", 32);

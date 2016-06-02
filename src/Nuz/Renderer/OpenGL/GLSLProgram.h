@@ -16,10 +16,11 @@ namespace Nuz_ {
 			public:
 				void CompileShader(const char* source,GLenum type);
 				inline operator GLuint() { return m_shader; }
+				void Clear();
 				~GLSLShader();
 			};
 
-			static GLSLShader m_normalVertShader, m_normalFragShader;
+			static GLSLShader m_normalVertShader;
 			static GLuint m_normalShaderProgram;	//πÃ∂®π‹œﬂ£®Œ±
 
 			GLuint m_program = 0;

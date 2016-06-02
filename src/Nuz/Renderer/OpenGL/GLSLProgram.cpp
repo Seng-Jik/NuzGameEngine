@@ -4,7 +4,7 @@ using namespace std;
 using namespace Nuz_;
 using namespace Nuz_::Renderer;
 
-GLSLProgram::GLSLShader GLSLProgram::m_normalVertShader, GLSLProgram::m_normalFragShader;
+GLSLProgram::GLSLShader GLSLProgram::m_normalVertShader;
 GLuint GLSLProgram::m_normalShaderProgram = 0;
 
 
@@ -33,6 +33,11 @@ void Nuz_::Renderer::GLSLProgram::CompileNormalShaders()
 		"	Nuz_Color = gl_Color;"
 		"	gl_Position = ftransform();"
 		"}";
+	const char* vert2 =
+		"#version 110\n"
+		"void main(){"
+		"	gl_Position = ftransform();"
+		"}";
 	const char* frag =
 		"#version 110\n"
 		"varying vec4 Nuz_Color;"
@@ -43,12 +48,14 @@ void Nuz_::Renderer::GLSLProgram::CompileNormalShaders()
 		"	gl_FragColor = gl_FragColor * Nuz_Color;"
 		"	gl_FragColor[3] = Nuz_Color[3];"
 		"}";
-	m_normalFragShader.CompileShader(frag, GL_FRAGMENT_SHADER);
+	GLSLShader normalFragShader;
+	normalFragShader.CompileShader(frag, GL_FRAGMENT_SHADER);
 	m_normalVertShader.CompileShader(vert, GL_VERTEX_SHADER);
 
-	glAttachShader(m_normalShaderProgram, m_normalFragShader);
+	glAttachShader(m_normalShaderProgram, normalFragShader);
 	glAttachShader(m_normalShaderProgram, m_normalVertShader);
 	glLinkProgram(m_normalShaderProgram);
+	m_normalVertShader.CompileShader(vert2, GL_VERTEX_SHADER);
 	glUseProgram(m_normalShaderProgram);
 
 	auto pTex = glGetUniformLocation(m_normalShaderProgram, "Nuz_texture");
@@ -71,23 +78,24 @@ void Nuz_::Renderer::GLSLProgram::LoadShader(const Nuz::IShader::CreateConfig & 
 	GLSLShader* vert = nullptr,*frag = nullptr;
 	if (!c.vertexShader.empty()) {
 		auto buf = Nuz::IEngine::GetGameDevice().GetFileSystem().LoadFile(c.vertexShader);
+		buf->push_back('\0');
 		vert = new GLSLShader;
-		vert->CompileShader((char*)(*buf)[0], GL_VERTEX_SHADER);
+		vert->CompileShader((char*)&(*buf)[0], GL_VERTEX_SHADER);
 	}
 	else vert = &m_normalVertShader;
 	if (!c.fragmentShader.empty()) {
 		auto buf = Nuz::IEngine::GetGameDevice().GetFileSystem().LoadFile(c.fragmentShader);
+		buf->push_back('\0');
 		frag = new GLSLShader;
-		frag->CompileShader((char*)(*buf)[0], GL_FRAGMENT_SHADER);
+		frag->CompileShader((char*)&(*buf)[0], GL_FRAGMENT_SHADER);
 	}
-	else frag = &m_normalFragShader;
+	else throw std::runtime_error("You must use a fragment shader.");
 
 	glAttachShader(m_program, *vert);
 	glAttachShader(m_program, *frag);
 
 	glLinkProgram(m_program);
-	if (!c.fragmentShader.empty()) delete frag;
-	if (!c.vertexShader.empty()) delete vert;
+	delete frag;
 }
 
 void Nuz_::Renderer::GLSLProgram::Clear()
@@ -98,6 +106,7 @@ void Nuz_::Renderer::GLSLProgram::Clear()
 
 void Nuz_::Renderer::GLSLProgram::GLSLShader::CompileShader(const char * source, GLenum type)
 {
+	Clear();
 	m_type = type;
 	m_shader = glCreateShader(type);
 	if (m_shader == 0) throw std::runtime_error("Can not create shader.");
@@ -122,7 +131,12 @@ void Nuz_::Renderer::GLSLProgram::GLSLShader::CompileShader(const char * source,
 	}
 }
 
+void Nuz_::Renderer::GLSLProgram::GLSLShader::Clear()
+{
+	if (m_shader) glDeleteShader(m_shader);
+}
+
 Nuz_::Renderer::GLSLProgram::GLSLShader::~GLSLShader()
 {
-	if(m_shader) glDeleteShader(m_shader);
+	Clear();
 }
