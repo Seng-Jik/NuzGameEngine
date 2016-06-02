@@ -28,6 +28,8 @@ namespace Nuz_ {
 			if (m_messageProcessor.count(m))
 				m_messageProcessor.at(m)();
 		}
+
+		uint64_t m_frameTime = 0;
 	public:
 		SceneManager();
 		~SceneManager();
@@ -41,6 +43,10 @@ namespace Nuz_ {
 		}
 		inline void UnbindMessageProcessor(Nuz::IEngine::Message m) {
 			m_messageProcessor.erase(m);
+		}
+
+		inline uint64_t GetFrameTime() {
+			return m_frameTime;
 		}
 	};
 

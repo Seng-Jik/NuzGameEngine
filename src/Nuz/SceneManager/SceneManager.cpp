@@ -64,6 +64,7 @@ SceneManager::~SceneManager()
 
 void Nuz_::SceneManager::Start(std::shared_ptr<Nuz::IScene> p)
 {
+	m_frameTime = 0;
 	m_mainLoop = true;
 	static vector<DrawTask2D> drawTask2D;
 	static vector<DrawTask3D> drawTask3D;
@@ -145,6 +146,7 @@ void Nuz_::SceneManager::Start(std::shared_ptr<Nuz::IScene> p)
 			now->OnUpdate(drawTask2D, drawTask3D, nullptr, nullptr);
 			if(m_fadeTask.type == FadeSceneTask::FADE_MODE) m_fadeTask.to->OnUpdate(drawTask2D, drawTask3D, nullptr, nullptr);
 		}
+		m_frameTime += engine->GetSkipFrame();
 
 		//³õÊ¼»¯GL×´Ì¬»ú
 		glClearColor(0, 0, 0, 1);
